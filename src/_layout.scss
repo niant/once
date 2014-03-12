@@ -18,8 +18,16 @@
     display: inline-block;
 }
 
+.absolute {
+    position: absolute;
+}
+
 .relative {
     position: relative;
+}
+
+.overflow-hidden {
+    overflow: hidden;
 }
 
 .left {
@@ -59,6 +67,10 @@
 
 .overflow-scroll {
     overflow: scroll;
+}
+
+.v-align-top {
+    vertical-align: top;
 }
 
 // refactor to use the new clearfix? + we shouldn't even need one?
