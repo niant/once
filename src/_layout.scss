@@ -1,0 +1,74 @@
+.top-0 {
+    top: 0;
+}
+
+.bottom-0 {
+    bottom: 0;
+}
+
+.inline {
+    display: inline;
+}
+
+.block {
+    display: block;
+}
+
+.inline-block {
+    display: inline-block;
+}
+
+.relative {
+    position: relative;
+}
+
+.left {
+    float: left;
+}
+
+.right {
+    float: right;
+}
+
+.full-width {
+    width: 100%;
+}
+
+.fixed {
+    position: fixed;
+}
+
+.flex-column {
+    display: flex;
+    flex-direction: column;
+    flex-wrap: nowrap;
+    justify-content: flex-start;
+    align-content: stretch;
+    align-items: stretch;
+}
+
+.flex-lock {
+    flex-grow: 0;
+    flex-shrink: 0; //1
+}
+
+.flex-flex {
+    flex-grow: 1;
+    flex-shrink: 1;
+}
+
+.overflow-scroll {
+    overflow: scroll;
+}
+
+// refactor to use the new clearfix? + we shouldn't even need one?
+.clearfix {
+    // display: inline-block;
+    &:after {
+        content: ".";
+        display: block;
+        height: 0;
+        clear: both;
+        visibility: hidden;
+    }
+}

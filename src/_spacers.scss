@@ -1,0 +1,54 @@
+.margin-0 {
+    margin: 0;
+}
+
+.padding-0 {
+    padding: 0;
+}
+
+.margin-top-0 {
+    margin-top: 0;
+}
+
+// @include createSpacer('padding-box', ('padding'));
+// @include createSpacer('padding-v', ('padding-left', 'padding-right'));
+// @include createSpacer('padding-h', ('padding-top', 'padding-bottom'));
+@mixin createSpacer($selectorName, $cssProperties) {
+    @each $size in $sizes {
+        .#{$selectorName}-#{$size} {
+            @each $property in $cssProperties {
+                #{$property}: nth($spacers, index($sizes, $size));
+            }
+        }
+    }
+}
+
+// @include createSpacersForTypes(('margin', 'padding'), 'box');
+// @include createSpacersForTypes(('margin', 'padding'), 'v', ('left', 'right'));
+@mixin createSpacersForTypes($types, $selectorName, $cssProperties:false) {
+    @each $type in $types {
+        $typeProperties: ();
+
+        @if $cssProperties != false {
+            @each $property in $cssProperties {
+                $typeProperties: append($typeProperties, $type + '-' + $property);
+            }
+        } @else {
+            $typeProperties: append($typeProperties, $type);
+        }
+
+        @include createSpacer($type + '-' + $selectorName, $typeProperties);
+    }
+}
+
+@mixin createPaddingAndMarginSpacers($selectorName, $cssProperties:false) {
+    @include createSpacersForTypes(('margin', 'padding'), $selectorName, $cssProperties);
+}
+
+@include createPaddingAndMarginSpacers('box');
+@include createPaddingAndMarginSpacers('v', ('left', 'right'));
+@include createPaddingAndMarginSpacers('h', ('top', 'bottom'));
+@include createPaddingAndMarginSpacers('left', ('left'));
+@include createPaddingAndMarginSpacers('right', ('right'));
+@include createPaddingAndMarginSpacers('top', ('top'));
+@include createPaddingAndMarginSpacers('bottom', ('bottom'));
