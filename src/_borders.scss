@@ -1,5 +1,63 @@
+.border-0 {
+    border: none;
+}
+
 .border-left-sm {
-    border-left-style: solid;
     border-left-width: 1px;
 }
 
+.border-top-sm {
+    border-top-width: 1px;
+}
+
+.border-top-md {
+    border-top-width:2px;
+}
+
+.border-top-lg {
+    border-top-width: 3px;
+}
+
+.border-bottom-sm {
+    border-bottom-width: 1px;
+}
+
+.border-bottom-lg {
+    border-bottom-width: 3px;
+}
+
+.border-h-sm {
+    border-top-width: 1px;
+    border-bottom-width: 1px;
+}
+
+
+.border-h-dotted {
+    border-top-style: dotted;
+    border-bottom-style: dotted;
+}
+
+.border-h-dashed {
+    border-top-style: dashed;
+    border-bottom-style: dashed;
+}
+
+.border-bottom-dashed {
+    border-bottom-style: dashed;
+}
+
+.border-bottom-double {
+    border-bottom-style: double;
+}
+
+.border-top-double {
+    border-top-style: double;
+}
+
+.border-top-solid {
+    border-top-style: solid;
+}
+
+.border-bottom-solid {
+    border-bottom-style: solid;
+}
