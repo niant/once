@@ -54,6 +54,18 @@ body {
     font-weight: bold;
 }
 
+.italic {
+    font-style:italic;
+}
+
+.uppercase {
+    text-transform: uppercase;
+}
+
+.line-through {
+    text-decoration: line-through;
+}
+
 .text-right {
     text-align: right;
 }
