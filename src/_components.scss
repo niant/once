@@ -1,0 +1,44 @@
+/*
+Most used components that are simpler to use than Atomic CSS classes.
+ */
+
+/* Make blocks equal height
+
+ */
+.equal-height {
+    overflow: hidden;
+}
+
+.equal-height-col {
+    padding-bottom: 500em;
+    margin-bottom: -500em;
+}
+
+/* Vertical aligned items
+
+<div class="v-align">
+    <div class="v-align-middle"></div>
+    <div class="v-align-middle"></div>
+</div>
+
+ */
+.v-align {
+    display: table;
+}
+
+.v-align-middle {
+    display: table-cell;
+    vertical-align: middle;
+}
+
+.v-align-top {
+    display: table-cell;
+    vertical-align: top;
+}
+
+.overlay-full {
+    position: absolute;
+    left: 0;
+    right: 0;
+    z-index: 1;
+}
