@@ -1,3 +1,19 @@
 .a-width-sm {
     transition: width 0.5s ease-in-out;
 }
+
+.a-accordion {
+    max-height: 0;
+    overflow: hidden;
+    @include transition(max-height .6s ease-in-out);
+}
+
+.a-accordion-sm {
+    height: auto;
+    max-height: 2000px;
+}
+
+.a-accordion-md {
+    height: auto;
+    max-height: 4000px;
+}
