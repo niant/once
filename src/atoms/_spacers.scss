@@ -1,12 +1,12 @@
-.margin-0 {
+.M-0 {
     margin: 0;
 }
 
-.padding-0 {
+.P-0 {
     padding: 0;
 }
 
-.margin-top-0 {
+.Mt-0 {
     margin-top: 0;
 }
 
@@ -46,9 +46,9 @@
 }
 
 @include createPaddingAndMarginSpacers('box');
-@include createPaddingAndMarginSpacers('v', ('left', 'right'));
-@include createPaddingAndMarginSpacers('h', ('top', 'bottom'));
-@include createPaddingAndMarginSpacers('left', ('left'));
-@include createPaddingAndMarginSpacers('right', ('right'));
-@include createPaddingAndMarginSpacers('top', ('top'));
-@include createPaddingAndMarginSpacers('bottom', ('bottom'));
+@include createPaddingAndMarginSpacers('x', ('left', 'right'));
+@include createPaddingAndMarginSpacers('y', ('top', 'bottom'));
+@include createPaddingAndMarginSpacers('s', ('left'));
+@include createPaddingAndMarginSpacers('e', ('right'));
+@include createPaddingAndMarginSpacers('t', ('top'));
+@include createPaddingAndMarginSpacers('b', ('bottom'));
