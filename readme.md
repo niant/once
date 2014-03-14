@@ -10,4 +10,8 @@ After the initial heavy development mode, we are planning to modularize project 
 
 ## Preprocessors
 
-Currently we're supporting SASS, but plan is to support LESS also.
+Currently we're supporting SASS, but plan is to support LESS also
+
+## Recommendations
+
+It's recommended to use normalize.css with Once.
