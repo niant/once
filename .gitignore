@@ -2,3 +2,4 @@
 .project
 config.rb
 .sass-cache
+node_modules
