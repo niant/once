@@ -16,15 +16,8 @@ Currently we're supporting SASS, but plan is to support LESS also
 ## Recommendations
 
 It's recommended to use normalize.css with Once.It's recommended to use normalize.css with Once.
+It's recommended to use normalize.css with Once.
 
-## Development environment setup
-
-1. Clone Once to your desired location:
-
-    git clone https://github.com/niant/once.git destination/
-2. Download & install Node.js
-3. Run: npm install
-4. Start coding: npm start
 ## Development environment setup
 
 1. Clone Once to your desired location:
