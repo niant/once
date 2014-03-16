@@ -26,3 +26,7 @@ It's recommended to use normalize.css with Once.
 2. Download & install Node.js
 3. Run: npm install
 4. Start coding: npm start
+
+## Documentation
+
+[Detailed documentation](https://github.com/niant/once/tree/master/docs/index.html) is still incomplete but it gives you a hunch of what we are doing.
