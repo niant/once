@@ -4,7 +4,6 @@ Once CSS framework solves the headache of repetitive CSS. We have adopted best p
 
 ___Note!___ Project is still under heavy development, we don't recommend using it in production yet!
 
-`toc`
 
 ## Modularization
 
@@ -21,11 +20,8 @@ It's recommended to use normalize.css with Once.
 ## Development environment & setup
 
 1. Clone Once to your desired location:
-
     git clone git@github.com:niant/once.git destination/
 
 2. Download & install Node.js
-
 3. Run: npm install
-
 4. Start coding: npm start
