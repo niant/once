@@ -94,7 +94,11 @@ The value can be changed by changing the variable in a config file that is not c
 /*
 #Lists
 
-####List without styles134
+####List without styles
+
+	<ul>
+		<li>This list has no styles.</li>
+	</ul>
 */
 .no-list-style {
   list-style-type: none; }
