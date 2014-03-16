@@ -17,11 +17,11 @@ Currently we're supporting SASS, but plan is to support LESS also
 
 It's recommended to use normalize.css with Once.
 
-## Development environment & setup
+## If you want to contribute (Development environment)
 
 1. Clone Once to your desired location:
-    git clone git@github.com:niant/once.git destination/
 
+    git clone https://github.com/niant/once.git destination/
 2. Download & install Node.js
 3. Run: npm install
 4. Start coding: npm start
