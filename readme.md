@@ -29,4 +29,4 @@ It's recommended to use normalize.css with Once.
 
 ## Documentation
 
-[Detailed documentation](tree/master/docs/index.html) is still incomplete but it gives you a hunch of what we are doing.
+[Detailed documentation](docs/index.html) is still incomplete but it gives you a hunch of what we are doing.
