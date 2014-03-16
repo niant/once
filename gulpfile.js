@@ -5,9 +5,6 @@ var gulp = require('gulp');
 var clean = require('gulp-clean');
 var jshint = require('gulp-jshint');
 var sass = require('gulp-sass');
-var concat = require('gulp-concat');
-var uglify = require('gulp-uglify');
-var rename = require('gulp-rename');
 var prefix = require('gulp-autoprefixer');
 var styledocco = require('gulp-styledocco');
 
@@ -34,7 +31,6 @@ gulp.task('sass', function() {
 
 // Styledocco
 gulp.task('documentation', function() {
-	console.info("running styledocco task...");
 	return gulp.src('src/sass/*.scss')
 		.pipe(styledocco({
 			verbose: true,
