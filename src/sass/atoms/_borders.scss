@@ -20,7 +20,7 @@ The value can be changed by changing the variable in a config file that is not c
     border: none;
 }
 /*
-####Tablet screen border start value
+####Small border start (Border start)
 
 	<div class="Bs-sm">1px width left or right border depending of the direction of writing.</div>
 
@@ -29,8 +29,8 @@ The value can be changed by changing the variable in a config file that is not c
     border-left-width: 1px;
 }
 /*
-####Top border for sm breakpoint
-	
+####Small top border
+
 	<div class="Bt-sm">Top border for small breakpoint is 1px width.</div>
 */
 .Bt-sm {
