@@ -31,6 +31,7 @@ gulp.task('sass', function() {
     .pipe(prefix("last 1 version", "> 1%", "ie 8", "ie 7"))
     .pipe(gulp.dest('dist/css'))
     .pipe(styledocco({
+      verbose: true,
       out: 'docs',
       name: 'Once'
     }));
