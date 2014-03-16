@@ -120,12 +120,25 @@ body {
 .f-center {
   text-align: center; }
 
+/* Margins
+   =======
+
+* M = margin
+* Mt = margin-top
+* Mb = margin-bottom
+* P = padding
+* Pt = padding-top
+* Pb = padding-bottom
+
+No margins */
 .M-0 {
   margin: 0; }
 
+/* No paddings */
 .P-0 {
   padding: 0; }
 
+/* No top margin */
 .Mt-0 {
   margin-top: 0; }
 
