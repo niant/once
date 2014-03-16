@@ -47,6 +47,7 @@ gulp.task('documentation', function() {
 gulp.task('watch', function() {
   gulp.watch('gulpfile.js', ['jslint']);
   gulp.watch('src/sass/main.scss', ['sass']);
+  gulp.watch('src/sass/**/*.scss', ['sass']);
   gulp.watch('src/sass/*.scss', ['documentation']);
   gulp.watch('src/sass/**/*.scss', ['documentation']);
 });
