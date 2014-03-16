@@ -1,7 +1,7 @@
 /*
 #Margins
 
-M is an abbreviation for margin.
+####M is an abbreviation for margin.
 
 * Mt = margin-top
 * Mr = margin-right
@@ -9,31 +9,37 @@ M is an abbreviation for margin.
 * Ml = margin-left
 
 ####No margins
+
+	<div class="M-0">There are no margins in this div.</div>
 */
 .M-0 {
     margin: 0;
 }
 /*
+####No top margin
+
+	<div class="Mt-0">Top margin of this div is 0</div>
+*/
+.Mt-0 {
+    margin-top: 0;
+}
+
+/*
 #Paddings
 
-P is an abbreviation for padding.
+####P is an abbreviation for padding.
 
 * Pt = padding-top
 * Pr = padding-right
 * Pb = padding-bottom
 * Pl = padding-left
 
-###No paddings
+####No paddings
+
+	<div class="P-0">There are no paddings in this div.</div>
 */
 .P-0 {
     padding: 0;
-}
-
-/*
-####No top margin
-*/
-.Mt-0 {
-    margin-top: 0;
 }
 
 // @include createSpacer('padding-box', ('padding'));

@@ -1,11 +1,38 @@
+/*
+#Borders
+
+In some countries they write from right to left so we decided to create start and end values for borders.
+The value can be changed by changing the variable in a config file that is not created yet.
+
+* Bs = left or right border depending of the direction of writing
+* Bt = border-top
+* Br = border-right
+* Bb = border-bottom
+* Bl = border-left
+* Bx = border-left and border-right
+* By = border-top and border-bottom
+
+####No border top
+
+	<div class="B-0">There is no top border in this div.</div>
+*/
 .B-0 {
     border: none;
 }
+/*
+####Tablet screen border start value
 
+	<div class="Bs-sm">1px width left or right border depending of the direction of writing.</div>
+
+*/
 .Bs-sm {
     border-left-width: 1px;
 }
-
+/*
+####Top border for sm breakpoint
+	
+	<div class="Bt-sm">Top border for small breakpoint is 1px width.</div>
+*/
 .Bt-sm {
     border-top-width: 1px;
 }
