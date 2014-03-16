@@ -27,20 +27,20 @@ gulp.task('jslint', function() {
 // Sass compiling
 gulp.task('sass', function() {
   return gulp.src('src/sass/main.scss')
-    .pipe(sass())
-    .pipe(prefix("last 1 version", "> 1%", "ie 8", "ie 7"))
-    .pipe(gulp.dest('dist/css'))
     .pipe(styledocco({
       verbose: true,
       out: 'docs',
       name: 'Once'
-    }));
+    }))
+    .pipe(sass())
+    .pipe(prefix("last 1 version", "> 1%", "ie 8", "ie 7"))
+    .pipe(gulp.dest('dist/css'));
 });
 
 // Watch Files For Changes
 gulp.task('watch', function() {
   gulp.watch('gulpfile.js', ['jslint']);
-  gulp.watch('src/sass/main.scss', ['sass']);
+  gulp.watch('src/sass/**/*.scss', ['sass']);
 });
 
 // Default Task
