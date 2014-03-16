@@ -17,7 +17,7 @@ Currently we're supporting SASS, but plan is to support LESS also
 
 It's recommended to use normalize.css with Once.
 
-## If you want to contribute (Development environment)
+## Development environment setup
 
 1. Clone Once to your desired location:
 
