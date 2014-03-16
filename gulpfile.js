@@ -29,19 +29,27 @@ gulp.task('sass', function() {
   return gulp.src('src/sass/main.scss')
     .pipe(sass())
     .pipe(prefix("last 1 version", "> 1%", "ie 8", "ie 7"))
-    .pipe(gulp.dest('dist/css'))
-    .pipe(styledocco({
-      verbose: true,
-      out: 'docs',
-      name: 'Once'
-    }));
+    .pipe(gulp.dest('dist/css'));
+});
+
+// Styledocco
+gulp.task('documentation', function() {
+	console.info("running styledocco task...");
+	return gulp.src('src/sass/*.scss')
+		.pipe(styledocco({
+			verbose: true,
+			out: 'docs',
+			name: 'Once'
+		}));
 });
 
 // Watch Files For Changes
 gulp.task('watch', function() {
   gulp.watch('gulpfile.js', ['jslint']);
   gulp.watch('src/sass/main.scss', ['sass']);
+  gulp.watch('src/sass/*.scss', ['documentation']);
+  gulp.watch('src/sass/**/*.scss', ['documentation']);
 });
 
 // Default Task
-gulp.task('default', ['clean', 'jslint', 'sass', 'watch']);
+gulp.task('default', ['clean', 'jslint', 'sass', 'watch', 'documentation']);
