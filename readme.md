@@ -15,7 +15,6 @@ Currently we're supporting SASS, but plan is to support LESS also
 
 ## Recommendations
 
-It's recommended to use normalize.css with Once.It's recommended to use normalize.css with Once.
 It's recommended to use normalize.css with Once.
 
 ## Development environment setup
