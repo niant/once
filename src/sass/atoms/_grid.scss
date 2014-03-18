@@ -1,3 +1,15 @@
+/*
 # Grid
 
-Good defaults, widely customizable
+Good defaults, widely customizable.
+*/
+
+@mixin breakpoint(point) {
+	@media screen and (min-width: '200px') {
+		
+	} 
+}
+
+.sm-test {
+	@include breakpoint(sm);
+}
