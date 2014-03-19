@@ -2,6 +2,9 @@
 
 [![Build Status](https://travis-ci.org/niant/once.png?branch=master)](https://travis-ci.org/niant/once)
 
+[![devDependency Status](https://david-dm.org/niant/once/dev-status.svg?theme=shields.io)](https://david-dm.org/niant/once#info=devDependencies)
+
+
 Once CSS framework solves the headache of repetitive CSS. We have adopted best practices from OOCSS and Atomic CSS. The goal is to write the basic widely used classes once and not repeat yourself (DRY).
 
 ___Note!___ Project is still under heavy development, we don't recommend using it in production yet!
