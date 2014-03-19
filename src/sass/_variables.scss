@@ -2,4 +2,5 @@
 $sizes: 'xs', 'sm', 'md', 'lg', 'xl';
 $spacers: 0.5em, 0.7em, 1em, 1.5em, 2em;
 
-// $breakpoints: (xs: #660, sm: 640, md: 1024, lg: 1200);
+$breakpoints: (xs: 320, sm: 640, md: 1024, lg: 1200);
+$grid: 12;
