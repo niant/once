@@ -4,12 +4,12 @@
 Good defaults, widely customizable.
 */
 
-@mixin breakpoint(point) {
-	@media screen and (min-width: '200px') {
-		
-	} 
-}
-
-.sm-test {
-	@include breakpoint(sm);
+@each $point, $value in $breakpoints {
+    @media screen and (min-width: '#{$value}px') {
+		@for $i from 1 through $grid {
+  			.#{$point}-#{$i} {
+  				width: $i * ($value/$grid) + px;
+  			}
+  		}
+	}
 }
