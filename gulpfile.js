@@ -4,7 +4,7 @@ var gulp = require('gulp');
 // Include plugins
 var clean = require('gulp-clean');
 var jshint = require('gulp-jshint');
-var sass = require('gulp-sass');
+var sass = require('gulp-ruby-sass');
 var prefix = require('gulp-autoprefixer');
 var styledocco = require('gulp-styledocco');
 
@@ -23,10 +23,10 @@ gulp.task('jslint', function() {
 
 // Sass compiling
 gulp.task('sass', function() {
-  return gulp.src('src/sass/main.scss')
-    .pipe(sass())
-    .pipe(prefix("last 1 version", "> 1%", "ie 8", "ie 7"))
-    .pipe(gulp.dest('dist/css'));
+	return gulp.src('src/sass/main.scss')
+		.pipe(sass({sourcemap: true}))
+		.pipe(prefix("last 1 version", "> 1%", "ie 8", "ie 7"))
+		.pipe(gulp.dest('dist/css'));
 });
 
 // Styledocco
