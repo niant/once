@@ -25,7 +25,7 @@ gulp.task('jslint', function() {
 gulp.task('sass', function() {
 	return gulp.src('src/sass/main.scss')
 		.pipe(sass({sourcemap: true}))
-		.pipe(prefix("last 1 version", "> 1%", "ie 8", "ie 7"))
+		//.pipe(prefix("last 1 version", "> 1%", "ie 8", "ie 7"))
 		.pipe(gulp.dest('dist/css'));
 });
 
