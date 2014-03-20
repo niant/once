@@ -1,7 +1,7 @@
 // -------------
 // These require SASS 3.3
 // -------------
-// $spacerSizes: ('xs': 0.5em, 'sm': 0.7em, 'md': 1em, 'lg': 1.5em, 'xl': 2em);
+$spacerSizes: ('xs': 0.5em, 'sm': 0.7em, 'md': 1em, 'lg': 1.5em, 'xl': 2em);
 
 
 
@@ -10,24 +10,24 @@
 // $selectorName: 'Px-xs';
 // $properties: ('padding-left': 0.5em, 'padding-right': 0.5em);
 //
-// @mixin createSelector($selectorName, $properties) {
-//     .#{$selectorName} {
-//         @each $property, $value in $properties {
-//             #{$property}: $value;
-//         }
-//     }
-// }
+@mixin createSelector($selectorName, $properties) {
+    .#{$selectorName} {
+        @each $property, $value in $properties {
+            #{$property}: $value;
+        }
+    }
+}
 
 // $selectorNamePrefix: 'Px';
 // $selectorGeneratorIds: 'xs', 'sm', 'md', 'lg', 'xl' !default;
-// @function generateMultipleSelectors($selectorNamePrefix, $selectorGeneratorIds) {
-//     $selectors: ();
-//     @each $id in $selectorGeneratorIds {
-//         map-merge($selectors, $selectorNamePrefix + '-' + $id);
-//     }
+@function generateMultipleSelectors($selectorNamePrefix, $selectorGeneratorIds) {
+    $selectors: ();
+    @each $id in $selectorGeneratorIds {
+        $selectors: map-merge($selectors, $selectorNamePrefix + '-' + $id);
+    }
 
-//     @return $selectors; // $selectors: ('xs': 'Px-xs', 'sm': 'Px-sm'...)
-// }
+    @return $selectors; // $selectors: ('xs': 'Px-xs', 'sm': 'Px-sm'...)
+}
 
 // Generate multiple classes with specific properties
 //
@@ -36,13 +36,13 @@
 // callFunction('Bt', ('sm': 1px, 'md': 2px), ('border-top-width'));
 // callFunction('Mx', $spacerSizes, ('margin-left', 'margin-right'));
 //
-// @mixin createMultipleClasses($selectorPrefix, $sizes, $properties) {
-//     @each $sizeName, $size in $sizes {
-//         $values: ();
-//         @each $property in $properties {
-//             map-merge($values, ($property: $size));
-//         }
+@mixin createMultipleClasses($selectorPrefix, $sizes, $properties) {
+    @each $sizeName, $size in $sizes {
+        $values: ();
+        @each $property in $properties {
+            $values: map-merge($values, ($property: $size));
+        }
 
-//         @include createSelector($selectorPrefix + '-' + $sizeName, $values);
-//     }
-// }
+        @include createSelector($selectorPrefix + '-' + $sizeName, $values);
+    }
+}
