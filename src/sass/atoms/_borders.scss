@@ -22,13 +22,13 @@ The value can be changed by changing the variable in a config file that is not c
     border: none;
 }
 
-@include createMultipleClasses('Bx', $borderSizes, ('border-left-width', 'border-right-width'));
-@include createMultipleClasses('By', $borderSizes, ('border-top-width', 'border-bottom-width'));
-@include createMultipleClasses('Bs', $borderSizes, ('border-left-width'));
-@include createMultipleClasses('Be', $borderSizes, ('border-right-width'));
-@include createMultipleClasses('Bt', $borderSizes, ('border-top-width'));
-@include createMultipleClasses('Bb', $borderSizes, ('border-bottom-width'));
-@include createMultipleClasses('Bbox', $borderSizes, ('border-width'));
+@include createMultipleSizeClasses('Bx', $borderSizes, ('border-left-width', 'border-right-width'));
+@include createMultipleSizeClasses('By', $borderSizes, ('border-top-width', 'border-bottom-width'));
+@include createMultipleSizeClasses('Bs', $borderSizes, ('border-left-width'));
+@include createMultipleSizeClasses('Be', $borderSizes, ('border-right-width'));
+@include createMultipleSizeClasses('Bt', $borderSizes, ('border-top-width'));
+@include createMultipleSizeClasses('Bb', $borderSizes, ('border-bottom-width'));
+@include createMultipleSizeClasses('Bbox', $borderSizes, ('border-width'));
 
 
 .By-dotted {

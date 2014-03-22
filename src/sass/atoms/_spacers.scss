@@ -44,18 +44,18 @@ $spacerSizes: (xs: 0.5em, sm: 0.7em, md: 1em, lg: 1.5em, xl: 2em) !default;
     padding: 0;
 }
 
-@include createMultipleClasses('Px', $spacerSizes, ('padding-left', 'padding-right'));
-@include createMultipleClasses('Py', $spacerSizes, ('padding-top', 'padding-bottom'));
-@include createMultipleClasses('Ps', $spacerSizes, ('padding-left'));
-@include createMultipleClasses('Pe', $spacerSizes, ('padding-right'));
-@include createMultipleClasses('Pt', $spacerSizes, ('padding-top'));
-@include createMultipleClasses('Pb', $spacerSizes, ('padding-bottom'));
-@include createMultipleClasses('Pbox', $spacerSizes, ('padding'));
+@include createMultipleSizeClasses('Px', $spacerSizes, ('padding-left', 'padding-right'));
+@include createMultipleSizeClasses('Py', $spacerSizes, ('padding-top', 'padding-bottom'));
+@include createMultipleSizeClasses('Ps', $spacerSizes, ('padding-left'));
+@include createMultipleSizeClasses('Pe', $spacerSizes, ('padding-right'));
+@include createMultipleSizeClasses('Pt', $spacerSizes, ('padding-top'));
+@include createMultipleSizeClasses('Pb', $spacerSizes, ('padding-bottom'));
+@include createMultipleSizeClasses('Pbox', $spacerSizes, ('padding'));
 
-@include createMultipleClasses('Mx', $spacerSizes, ('margin-left', 'margin-right'));
-@include createMultipleClasses('My', $spacerSizes, ('margin-top', 'margin-bottom'));
-@include createMultipleClasses('Ms', $spacerSizes, ('margin-left'));
-@include createMultipleClasses('Me', $spacerSizes, ('margin-right'));
-@include createMultipleClasses('Mt', $spacerSizes, ('margin-top'));
-@include createMultipleClasses('Mb', $spacerSizes, ('margin-bottom'));
-@include createMultipleClasses('Mbox', $spacerSizes, ('margin'));
+@include createMultipleSizeClasses('Mx', $spacerSizes, ('margin-left', 'margin-right'));
+@include createMultipleSizeClasses('My', $spacerSizes, ('margin-top', 'margin-bottom'));
+@include createMultipleSizeClasses('Ms', $spacerSizes, ('margin-left'));
+@include createMultipleSizeClasses('Me', $spacerSizes, ('margin-right'));
+@include createMultipleSizeClasses('Mt', $spacerSizes, ('margin-top'));
+@include createMultipleSizeClasses('Mb', $spacerSizes, ('margin-bottom'));
+@include createMultipleSizeClasses('Mbox', $spacerSizes, ('margin'));
