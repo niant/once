@@ -3,3 +3,5 @@
 config.rb
 .sass-cache
 node_modules
+dist/
+docs/
