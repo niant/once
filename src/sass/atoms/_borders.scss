@@ -1,3 +1,5 @@
+$borderSizes: ('xs': 1px, 'sm': 2px, 'md': 3px, 'lg': 4px, 'xl': 5px) !default;
+
 /*
 #Borders
 
@@ -19,44 +21,14 @@ The value can be changed by changing the variable in a config file that is not c
 .B-0 {
     border: none;
 }
-/*
-####Small border on start side (in LTR left, in RTL right)
 
-	<div class="Bs-sm">Small border on start side (in LTR left, in RTL right)</div>
-
-*/
-.Bs-sm {
-    border-left-width: 1px;
-}
-/*
-####Small border on top
-
-	<div class="Bt-sm">Small border on top</div>
-*/
-.Bt-sm {
-    border-top-width: 1px;
-}
-
-.Bt-md {
-    border-top-width:2px;
-}
-
-.Bt-lg {
-    border-top-width: 3px;
-}
-
-.Bb-sm {
-    border-bottom-width: 1px;
-}
-
-.Bb-lg {
-    border-bottom-width: 3px;
-}
-
-.By-sm {
-    border-top-width: 1px;
-    border-bottom-width: 1px;
-}
+@include createMultipleClasses('Bx', $borderSizes, ('border-left-width', 'border-right-width'));
+@include createMultipleClasses('By', $borderSizes, ('border-top-width', 'border-bottom-width'));
+@include createMultipleClasses('Bs', $borderSizes, ('border-left-width'));
+@include createMultipleClasses('Be', $borderSizes, ('border-right-width'));
+@include createMultipleClasses('Bt', $borderSizes, ('border-top-width'));
+@include createMultipleClasses('Bb', $borderSizes, ('border-bottom-width'));
+@include createMultipleClasses('Bbox', $borderSizes, ('border-width'));
 
 
 .By-dotted {
