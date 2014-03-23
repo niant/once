@@ -1,7 +1,7 @@
 $breakpoints: (xs: 320, sm: 640, md: 1024, lg: 1200) !default;
 
 // @include breakpoint('xs') { width: 90%; }
-@mixin breakpoint($bpName, $breakpoints) {
+@mixin breakpoint($bpName, $breakpoints: $breakpoints) {
     $bpValue: map-get($breakpoints, $bpName);
     @media (min-width: $bpValue) { @content; }
 }
