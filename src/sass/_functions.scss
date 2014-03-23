@@ -1,3 +1,7 @@
+@function strip-units($number) {
+  @return $number / ($number * 0 + 1);
+}
+
 @function str-replace($string, $search, $replace) {
   $searchLength: str-length($search);
   $length: str-length($replace);
