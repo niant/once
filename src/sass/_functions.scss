@@ -1,3 +1,19 @@
+@function str-replace($string, $search, $replace) {
+  $searchLength: str-length($search);
+  $length: str-length($replace);
+  $index: str-index($string, $search);
+  // @warn "Index of " + $search + " in a " + $string + " is "+ $index;
+  $slice: $string;
+  @while $index != 0 and type-of($index) == number {
+    $slice: str-slice($slice, 0, $index - 1); //B
+    $slice: $slice + $replace; //Bbox
+    $slice: $slice + str-slice($string, $index + $searchLength);
+    $index: str-index($slice, $search);
+    // @warn "Index of "+$search+" in a " + $slice + " is " + $index;
+  }
+  @return $slice;
+}
+
 // Generate new selector with certain properties
 //
 // $selectorName: 'Px-xs';
@@ -37,5 +53,38 @@
         }
 
         @include createSelector($selectorPrefix + '-' + $sizeName, $values);
+    }
+}
+
+// @include createMultipleSizeBoxClasses('B{dirKey}', $borderSizes, 'border-{dir}-width');
+// createMultipleSizeBoxClasses('P{dirKey}', $sizes, 'padding-{dir}');
+@mixin createMultipleSizeBoxClasses($selectorName, $sizes, $cssProperty) {
+    @each $dirKey, $dirProperties in $dirs {
+        $newSelector: str-replace($selectorName, '{dirKey}', $dirKey);
+        // @warn "new selector is " + $newSelector + " with dirKey " + $dirKey;
+        $properties: ();
+
+        @each $property in $dirProperties {
+            $newProperty: str-replace($cssProperty, '{dir}', $property);
+            $properties: append($properties, $newProperty);
+        }
+
+        @include createMultipleSizeClasses($newSelector, $sizes, $properties);
+    }
+}
+
+@mixin createMultipleBoxClasses($selectorName, $cssProperties) {
+    @each $dirKey, $dirSelection in $dirs {
+        $newSelector: str-replace($selectorName, '{dirKey}', $dirKey);
+        $properties: ();
+
+        @each $dir in $dirSelection {
+            @each $prop, $value in $cssProperties {
+                $newProperty: str-replace($prop, '{dir}', $dir);
+                $properties: map-merge($properties, ($newProperty: $value));
+            }
+        }
+
+        @include createSelector($newSelector, $properties);
     }
 }
