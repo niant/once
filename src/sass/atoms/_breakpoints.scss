@@ -1,7 +1,7 @@
 $breakpoints: (xs: 320, sm: 640, md: 1024, lg: 1200) !default;
 
 // @include breakpoint('xs') { width: 90%; }
-@mixin breakpoint($bpName) {
+@mixin breakpoint($bpName, $breakpoints) {
     $bpValue: map-get($breakpoints, $bpName);
     @media (min-width: $bpValue) { @content; }
 }
@@ -12,28 +12,19 @@ $breakpoints: (xs: 320, sm: 640, md: 1024, lg: 1200) !default;
     @each $name, $value in $breakpoints {
         $newSelector: str-replace($selectorName, '{bp}', $name);
         .#{$newSelector} {
-            @include breakpoint($name) {
+            @include breakpoint($name, $breakpoints) {
                 @content;
             }
         }
     };
 }
 
-@mixin allReactiveClasses($selectorName, $breakpoints) {
+@mixin reactiveClasses($selectorName, $_breakpoints: $breakpoints) {
     .#{$selectorName} {
         @content;
     }
 
-    @include createReactiveClasses('r-{bp}-' + $selectorName, $breakpoints) {
+    @include createReactiveClasses('r-{bp}-' + $selectorName, $_breakpoints) {
         @content;
     };
-}
-
-//@include allReactiveBpClasses('block') {
-    // display: block;
-// };
-@mixin allReactiveBpClasses($selectorName) {
-    @include allReactiveClasses($selectorName, $breakpoints) {
-        @content;
-    }
 }
