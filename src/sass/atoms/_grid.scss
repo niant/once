@@ -19,10 +19,19 @@ Good defaults, widely customizable.
     }
 }
 
-// @mixin fluidGrid($columns, $breakpoints: $breakpoints) {
-//     @each $name, $value in $breakpoints {
-
-//     }
-// }
+@mixin fluidGrid($columns, $breakpoints: $breakpoints) {
+    @each $name, $value in $breakpoints {
+        @include breakpoint($name, $breakpoints) {
+            @for $i from 1 through $columns {
+                $unitlessValue: strip-units($value);
+                .#{$name}-#{$i} {
+                    width: 100 / $columns * $i + '%';
+                }
+            }
+        }
+    }
+}
 
 @include fixedGrid($gridColumnCount, 'px', $breakpoints);
+
+@include fluidGrid($gridColumnCount, $breakpoints);
