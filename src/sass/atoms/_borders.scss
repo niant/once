@@ -22,41 +22,17 @@ The value can be changed by changing the variable in a config file that is not c
     border: none;
 }
 
-@include createMultipleSizeClasses('Bx', $borderSizes, ('border-left-width', 'border-right-width'));
-@include createMultipleSizeClasses('By', $borderSizes, ('border-top-width', 'border-bottom-width'));
-@include createMultipleSizeClasses('Bs', $borderSizes, ('border-left-width'));
-@include createMultipleSizeClasses('Be', $borderSizes, ('border-right-width'));
-@include createMultipleSizeClasses('Bt', $borderSizes, ('border-top-width'));
-@include createMultipleSizeClasses('Bb', $borderSizes, ('border-bottom-width'));
-@include createMultipleSizeClasses('Bbox', $borderSizes, ('border-width'));
+// @include createMultipleSizeClasses('Bx', $borderSizes, ('border-left-width', 'border-right-width'));
+// @include createMultipleSizeClasses('By', $borderSizes, ('border-top-width', 'border-bottom-width'));
+// @include createMultipleSizeClasses('Bs', $borderSizes, ('border-left-width'));
+// @include createMultipleSizeClasses('Be', $borderSizes, ('border-right-width'));
+// @include createMultipleSizeClasses('Bt', $borderSizes, ('border-top-width'));
+// @include createMultipleSizeClasses('Bb', $borderSizes, ('border-bottom-width'));
+// @include createMultipleSizeClasses('Bbox', $borderSizes, ('border-width'));
 
 
-.By-dotted {
-    border-top-style: dotted;
-    border-bottom-style: dotted;
-}
-
-.By-dashed {
-    border-top-style: dashed;
-    border-bottom-style: dashed;
-}
-
-.Bb-dashed {
-    border-bottom-style: dashed;
-}
-
-.Bb-double {
-    border-bottom-style: double;
-}
-
-.Bt-double {
-    border-top-style: double;
-}
-
-.Bt-solid {
-    border-top-style: solid;
-}
-
-.Bb-solid {
-    border-bottom-style: solid;
-}
+@include createMultipleSizeBoxClasses('B{dirKey}', $borderSizes, 'border-{dir}-width');
+@include createMultipleBoxClasses('B{dirKey}-solid', ('border-{dir}-style': 'solid'));
+@include createMultipleBoxClasses('B{dirKey}-dotted', ('border-{dir}-style': 'dotted'));
+@include createMultipleBoxClasses('B{dirKey}-dashed', ('border-{dir}-style': 'dashed'));
+@include createMultipleBoxClasses('B{dirKey}-double', ('border-{dir}-style': 'double'));
