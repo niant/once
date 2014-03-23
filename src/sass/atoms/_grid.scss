@@ -1,15 +1,28 @@
+$breakpoints: (xs: 320px, sm: 640px, md: 1024px, lg: 1200px) !default;
+$gridColumnCount: 12 !default;
+
 /*
 # Grid
 
 Good defaults, widely customizable.
 */
-
-@each $point, $value in $breakpoints {
-    @media screen and (min-width: '#{$value}px') {
-		@for $i from 1 through $grid {
-  			.#{$point}-#{$i} {
-  				width: $i * ($value/$grid) + px;
-  			}
-  		}
-	}
+@mixin fixedGrid($columns, $unit, $breakpoints: $breakpoints) {
+    @each $name, $value in $breakpoints {
+        @include breakpoint($name, $breakpoints) {
+            @for $i from 1 through $columns {
+                $unitlessValue: strip-units($value);
+                .#{$name}-#{$i} {
+                    width: $i * ($unitlessValue/$columns) + $unit;
+                }
+            }
+        }
+    }
 }
+
+// @mixin fluidGrid($columns, $breakpoints: $breakpoints) {
+//     @each $name, $value in $breakpoints {
+
+//     }
+// }
+
+@include fixedGrid($gridColumnCount, 'px', $breakpoints);
