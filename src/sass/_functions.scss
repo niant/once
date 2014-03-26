@@ -1,28 +1,61 @@
+/*
+### Strip units from a number with units.
+
+#### Example
+
+```
+$number: strip-units(3px); //$number = 3
+```
+
+ */
 @function strip-units($number) {
-  @return $number / ($number * 0 + 1);
+    @return $number / ($number * 0 + 1);
 }
 
+/*
+### Replace a string with another string
+
+#### Example
+
+    $output: str-replace('something here {might} change', '{might}', 'will');
+
+Output
+
+    $output => 'something here will change'
+
+ */
 @function str-replace($string, $search, $replace) {
-  $searchLength: str-length($search);
-  $length: str-length($replace);
-  $index: str-index($string, $search);
-  // @warn "Index of " + $search + " in a " + $string + " is "+ $index;
-  $slice: $string;
-  @while $index != 0 and type-of($index) == number {
-    $slice: str-slice($slice, 0, $index - 1); //B
-    $slice: $slice + $replace; //Bbox
-    $slice: $slice + str-slice($string, $index + $searchLength);
-    $index: str-index($slice, $search);
-    // @warn "Index of "+$search+" in a " + $slice + " is " + $index;
-  }
-  @return $slice;
+    $searchLength: str-length($search);
+    $length: str-length($replace);
+    $index: str-index($string, $search);
+    $slice: $string;
+    @while $index != 0 and type-of($index) == number {
+        $slice: str-slice($slice, 0, $index - 1);
+        $slice: $slice + $replace;
+        $slice: $slice + str-slice($string, $index + $searchLength);
+        $index: str-index($slice, $search);
+    }
+    @return $slice;
 }
 
-// Generate new selector with certain properties
-//
-// $selectorName: 'Px-xs';
-// $properties: ('padding-left': 0.5em, 'padding-right': 0.5em);
-//
+/*
+### Create CSS class selector with a specific name and properties
+
+#### Example
+
+```
+    @include createSelector('Px-xs', ('padding-left': 1em, 'padding-right': 1em));
+```
+
+Will generate class
+
+```
+    .Px-xs {
+        padding-left: 1em;
+        padding-right: 1em;
+    }
+```
+ */
 @mixin createSelector($selectorName, $properties) {
     .#{$selectorName} {
         @each $property, $value in $properties {
@@ -31,8 +64,15 @@
     }
 }
 
-// $selectorNamePrefix: 'Px';
-// $selectorGeneratorIds: 'xs', 'sm', 'md', 'lg', 'xl' !default;
+/*
+### Generate multiple selectors (TBD)
+
+e.g.
+
+    generateMultipleSelectors('Px', (xs, sm, md));
+
+    Output => (xs: 'Px-xs', sm: 'Px-sm', md: 'Px-md');
+ */
 @function generateMultipleSelectors($selectorNamePrefix, $selectorGeneratorIds) {
     $selectors: ();
     @each $id in $selectorGeneratorIds {
@@ -42,13 +82,26 @@
     @return $selectors; // $selectors: ('xs': 'Px-xs', 'sm': 'Px-sm'...)
 }
 
-// Generate multiple classes with specific properties
-//
-// Ideal:
-// callFunction('Px', ('sm': 0.5em, 'md': 1em), ('padding-left', 'padding-right'));
-// callFunction('Bt', ('sm': 1px, 'md': 2px), ('border-top-width'));
-// callFunction('Mx', $spacerSizes, ('margin-left', 'margin-right'));
-//
+/*
+### Create multiple sized classes
+
+#### Example
+
+    @include createMultipleSizeClasses('Px', (sm: 1em, md: 2em), ('padding-left', 'padding-right'));
+
+Will generate classes like:
+
+    .Px-sm {
+        padding-left: 1em;
+        padding-right: 1em;
+    }
+
+    .Px-md {
+        padding-left: 2em;
+        padding-right: 2em;
+    }
+
+ */
 @mixin createMultipleSizeClasses($selectorPrefix, $sizes, $properties) {
     @each $sizeName, $size in $sizes {
         $values: ();
@@ -60,12 +113,33 @@
     }
 }
 
-// @include createMultipleSizeBoxClasses('B{dirKey}', $borderSizes, 'border-{dir}-width');
-// createMultipleSizeBoxClasses('P{dirKey}', $sizes, 'padding-{dir}');
+/*
+### Create multiple sized classes that have some of the top, right, bottom & left values
+
+#### Example
+
+    @include createMultipleSizeBoxClasses('P{dirKey}', (xs: 1em, sm: 2em), 'padding-{dir}');
+
+Will generate for example following classes
+
+    .Pt-xs {
+        padding-top: 1em;
+    }
+
+    .Pt-sm {
+        padding-top: 2em;
+    }
+
+    .Py-xs {
+        padding-top: 1em;
+        padding-bottom: 1em;
+    }
+
+    ...
+ */
 @mixin createMultipleSizeBoxClasses($selectorName, $sizes, $cssProperty) {
     @each $dirKey, $dirProperties in $dirs {
         $newSelector: str-replace($selectorName, '{dirKey}', $dirKey);
-        // @warn "new selector is " + $newSelector + " with dirKey " + $dirKey;
         $properties: ();
 
         @each $property in $dirProperties {
@@ -77,6 +151,27 @@
     }
 }
 
+/*
+### Create multiple box classes
+
+#### Example
+
+    @include createMultipleBoxClasses('B{dirKey}-solid', ('border-{dir}-style': 'solid'));
+
+Will generate for example following classes:
+
+    .Br-solid {
+        border-right-style: solid;
+    }
+
+    .Bx-solid {
+        border-right-style: solid;
+        border-left-style: solid;
+    }
+
+    ...
+
+ */
 @mixin createMultipleBoxClasses($selectorName, $cssProperties) {
     @each $dirKey, $dirSelection in $dirs {
         $newSelector: str-replace($selectorName, '{dirKey}', $dirKey);
