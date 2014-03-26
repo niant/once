@@ -1,9 +1,15 @@
 /*
 # Strip units from a number with units.
 
-### Example
+```scss
+$number: strip-units(3px);
+```
 
-    $number: strip-units(3px); //$number = 3
+Output:
+
+```scss
+$number => 3
+```
 
  */
 @function strip-units($number) {
@@ -13,11 +19,16 @@
 /*
 # Replace a string with another string
 
-### Example
+```scss
+$output: str-replace('something here {might} change', '{might}', 'will');
+$output => 'something here will change'
+```
 
-    $output: str-replace('something here {might} change', '{might}', 'will');
+Output:
 
-    $output => 'something here will change'
+```scss
+$output => 'something here will change'
+```
 
  */
 @function str-replace($string, $search, $replace) {
@@ -37,20 +48,19 @@
 /*
 # CSS class generator with a specific name and properties
 
-### Example
-
-```
-    @include createSelector('Px-xs', ('padding-left': 1em, 'padding-right': 1em));
+```scss
+@include createSelector('Px-xs', ('padding-left': 1em, 'padding-right': 1em));
 ```
 
-Will generate class
+Output:
 
+```scss
+.Px-xs {
+    padding-left: 1em;
+    padding-right: 1em;
+}
 ```
-    .Px-xs {
-        padding-left: 1em;
-        padding-right: 1em;
-    }
-```
+
  */
 @mixin createSelector($selectorName, $properties) {
     .#{$selectorName} {
@@ -63,11 +73,15 @@ Will generate class
 /*
 # Generate multiple selectors (TBD)
 
-e.g.
+```scss
+$output: generateMultipleSelectors('Px', (xs, sm, md));
+```
 
-    generateMultipleSelectors('Px', (xs, sm, md));
+Output
 
-    Output => (xs: 'Px-xs', sm: 'Px-sm', md: 'Px-md');
+```scss
+$output => (xs: 'Px-xs', sm: 'Px-sm', md: 'Px-md');
+```
  */
 @function generateMultipleSelectors($selectorNamePrefix, $selectorGeneratorIds) {
     $selectors: ();
@@ -81,21 +95,23 @@ e.g.
 /*
 # Create multiple sized classes
 
-### Example
+```scss
+@include createMultipleSizeClasses('Px', (sm: 1em, md: 2em), ('padding-left', 'padding-right'));
+```
 
-    @include createMultipleSizeClasses('Px', (sm: 1em, md: 2em), ('padding-left', 'padding-right'));
+Output:
 
-Will generate classes like:
+```scss
+.Px-sm {
+    padding-left: 1em;
+    padding-right: 1em;
+}
 
-    .Px-sm {
-        padding-left: 1em;
-        padding-right: 1em;
-    }
-
-    .Px-md {
-        padding-left: 2em;
-        padding-right: 2em;
-    }
+.Px-md {
+    padding-left: 2em;
+    padding-right: 2em;
+}
+```
 
  */
 @mixin createMultipleSizeClasses($selectorPrefix, $sizes, $properties) {
@@ -114,26 +130,28 @@ Will generate classes like:
 
 Create CSS classes (multiple sizes) of elements that have top, right, bottom & left values
 
-### Example
-
-    @include createMultipleSizeBoxClasses('P{dirKey}', (xs: 1em, sm: 2em), 'padding-{dir}');
+```scss
+@include createMultipleSizeBoxClasses('P{dirKey}', (xs: 1em, sm: 2em), 'padding-{dir}');
+```
 
 Will generate for example following classes
 
-    .Pt-xs {
-        padding-top: 1em;
-    }
+```scss
+.Pt-xs {
+    padding-top: 1em;
+}
 
-    .Pt-sm {
-        padding-top: 2em;
-    }
+.Pt-sm {
+    padding-top: 2em;
+}
 
-    .Py-xs {
-        padding-top: 1em;
-        padding-bottom: 1em;
-    }
+.Py-xs {
+    padding-top: 1em;
+    padding-bottom: 1em;
+}
 
-    ...
+...
+```
  */
 @mixin createMultipleSizeBoxClasses($selectorName, $sizes, $cssProperty) {
     @each $dirKey, $dirProperties in $dirs {
@@ -152,22 +170,24 @@ Will generate for example following classes
 /*
 # Create multiple box classes
 
-### Example
-
-    @include createMultipleBoxClasses('B{dirKey}-solid', ('border-{dir}-style': 'solid'));
+```scss
+@include createMultipleBoxClasses('B{dirKey}-solid', ('border-{dir}-style': 'solid'));
+```
 
 Will generate for example following classes:
 
-    .Br-solid {
-        border-right-style: solid;
-    }
+```scss
+.Br-solid {
+    border-right-style: solid;
+}
 
-    .Bx-solid {
-        border-right-style: solid;
-        border-left-style: solid;
-    }
+.Bx-solid {
+    border-right-style: solid;
+    border-left-style: solid;
+}
 
-    ...
+...
+```
 
  */
 @mixin createMultipleBoxClasses($selectorName, $cssProperties) {
