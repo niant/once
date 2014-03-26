@@ -1,11 +1,9 @@
 /*
-### Strip units from a number with units.
+# Strip units from a number with units.
 
-#### Example
+### Example
 
-```
-$number: strip-units(3px); //$number = 3
-```
+    $number: strip-units(3px); //$number = 3
 
  */
 @function strip-units($number) {
@@ -13,13 +11,11 @@ $number: strip-units(3px); //$number = 3
 }
 
 /*
-### Replace a string with another string
+# Replace a string with another string
 
-#### Example
+### Example
 
     $output: str-replace('something here {might} change', '{might}', 'will');
-
-Output
 
     $output => 'something here will change'
 
@@ -39,9 +35,9 @@ Output
 }
 
 /*
-### Create CSS class selector with a specific name and properties
+# CSS class generator with a specific name and properties
 
-#### Example
+### Example
 
 ```
     @include createSelector('Px-xs', ('padding-left': 1em, 'padding-right': 1em));
@@ -65,7 +61,7 @@ Will generate class
 }
 
 /*
-### Generate multiple selectors (TBD)
+# Generate multiple selectors (TBD)
 
 e.g.
 
@@ -83,9 +79,9 @@ e.g.
 }
 
 /*
-### Create multiple sized classes
+# Create multiple sized classes
 
-#### Example
+### Example
 
     @include createMultipleSizeClasses('Px', (sm: 1em, md: 2em), ('padding-left', 'padding-right'));
 
@@ -114,9 +110,11 @@ Will generate classes like:
 }
 
 /*
-### Create multiple sized classes that have some of the top, right, bottom & left values
+# Create multiple sized box classes 
 
-#### Example
+Create CSS classes (multiple sizes) of elements that have top, right, bottom & left values
+
+### Example
 
     @include createMultipleSizeBoxClasses('P{dirKey}', (xs: 1em, sm: 2em), 'padding-{dir}');
 
@@ -152,9 +150,9 @@ Will generate for example following classes
 }
 
 /*
-### Create multiple box classes
+# Create multiple box classes
 
-#### Example
+### Example
 
     @include createMultipleBoxClasses('B{dirKey}-solid', ('border-{dir}-style': 'solid'));
 
