@@ -34,3 +34,85 @@ It's recommended to use normalize.css with Once.
 ## Documentation
 
 [Detailed documentation](docs/index.html) is still incomplete but it gives you a hunch of what we are doing.
+
+### Naming policies (working draft, most likely to be changed)
+
+#### Class prefixes
+
+* P = Padding
+* M = Margin
+* B = Border
+* F = Font
+* O = Overflow
+* A = Animation
+
+#### Size pre/postfixes
+
+* ```xs, sm, md, lg, xl``` = Responsive classes ```xs-12 md-10 lg-6```
+* a-z = Sizes configured
+
+#### Direction abbreviation
+
+* t: (top)
+* r: (right)
+* e: (end - right)
+* b: (bottom)
+* l: (left)
+* s: (start - left)
+* x: (left, right)
+* y: (top, bottom)
+* box: (top, right, bottom, left)
+
+#### Other naming policies
+
+* 0 = Make element property size of zero ```.Mt-0 { margin-top:0; }```
+* Reactive/responsive classes have a prefix of reactive breakpoint ```r-xs-, r-sm-, r-md-, r-lg, r-xl- ```
+
+#### Examples of elements
+
+```scss
+// configurations:
+// a = 1px
+// b = 2px
+// sm = 480px
+
+.Pt-a {
+  padding-top: 1px;
+}
+
+.Bbox-b {
+  border-top: 2px;
+  border-right: 2px;
+  border-bottom: 2px;
+  border-left: 2px;
+}
+
+@media (min-width: 480px) {
+  .r-sm-left {
+    float: left;
+  }
+}
+```
+
+#### Examples of HTML with multiple classes
+
+```html
+<!-- Option 1 -->
+<div class="left Pbox-c Bbox-a r-md-right">
+    <h4 class="F-d My-c">Example</h4>
+    <div class="Px-a Pt-a F-a r-md-Px-b r-md-Pt-b">Content</div>
+</div>
+
+<!-- Option 2: Replacing a-z sizes with xs, sm, md, lg, xl -->
+<div class="left Pbox-md Bbox-xs r-md-right">
+    <h4 class="F-gamma My-md">Example</h4>
+    <div class="Px-sm Pt-sm F-zeta r-md-Px-md r-md-Pt-md">Content</div>
+</div>
+
+<!-- Option 3: Same as 2nd except removing r- prefix from reactive classes -->
+<div class="left Pbox-md Bbox-xs md-right">
+    <h4 class="F-gamma My-md">Example</h4>
+    <div class="Px-sm Pt-sm F-zeta md-Px-md md-Pt-md">Content</div>
+</div>
+
+```
