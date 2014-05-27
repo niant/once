@@ -42,3 +42,17 @@ Most used components that are simpler to use than Atomic CSS classes.
     right: 0;
     z-index: 1;
 }
+
+.h-center {
+  margin: 0 auto;
+}
+
+.x-center {
+    width: 50%;
+    margin: auto;
+    position: absolute;
+    top: 50%; left: 50%;
+    -webkit-transform: translate(-50%,-50%);
+    -ms-transform: translate(-50%,-50%);
+    transform: translate(-50%,-50%);
+}
