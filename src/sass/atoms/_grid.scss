@@ -12,7 +12,7 @@ Good defaults, widely customizable.
             @for $i from 1 through $columns {
                 $unitlessValue: strip-units($value);
                 .#{$name}-#{$i} {
-                    width: $i * ($unitlessValue/$columns) + $unit;
+                    width: unquote($i * ($unitlessValue/$columns) + $unit);
                 }
             }
         }
@@ -25,7 +25,7 @@ Good defaults, widely customizable.
             @for $i from 1 through $columns {
                 $unitlessValue: strip-units($value);
                 .#{$name}-#{$i} {
-                    width: 100 / $columns * $i + '%';
+                    width: unquote(100 / $columns * $i + '%');
                 }
             }
         }
