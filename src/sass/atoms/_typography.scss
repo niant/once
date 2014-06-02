@@ -39,15 +39,19 @@ body {
 }
 
 .f-epsilon {
-
+    font-size: 2em;
 }
 
 .f-zeta {
-
+    font-size: 1.2em;
 }
 
 .f-blank {
     color: #ffffff;
+}
+
+.f-normal {
+    font-style: normal;
 }
 
 .f-bold {
@@ -58,12 +62,28 @@ body {
     font-style:italic;
 }
 
+.f-w-normal {
+    font-weight: normal;
+}
+
+.f-w-700 {
+    font-weight: 700;
+}
+
 .f-uppercase {
     text-transform: uppercase;
 }
 
 .f-line-through {
     text-decoration: line-through;
+}
+
+.f-no-decoration {
+    text-decoration: none;
+}
+
+.f-underline {
+    text-decoration: underline;
 }
 
 .f-right {
@@ -76,4 +96,8 @@ body {
 
 .f-center {
     text-align: center;
+}
+
+.f-no-wrap {
+    white-space: nowrap;
 }

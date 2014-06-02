@@ -26,6 +26,10 @@ Good defaults, widely customizable.
                 $unitlessValue: strip-units($value);
                 .#{$name}-#{$i} {
                     width: unquote(100 / $columns * $i + '%');
+                    float: left;
+                    height: 100%;
+                    padding-left: 10px;
+                    padding-right: 10px;
                 }
             }
         }
@@ -35,3 +39,9 @@ Good defaults, widely customizable.
 @include fixedGrid($gridColumnCount, 'px', $breakpoints);
 
 @include fluidGrid($gridColumnCount, $breakpoints);
+
+.row {
+    float: left;
+    clear: both;
+    width: 100%;
+}
