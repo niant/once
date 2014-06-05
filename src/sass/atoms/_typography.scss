@@ -1,3 +1,14 @@
+$fontSizes: (
+    giga    : 4em,
+    mega    : 3em,
+    alpha   : 2.5em,
+    beta    : 2em,
+    gamma   : 1.7em,
+    delta   : 1.5em,
+    epsilon : 1.2em,
+    zeta    : 0.8em
+) !default;
+
 body {
     font-size: 1rem; // 1rem = 16px
 }
@@ -14,37 +25,7 @@ body {
     margin-bottom: 0.5em;
 }
 
-.f-giga {
-
-}
-
-.f-mega {
-
-}
-
-.f-alpha {
-
-}
-
-.f-beta {
-
-}
-
-.f-gamma {
-
-}
-
-.f-delta {
-
-}
-
-.f-epsilon {
-    font-size: 2em;
-}
-
-.f-zeta {
-    font-size: 1.2em;
-}
+@include createMultipleSizeClasses('f', $fontSizes, ('font-size'));
 
 .f-blank {
     color: #ffffff;
