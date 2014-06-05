@@ -42,6 +42,10 @@
     overflow: hidden;
 }
 
+.o-y-auto {
+    overflow-y: auto;
+}
+
 @include reactiveClasses('left') {
     float: left;
 }
