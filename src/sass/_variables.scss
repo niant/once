@@ -13,5 +13,16 @@ $dirs: (
     box: (top, right, bottom, left)
 );
 
+$typographySizes: (
+    giga    : 4em,
+    mega    : 3em,
+    alpha   : 2.5em,
+    beta    : 2em,
+    gamma   : 1.7em,
+    delta   : 1.5em,
+    epsilon : 1.2em,
+    zeta    : 0.8em
+);
+
 $breakpoints: (xs: 320px, sm: 640px, md: 1024px, lg: 1200px);
 $gridColumnCount: 12;

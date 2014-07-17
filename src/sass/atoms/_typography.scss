@@ -1,4 +1,4 @@
-$fontSizes: (
+$typographySizes: (
     giga    : 4em,
     mega    : 3em,
     alpha   : 2.5em,
@@ -25,7 +25,7 @@ body {
     margin-bottom: 0.5em;
 }
 
-@include createMultipleSizeClasses('f', $fontSizes, ('font-size'));
+@include createMultipleSizeClasses('f', $typographySizes, ('font-size'));
 
 .f-blank {
     color: #ffffff;
