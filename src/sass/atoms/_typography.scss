@@ -13,17 +13,18 @@ body {
     font-size: 1rem; // 1rem = 16px
 }
 
-.f-giga,
-.f-mega,
-.f-alpha,
-.f-beta,
-.f-gamma,
-.f-delta,
-.f-epsilon,
-.f-zeta {
-    margin-top: 0.5em;
-    margin-bottom: 0.5em;
-}
+// Should default margin be moved to h1-h6?
+// .f-giga,
+// .f-mega,
+// .f-alpha,
+// .f-beta,
+// .f-gamma,
+// .f-delta,
+// .f-epsilon,
+// .f-zeta {
+//     margin-top: 0.5em;
+//     margin-bottom: 0.5em;
+// }
 
 @include createMultipleSizeClasses('f', $typographySizes, ('font-size'));
 
