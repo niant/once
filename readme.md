@@ -49,7 +49,6 @@ It's recommended to use normalize.css with Once.
 #### Size pre/postfixes
 
 * ```xs, sm, md, lg, xl``` = Responsive classes ```xs-12 md-10 lg-6```
-* a-z = Sizes configured
 
 #### Direction abbreviation
 
@@ -71,20 +70,15 @@ It's recommended to use normalize.css with Once.
 #### Examples of elements
 
 ```scss
-// configurations:
-// a = 1px
-// b = 2px
-// sm = 480px
-
-.Pt-a {
-  padding-top: 1px;
+.Pt-xs {
+  padding-top: 0.5em;
 }
 
-.Bbox-b {
-  border-top: 2px;
-  border-right: 2px;
-  border-bottom: 2px;
-  border-left: 2px;
+.Bbox-sm {
+  border-top: 1em;
+  border-right: 1em;
+  border-bottom: 1em;
+  border-left: 1em;
 }
 
 @media (min-width: 480px) {
@@ -97,19 +91,13 @@ It's recommended to use normalize.css with Once.
 #### Examples of HTML with multiple classes
 
 ```html
-<!-- Option 1 -->
-<div class="left Pbox-c Bbox-a r-md-right">
-    <h4 class="F-d My-c">Example</h4>
-    <div class="Px-a Pt-a F-a r-md-Px-b r-md-Pt-b">Content</div>
-</div>
-
-<!-- Option 2: Replacing a-z sizes with xs, sm, md, lg, xl -->
+<!-- Option 1: sizes with xs, sm, md, lg, xl -->
 <div class="left Pbox-md Bbox-xs r-md-right">
     <h4 class="F-gamma My-md">Example</h4>
     <div class="Px-sm Pt-sm F-zeta r-md-Px-md r-md-Pt-md">Content</div>
 </div>
 
-<!-- Option 3: Same as 2nd except removing r- prefix from reactive classes -->
+<!-- Option 2: Same as 2nd except removing r- prefix from reactive classes -->
 <div class="left Pbox-md Bbox-xs md-right">
     <h4 class="F-gamma My-md">Example</h4>
     <div class="Px-sm Pt-sm F-zeta md-Px-md md-Pt-md">Content</div>
