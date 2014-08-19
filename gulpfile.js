@@ -30,7 +30,7 @@ gulp.task('build-min', function () {
   return gulp.src('src/sass/main.scss')
     .pipe(sass())
     .pipe(prefix('last 1 version', '> 1%'))
-    .pipe(csso())
+    // .pipe(csso())
     .pipe(rename('main.min.css'))
     .pipe(gulp.dest('dist/css'));
 });
