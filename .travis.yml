@@ -6,4 +6,4 @@ after_script:
 before_install:
   - npm install
   - gem update --system
-  - gem install sass'
+  - gem install sass
