@@ -29,17 +29,17 @@
     "url": "https://github.com/niant/once/issues"
   },
   "devDependencies": {
-    "gulp-rename": "~1.2.0",
-    "gulp-styledocco": "0.0.1",
-    "gulp-concat": "^2.3.x",
-    "gulp-uglify": "^0.3.1",
-    "gulp-clean": "^0.3.1",
-    "gulp-autoprefixer": "^0.0.8",
     "gulp": "^3.8.x",
-    "styledocco": "~0.6.6",
+    "gulp-autoprefixer": "^0.0.8",
+    "gulp-concat": "^2.3.x",
+    "gulp-csso": "^0.2.9",
     "gulp-jshint": "^1.8.x",
+    "gulp-rename": "~1.2.0",
     "gulp-ruby-sass": "^0.7.1",
-    "gulp-csso": "^0.2.9"
+    "gulp-styledocco": "0.0.1",
+    "gulp-uglify": "^0.3.1",
+    "rimraf": "^2.2.8",
+    "styledocco": "~0.6.6"
   },
   "engines": {
     "node": ">=0.8.0"

@@ -1,17 +1,14 @@
-// Include gulp
 var gulp = require('gulp');
-
-var clean = require('gulp-clean');
 var jshint = require('gulp-jshint');
 var sass = require('gulp-ruby-sass');
 var prefix = require('gulp-autoprefixer');
 var styledocco = require('gulp-styledocco');
 var csso = require('gulp-csso');
 var rename = require('gulp-rename');
+var rimraf = require('rimraf');
 
-gulp.task('clean', function () {
-  gulp.src('dist', {read: false})
-    .pipe(clean());
+gulp.task('clean', function (cb) {
+  rimraf('dist', cb);
 });
 
 gulp.task('jslint', function() {
