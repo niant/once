@@ -1,0 +1,39 @@
+$colors: () !default;
+
+$borderStyles: (
+    a: solid,
+    b: dashed,
+    c: dotted
+) !default;
+
+$borderWidths: () !default;
+
+/* 
+    Creates borders using mappings for border widths, border styles and colors.
+    You can define the mappings in the style sheets of your project.
+*/
+@mixin compositeBorders($selectorPrefix, $colors, $borderStyles, $borderWidths, $cssProperty) {
+    
+    @each $borderWidthKey, $borderWidth in $borderWidths {
+        @each $borderStyleKey, $borderStyle in $borderStyles {
+            @each $colorKey, $color in $colors {                        
+                @each $dirKey, $dirProperties in $dirs {
+                    /* Selector (Bx-aac etc.) */
+                    $combination: $borderWidthKey + $borderStyleKey + $colorKey;
+                    $selector: str-replace($selectorPrefix, '{dirKey}', $dirKey) + '-' + $combination;
+                    /* Properties */
+                    $properties: ();
+                    @each $dirProperty in $dirProperties {
+                        $key: str-replace($cssProperty, '{dir}', $dirProperty);
+                        $value: unquote($borderWidth + ' ' + $borderStyle + ' ' + $color);
+                        $properties: map-merge($properties, ($key: $value));
+                        $borders: map-merge($borders, ($combination: $value));
+                    }
+                    @include createSelector($selector, $properties);
+                }
+            }
+        }
+    }
+}
+
+@include compositeBorders('B{dirKey}', $colors, $borderStyles, $borderWidths, 'border-{dir}');
