@@ -1,13 +1,12 @@
-$colors: ();
+$colors: () !default;
 
 $borderStyles: (
     a: solid,
     b: dashed,
     c: dotted
-);
+) !default;
 
-$borderWidths: ();
-
+$borderWidths: () !default;
 
 /* 
     Creates borders using mappings for border widths, border styles and colors.
