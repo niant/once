@@ -1,22 +1,16 @@
-// Include gulp
 var gulp = require('gulp');
-
-// Include plugins
-var clean = require('gulp-clean');
 var jshint = require('gulp-jshint');
 var sass = require('gulp-ruby-sass');
 var prefix = require('gulp-autoprefixer');
 var styledocco = require('gulp-styledocco');
-var csso = require('gulp-csso');
+var minifyCSS = require('gulp-minify-css');
 var rename = require('gulp-rename');
+var rimraf = require('rimraf');
 
-// Clean
-gulp.task('clean', function () {
-  gulp.src('build', {read: false})
-    .pipe(clean());
+gulp.task('clean', function (cb) {
+  rimraf('dist', cb);
 });
 
-// Lint Task
 gulp.task('jslint', function() {
   return gulp.src('gulpfile.js')
     .pipe(jshint())
@@ -24,10 +18,9 @@ gulp.task('jslint', function() {
   );
 });
 
-// Sass compiling
 gulp.task('sass', function() {
 	return gulp.src('src/sass/main.scss')
-		.pipe(sass({sourcemap: true}))
+		.pipe(sass())
 		.pipe(prefix('last 1 version', '> 1%'))
 		.pipe(gulp.dest('dist/css')
   );
@@ -37,12 +30,11 @@ gulp.task('build-min', function () {
   return gulp.src('src/sass/main.scss')
     .pipe(sass())
     .pipe(prefix('last 1 version', '> 1%'))
-    .pipe(csso())
+    .pipe(minifyCSS())
     .pipe(rename('main.min.css'))
-    .pipe(gulp.dest('dist/css'))
+    .pipe(gulp.dest('dist/css'));
 });
 
-// Styledocco
 gulp.task('documentation', function() {
   return gulp.src('src/sass/*.scss')
 	  .pipe(styledocco({
@@ -53,12 +45,26 @@ gulp.task('documentation', function() {
   );
 });
 
-// Watch Files For Changes
 gulp.task('watch', function() {
   gulp.watch('gulpfile.js', ['jslint']);
   gulp.watch('src/sass/**/*.scss', ['sass']);
   gulp.watch('src/sass/**/*.scss', ['documentation']);
 });
 
-// Default Task
-gulp.task('default', ['clean', 'jslint', 'sass', 'watch', 'documentation']);
+gulp.task('runbuild', ['jslint', 'sass', 'build-min'], function () {
+  gulp.start('documentation');
+});
+
+gulp.task('build', ['clean'], function () {
+  gulp.start('runbuild');
+});
+
+gulp.task('dev', ['jslint', 'sass', 'watch'], function () {
+  gulp.start('documentation');
+});
+
+gulp.task('default', ['clean'], function () {
+  gulp.start('dev');
+});
+
+
