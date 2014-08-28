@@ -27,7 +27,7 @@ $borderWidths: () !default;
                         $key: str-replace($cssProperty, '{dir}', $dirProperty);
                         $value: unquote($borderWidth + ' ' + $borderStyle + ' ' + $color);
                         $properties: map-merge($properties, ($key: $value));
-                        $borders: map-merge($borders, ($combination: $value));
+                        $borders: map-merge($borders, ($combination: $value)) !global;
                     }
                     @include createSelector($selector, $properties);
                 }
