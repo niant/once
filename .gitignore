@@ -5,3 +5,4 @@ config.rb
 node_modules
 dist/
 docs/
+apidoc/

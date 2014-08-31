@@ -49,7 +49,7 @@ gulp.task('documentation', function() {
 gulp.task('sassdoc', function () {
   return gulp.src('src/sass')
     .pipe(sassdoc({
-      dest: 'sassdoc'
+      dest: 'apidoc'
     }));
 });
 
