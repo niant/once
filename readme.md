@@ -60,7 +60,7 @@ It's recommended to use normalize.css with Once.
 * s: (start - left)
 * x: (left, right)
 * y: (top, bottom)
-* box: (top, right, bottom, left)
+* xy: (top, right, bottom, left)
 
 #### Other naming policies
 
