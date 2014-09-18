@@ -60,7 +60,7 @@ It's recommended to use normalize.css with Once.
 * s: (start - left)
 * x: (left, right)
 * y: (top, bottom)
-* box: (top, right, bottom, left)
+* xy: (top, right, bottom, left)
 
 #### Other naming policies
 
@@ -74,7 +74,7 @@ It's recommended to use normalize.css with Once.
   padding-top: 0.5em;
 }
 
-.Bbox-sm {
+.Bxy-sm {
   border-top: 1em;
   border-right: 1em;
   border-bottom: 1em;
@@ -92,13 +92,13 @@ It's recommended to use normalize.css with Once.
 
 ```html
 <!-- Option 1: sizes with xs, sm, md, lg, xl -->
-<div class="left Pbox-md Bbox-xs r-md-right">
+<div class="left Pxy-md Bxy-xs r-md-right">
     <h4 class="F-gamma My-md">Example</h4>
     <div class="Px-sm Pt-sm F-zeta r-md-Px-md r-md-Pt-md">Content</div>
 </div>
 
 <!-- Option 2: Same as 2nd except removing r- prefix from reactive classes -->
-<div class="left Pbox-md Bbox-xs md-right">
+<div class="left Pxy-md Bxy-xs md-right">
     <h4 class="F-gamma My-md">Example</h4>
     <div class="Px-sm Pt-sm F-zeta md-Px-md md-Pt-md">Content</div>
 </div>
