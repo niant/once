@@ -1,6 +1,6 @@
 {
   "name": "Once",
-  "version": "0.0.0",
+  "version": "0.0.1",
   "description": "Once CSS framework",
   "main": "gulpfile.js",
   "directories": {
@@ -23,6 +23,7 @@
     "atomic",
     "oocss"
   ],
+  "private": true,
   "author": "",
   "license": "MIT",
   "bugs": {
