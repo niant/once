@@ -4,4 +4,4 @@ node_js:
 before_install:
   - gem install sass
 after_success:
-  script: ./build.sh
+  - sh ./build.sh

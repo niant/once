@@ -1,3 +1,6 @@
+#!/bin/bash
+set -ev
+
 ONCE_VER=v$(grep version package.json | cut -d':' -f2 | cut -d'"' -f2 | sort -g -r | head -1)
 ONCE_VERSIONS=$(git ls-remote --tags)
 
