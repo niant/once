@@ -1,0 +1,1454 @@
+/*
+# Strip units from a number with units.
+
+```scss
+$number: strip-units(3px);
+```
+
+Output:
+
+```scss
+$number => 3
+```
+
+ */
+/*
+# Replace a string with another string
+
+```scss
+$output: str-replace('something here {might} change', '{might}', 'will');
+$output => 'something here will change'
+```
+
+Output:
+
+```scss
+$output => 'something here will change'
+```
+
+ */
+/*
+# CSS class generator with a specific name and properties
+
+```scss
+@include createSelector('Px-xs', ('padding-left': 1em, 'padding-right': 1em));
+```
+
+Output:
+
+```scss
+.Px-xs {
+    padding-left: 1em;
+    padding-right: 1em;
+}
+```
+
+ */
+/*
+# Generate multiple selectors (TBD)
+
+```scss
+$output: generateMultipleSelectors('Px', (xs, sm, md));
+```
+
+Output
+
+```scss
+$output => (xs: 'Px-xs', sm: 'Px-sm', md: 'Px-md');
+```
+ */
+/*
+# Create multiple sized classes
+
+```scss
+@include createMultipleSizeClasses('Px', (sm: 1em, md: 2em), ('padding-left', 'padding-right'));
+```
+
+Output:
+
+```scss
+.Px-sm {
+    padding-left: 1em;
+    padding-right: 1em;
+}
+
+.Px-md {
+    padding-left: 2em;
+    padding-right: 2em;
+}
+```
+
+ */
+/*
+# Create multiple sized box classes 
+
+Create CSS classes (multiple sizes) of elements that have top, right, bottom & left values
+
+```scss
+@include createMultipleSizeBoxClasses('P{dirKey}', (xs: 1em, sm: 2em), 'padding-{dir}');
+```
+
+Will generate for example following classes
+
+```scss
+.Pt-xs {
+    padding-top: 1em;
+}
+
+.Pt-sm {
+    padding-top: 2em;
+}
+
+.Py-xs {
+    padding-top: 1em;
+    padding-bottom: 1em;
+}
+
+...
+```
+ */
+/*
+# Create multiple box classes
+
+```scss
+@include createMultipleBoxClasses('B{dirKey}-solid', ('border-{dir}-style': 'solid'));
+```
+
+Will generate for example following classes:
+
+```scss
+.Br-solid {
+    border-right-style: solid;
+}
+
+.Bx-solid {
+    border-right-style: solid;
+    border-left-style: solid;
+}
+
+...
+```
+
+ */
+* {
+  box-sizing: border-box; }
+
+@media (min-width: 320px) {
+  .xs-1 {
+    width: 8.33333%;
+    float: left;
+    height: 100%;
+    padding-left: 1rem;
+    padding-right: 1rem; }
+
+  .xs-2 {
+    width: 16.66667%;
+    float: left;
+    height: 100%;
+    padding-left: 1rem;
+    padding-right: 1rem; }
+
+  .xs-3 {
+    width: 25%;
+    float: left;
+    height: 100%;
+    padding-left: 1rem;
+    padding-right: 1rem; }
+
+  .xs-4 {
+    width: 33.33333%;
+    float: left;
+    height: 100%;
+    padding-left: 1rem;
+    padding-right: 1rem; }
+
+  .xs-5 {
+    width: 41.66667%;
+    float: left;
+    height: 100%;
+    padding-left: 1rem;
+    padding-right: 1rem; }
+
+  .xs-6 {
+    width: 50%;
+    float: left;
+    height: 100%;
+    padding-left: 1rem;
+    padding-right: 1rem; }
+
+  .xs-7 {
+    width: 58.33333%;
+    float: left;
+    height: 100%;
+    padding-left: 1rem;
+    padding-right: 1rem; }
+
+  .xs-8 {
+    width: 66.66667%;
+    float: left;
+    height: 100%;
+    padding-left: 1rem;
+    padding-right: 1rem; }
+
+  .xs-9 {
+    width: 75%;
+    float: left;
+    height: 100%;
+    padding-left: 1rem;
+    padding-right: 1rem; }
+
+  .xs-10 {
+    width: 83.33333%;
+    float: left;
+    height: 100%;
+    padding-left: 1rem;
+    padding-right: 1rem; }
+
+  .xs-11 {
+    width: 91.66667%;
+    float: left;
+    height: 100%;
+    padding-left: 1rem;
+    padding-right: 1rem; }
+
+  .xs-12 {
+    width: 100%;
+    float: left;
+    height: 100%;
+    padding-left: 1rem;
+    padding-right: 1rem; } }
+@media (min-width: 640px) {
+  .sm-1 {
+    width: 8.33333%;
+    float: left;
+    height: 100%;
+    padding-left: 1rem;
+    padding-right: 1rem; }
+
+  .sm-2 {
+    width: 16.66667%;
+    float: left;
+    height: 100%;
+    padding-left: 1rem;
+    padding-right: 1rem; }
+
+  .sm-3 {
+    width: 25%;
+    float: left;
+    height: 100%;
+    padding-left: 1rem;
+    padding-right: 1rem; }
+
+  .sm-4 {
+    width: 33.33333%;
+    float: left;
+    height: 100%;
+    padding-left: 1rem;
+    padding-right: 1rem; }
+
+  .sm-5 {
+    width: 41.66667%;
+    float: left;
+    height: 100%;
+    padding-left: 1rem;
+    padding-right: 1rem; }
+
+  .sm-6 {
+    width: 50%;
+    float: left;
+    height: 100%;
+    padding-left: 1rem;
+    padding-right: 1rem; }
+
+  .sm-7 {
+    width: 58.33333%;
+    float: left;
+    height: 100%;
+    padding-left: 1rem;
+    padding-right: 1rem; }
+
+  .sm-8 {
+    width: 66.66667%;
+    float: left;
+    height: 100%;
+    padding-left: 1rem;
+    padding-right: 1rem; }
+
+  .sm-9 {
+    width: 75%;
+    float: left;
+    height: 100%;
+    padding-left: 1rem;
+    padding-right: 1rem; }
+
+  .sm-10 {
+    width: 83.33333%;
+    float: left;
+    height: 100%;
+    padding-left: 1rem;
+    padding-right: 1rem; }
+
+  .sm-11 {
+    width: 91.66667%;
+    float: left;
+    height: 100%;
+    padding-left: 1rem;
+    padding-right: 1rem; }
+
+  .sm-12 {
+    width: 100%;
+    float: left;
+    height: 100%;
+    padding-left: 1rem;
+    padding-right: 1rem; } }
+@media (min-width: 1024px) {
+  .md-1 {
+    width: 8.33333%;
+    float: left;
+    height: 100%;
+    padding-left: 1rem;
+    padding-right: 1rem; }
+
+  .md-2 {
+    width: 16.66667%;
+    float: left;
+    height: 100%;
+    padding-left: 1rem;
+    padding-right: 1rem; }
+
+  .md-3 {
+    width: 25%;
+    float: left;
+    height: 100%;
+    padding-left: 1rem;
+    padding-right: 1rem; }
+
+  .md-4 {
+    width: 33.33333%;
+    float: left;
+    height: 100%;
+    padding-left: 1rem;
+    padding-right: 1rem; }
+
+  .md-5 {
+    width: 41.66667%;
+    float: left;
+    height: 100%;
+    padding-left: 1rem;
+    padding-right: 1rem; }
+
+  .md-6 {
+    width: 50%;
+    float: left;
+    height: 100%;
+    padding-left: 1rem;
+    padding-right: 1rem; }
+
+  .md-7 {
+    width: 58.33333%;
+    float: left;
+    height: 100%;
+    padding-left: 1rem;
+    padding-right: 1rem; }
+
+  .md-8 {
+    width: 66.66667%;
+    float: left;
+    height: 100%;
+    padding-left: 1rem;
+    padding-right: 1rem; }
+
+  .md-9 {
+    width: 75%;
+    float: left;
+    height: 100%;
+    padding-left: 1rem;
+    padding-right: 1rem; }
+
+  .md-10 {
+    width: 83.33333%;
+    float: left;
+    height: 100%;
+    padding-left: 1rem;
+    padding-right: 1rem; }
+
+  .md-11 {
+    width: 91.66667%;
+    float: left;
+    height: 100%;
+    padding-left: 1rem;
+    padding-right: 1rem; }
+
+  .md-12 {
+    width: 100%;
+    float: left;
+    height: 100%;
+    padding-left: 1rem;
+    padding-right: 1rem; } }
+@media (min-width: 1200px) {
+  .lg-1 {
+    width: 8.33333%;
+    float: left;
+    height: 100%;
+    padding-left: 1rem;
+    padding-right: 1rem; }
+
+  .lg-2 {
+    width: 16.66667%;
+    float: left;
+    height: 100%;
+    padding-left: 1rem;
+    padding-right: 1rem; }
+
+  .lg-3 {
+    width: 25%;
+    float: left;
+    height: 100%;
+    padding-left: 1rem;
+    padding-right: 1rem; }
+
+  .lg-4 {
+    width: 33.33333%;
+    float: left;
+    height: 100%;
+    padding-left: 1rem;
+    padding-right: 1rem; }
+
+  .lg-5 {
+    width: 41.66667%;
+    float: left;
+    height: 100%;
+    padding-left: 1rem;
+    padding-right: 1rem; }
+
+  .lg-6 {
+    width: 50%;
+    float: left;
+    height: 100%;
+    padding-left: 1rem;
+    padding-right: 1rem; }
+
+  .lg-7 {
+    width: 58.33333%;
+    float: left;
+    height: 100%;
+    padding-left: 1rem;
+    padding-right: 1rem; }
+
+  .lg-8 {
+    width: 66.66667%;
+    float: left;
+    height: 100%;
+    padding-left: 1rem;
+    padding-right: 1rem; }
+
+  .lg-9 {
+    width: 75%;
+    float: left;
+    height: 100%;
+    padding-left: 1rem;
+    padding-right: 1rem; }
+
+  .lg-10 {
+    width: 83.33333%;
+    float: left;
+    height: 100%;
+    padding-left: 1rem;
+    padding-right: 1rem; }
+
+  .lg-11 {
+    width: 91.66667%;
+    float: left;
+    height: 100%;
+    padding-left: 1rem;
+    padding-right: 1rem; }
+
+  .lg-12 {
+    width: 100%;
+    float: left;
+    height: 100%;
+    padding-left: 1rem;
+    padding-right: 1rem; } }
+/*
+#Borders
+
+In some countries they write from right to left so we decided to create start and end values for borders.
+The value can be changed by changing the variable in a config file that is not created yet.
+
+* Bs = left or right border depending of the direction of writing
+* Bt = border-top
+* Br = border-right
+* Bb = border-bottom
+* Bl = border-left
+* Bx = border-left and border-right
+* By = border-top and border-bottom
+
+####No border top
+
+	<div class="B-0">There is no top border in this div.</div>
+*/
+.B-0 {
+  border: none; }
+
+.Bt-xs {
+  border-top-width: 1px; }
+
+.Bt-sm {
+  border-top-width: 2px; }
+
+.Bt-md {
+  border-top-width: 3px; }
+
+.Bt-lg {
+  border-top-width: 4px; }
+
+.Bt-xl {
+  border-top-width: 5px; }
+
+.Br-xs {
+  border-right-width: 1px; }
+
+.Br-sm {
+  border-right-width: 2px; }
+
+.Br-md {
+  border-right-width: 3px; }
+
+.Br-lg {
+  border-right-width: 4px; }
+
+.Br-xl {
+  border-right-width: 5px; }
+
+.Be-xs {
+  border-right-width: 1px; }
+
+.Be-sm {
+  border-right-width: 2px; }
+
+.Be-md {
+  border-right-width: 3px; }
+
+.Be-lg {
+  border-right-width: 4px; }
+
+.Be-xl {
+  border-right-width: 5px; }
+
+.Bb-xs {
+  border-bottom-width: 1px; }
+
+.Bb-sm {
+  border-bottom-width: 2px; }
+
+.Bb-md {
+  border-bottom-width: 3px; }
+
+.Bb-lg {
+  border-bottom-width: 4px; }
+
+.Bb-xl {
+  border-bottom-width: 5px; }
+
+.Bl-xs {
+  border-left-width: 1px; }
+
+.Bl-sm {
+  border-left-width: 2px; }
+
+.Bl-md {
+  border-left-width: 3px; }
+
+.Bl-lg {
+  border-left-width: 4px; }
+
+.Bl-xl {
+  border-left-width: 5px; }
+
+.Bs-xs {
+  border-left-width: 1px; }
+
+.Bs-sm {
+  border-left-width: 2px; }
+
+.Bs-md {
+  border-left-width: 3px; }
+
+.Bs-lg {
+  border-left-width: 4px; }
+
+.Bs-xl {
+  border-left-width: 5px; }
+
+.Bx-xs {
+  border-left-width: 1px;
+  border-right-width: 1px; }
+
+.Bx-sm {
+  border-left-width: 2px;
+  border-right-width: 2px; }
+
+.Bx-md {
+  border-left-width: 3px;
+  border-right-width: 3px; }
+
+.Bx-lg {
+  border-left-width: 4px;
+  border-right-width: 4px; }
+
+.Bx-xl {
+  border-left-width: 5px;
+  border-right-width: 5px; }
+
+.By-xs {
+  border-top-width: 1px;
+  border-bottom-width: 1px; }
+
+.By-sm {
+  border-top-width: 2px;
+  border-bottom-width: 2px; }
+
+.By-md {
+  border-top-width: 3px;
+  border-bottom-width: 3px; }
+
+.By-lg {
+  border-top-width: 4px;
+  border-bottom-width: 4px; }
+
+.By-xl {
+  border-top-width: 5px;
+  border-bottom-width: 5px; }
+
+.Bbox-xs {
+  border-top-width: 1px;
+  border-right-width: 1px;
+  border-bottom-width: 1px;
+  border-left-width: 1px; }
+
+.Bbox-sm {
+  border-top-width: 2px;
+  border-right-width: 2px;
+  border-bottom-width: 2px;
+  border-left-width: 2px; }
+
+.Bbox-md {
+  border-top-width: 3px;
+  border-right-width: 3px;
+  border-bottom-width: 3px;
+  border-left-width: 3px; }
+
+.Bbox-lg {
+  border-top-width: 4px;
+  border-right-width: 4px;
+  border-bottom-width: 4px;
+  border-left-width: 4px; }
+
+.Bbox-xl {
+  border-top-width: 5px;
+  border-right-width: 5px;
+  border-bottom-width: 5px;
+  border-left-width: 5px; }
+
+.Bt-solid {
+  border-top-style: solid; }
+
+.Br-solid {
+  border-right-style: solid; }
+
+.Be-solid {
+  border-right-style: solid; }
+
+.Bb-solid {
+  border-bottom-style: solid; }
+
+.Bl-solid {
+  border-left-style: solid; }
+
+.Bs-solid {
+  border-left-style: solid; }
+
+.Bx-solid {
+  border-left-style: solid;
+  border-right-style: solid; }
+
+.By-solid {
+  border-top-style: solid;
+  border-bottom-style: solid; }
+
+.Bbox-solid {
+  border-top-style: solid;
+  border-right-style: solid;
+  border-bottom-style: solid;
+  border-left-style: solid; }
+
+.Bt-dotted {
+  border-top-style: dotted; }
+
+.Br-dotted {
+  border-right-style: dotted; }
+
+.Be-dotted {
+  border-right-style: dotted; }
+
+.Bb-dotted {
+  border-bottom-style: dotted; }
+
+.Bl-dotted {
+  border-left-style: dotted; }
+
+.Bs-dotted {
+  border-left-style: dotted; }
+
+.Bx-dotted {
+  border-left-style: dotted;
+  border-right-style: dotted; }
+
+.By-dotted {
+  border-top-style: dotted;
+  border-bottom-style: dotted; }
+
+.Bbox-dotted {
+  border-top-style: dotted;
+  border-right-style: dotted;
+  border-bottom-style: dotted;
+  border-left-style: dotted; }
+
+.Bt-dashed {
+  border-top-style: dashed; }
+
+.Br-dashed {
+  border-right-style: dashed; }
+
+.Be-dashed {
+  border-right-style: dashed; }
+
+.Bb-dashed {
+  border-bottom-style: dashed; }
+
+.Bl-dashed {
+  border-left-style: dashed; }
+
+.Bs-dashed {
+  border-left-style: dashed; }
+
+.Bx-dashed {
+  border-left-style: dashed;
+  border-right-style: dashed; }
+
+.By-dashed {
+  border-top-style: dashed;
+  border-bottom-style: dashed; }
+
+.Bbox-dashed {
+  border-top-style: dashed;
+  border-right-style: dashed;
+  border-bottom-style: dashed;
+  border-left-style: dashed; }
+
+.B-radius-full {
+  border-radius: 100%; }
+
+/* 
+    Creates borders using mappings for border widths, border styles and colors.
+    You can define the mappings in the style sheets of your project.
+*/
+.bg-rounded-sm {
+  border-radius: 5px; }
+
+/* Bottom aligned background */
+.bg-bottom {
+  background-position: bottom; }
+
+/* Top aligned background */
+.bg-top {
+  background-position: top; }
+
+.bg-transparent {
+  background: transparent; }
+
+.bg-none {
+  background: none; }
+
+/*
+#Lists
+
+####List without styles
+
+	<ul>
+		<li>This list has no styles.</li>
+	</ul>
+*/
+.list-no-style {
+  list-style: none; }
+
+.a-width-sm {
+  -webkit-transition: width 0.5s ease-in-out;
+          transition: width 0.5s ease-in-out; }
+
+.a-accordion {
+  max-height: 0;
+  overflow: hidden; }
+
+.a-accordion-sm {
+  height: auto;
+  max-height: 2000px; }
+
+.a-accordion-md {
+  height: auto;
+  max-height: 4000px; }
+
+body {
+  font-size: 1rem; }
+
+.f-giga {
+  font-size: 4em; }
+
+.f-mega {
+  font-size: 3em; }
+
+.f-alpha {
+  font-size: 2.5em; }
+
+.f-beta {
+  font-size: 2em; }
+
+.f-gamma {
+  font-size: 1.7em; }
+
+.f-delta {
+  font-size: 1.5em; }
+
+.f-epsilon {
+  font-size: 1.2em; }
+
+.f-zeta {
+  font-size: 0.8em; }
+
+.f-blank {
+  color: #ffffff; }
+
+.f-normal {
+  font-style: normal; }
+
+.f-bold {
+  font-weight: bold; }
+
+.f-italic {
+  font-style: italic; }
+
+.f-w-normal {
+  font-weight: normal; }
+
+.f-w-700 {
+  font-weight: 700; }
+
+.f-uppercase {
+  text-transform: uppercase; }
+
+.f-line-through {
+  text-decoration: line-through; }
+
+.f-no-decoration {
+  text-decoration: none; }
+
+.f-underline {
+  text-decoration: underline; }
+
+.f-right {
+  text-align: right; }
+
+.f-left {
+  text-align: left; }
+
+.f-center {
+  text-align: center; }
+
+.f-no-wrap {
+  white-space: nowrap; }
+
+/*
+#Margins
+
+####M is an abbreviation for margin.
+
+* Mt = margin-top
+* Mr = margin-right
+* Mb = margin-bottom
+* Ml = margin-left
+
+####No margins
+
+	<div class="M-0">There are no margins in this div.</div>
+*/
+.M-0 {
+  margin: 0; }
+
+/*
+####No top margin
+
+	<div class="Mt-0">Top margin of this div is 0</div>
+*/
+.Mt-0 {
+  margin-top: 0; }
+
+/*
+#Paddings
+
+####P is an abbreviation for padding.
+
+* Pt = padding-top
+* Pr = padding-right
+* Pb = padding-bottom
+* Pl = padding-left
+
+####No paddings
+
+	<div class="P-0">There are no paddings in this div.</div>
+*/
+.P-0 {
+  padding: 0; }
+
+.Pt-xs {
+  padding-top: 0.5em; }
+
+.Pt-sm {
+  padding-top: 0.7em; }
+
+.Pt-md {
+  padding-top: 1em; }
+
+.Pt-lg {
+  padding-top: 1.5em; }
+
+.Pt-xl {
+  padding-top: 2em; }
+
+.Pr-xs {
+  padding-right: 0.5em; }
+
+.Pr-sm {
+  padding-right: 0.7em; }
+
+.Pr-md {
+  padding-right: 1em; }
+
+.Pr-lg {
+  padding-right: 1.5em; }
+
+.Pr-xl {
+  padding-right: 2em; }
+
+.Pe-xs {
+  padding-right: 0.5em; }
+
+.Pe-sm {
+  padding-right: 0.7em; }
+
+.Pe-md {
+  padding-right: 1em; }
+
+.Pe-lg {
+  padding-right: 1.5em; }
+
+.Pe-xl {
+  padding-right: 2em; }
+
+.Pb-xs {
+  padding-bottom: 0.5em; }
+
+.Pb-sm {
+  padding-bottom: 0.7em; }
+
+.Pb-md {
+  padding-bottom: 1em; }
+
+.Pb-lg {
+  padding-bottom: 1.5em; }
+
+.Pb-xl {
+  padding-bottom: 2em; }
+
+.Pl-xs {
+  padding-left: 0.5em; }
+
+.Pl-sm {
+  padding-left: 0.7em; }
+
+.Pl-md {
+  padding-left: 1em; }
+
+.Pl-lg {
+  padding-left: 1.5em; }
+
+.Pl-xl {
+  padding-left: 2em; }
+
+.Ps-xs {
+  padding-left: 0.5em; }
+
+.Ps-sm {
+  padding-left: 0.7em; }
+
+.Ps-md {
+  padding-left: 1em; }
+
+.Ps-lg {
+  padding-left: 1.5em; }
+
+.Ps-xl {
+  padding-left: 2em; }
+
+.Px-xs {
+  padding-left: 0.5em;
+  padding-right: 0.5em; }
+
+.Px-sm {
+  padding-left: 0.7em;
+  padding-right: 0.7em; }
+
+.Px-md {
+  padding-left: 1em;
+  padding-right: 1em; }
+
+.Px-lg {
+  padding-left: 1.5em;
+  padding-right: 1.5em; }
+
+.Px-xl {
+  padding-left: 2em;
+  padding-right: 2em; }
+
+.Py-xs {
+  padding-top: 0.5em;
+  padding-bottom: 0.5em; }
+
+.Py-sm {
+  padding-top: 0.7em;
+  padding-bottom: 0.7em; }
+
+.Py-md {
+  padding-top: 1em;
+  padding-bottom: 1em; }
+
+.Py-lg {
+  padding-top: 1.5em;
+  padding-bottom: 1.5em; }
+
+.Py-xl {
+  padding-top: 2em;
+  padding-bottom: 2em; }
+
+.Pbox-xs {
+  padding-top: 0.5em;
+  padding-right: 0.5em;
+  padding-bottom: 0.5em;
+  padding-left: 0.5em; }
+
+.Pbox-sm {
+  padding-top: 0.7em;
+  padding-right: 0.7em;
+  padding-bottom: 0.7em;
+  padding-left: 0.7em; }
+
+.Pbox-md {
+  padding-top: 1em;
+  padding-right: 1em;
+  padding-bottom: 1em;
+  padding-left: 1em; }
+
+.Pbox-lg {
+  padding-top: 1.5em;
+  padding-right: 1.5em;
+  padding-bottom: 1.5em;
+  padding-left: 1.5em; }
+
+.Pbox-xl {
+  padding-top: 2em;
+  padding-right: 2em;
+  padding-bottom: 2em;
+  padding-left: 2em; }
+
+.Mt-xs {
+  margin-top: 0.5em; }
+
+.Mt-sm {
+  margin-top: 0.7em; }
+
+.Mt-md {
+  margin-top: 1em; }
+
+.Mt-lg {
+  margin-top: 1.5em; }
+
+.Mt-xl {
+  margin-top: 2em; }
+
+.Mr-xs {
+  margin-right: 0.5em; }
+
+.Mr-sm {
+  margin-right: 0.7em; }
+
+.Mr-md {
+  margin-right: 1em; }
+
+.Mr-lg {
+  margin-right: 1.5em; }
+
+.Mr-xl {
+  margin-right: 2em; }
+
+.Me-xs {
+  margin-right: 0.5em; }
+
+.Me-sm {
+  margin-right: 0.7em; }
+
+.Me-md {
+  margin-right: 1em; }
+
+.Me-lg {
+  margin-right: 1.5em; }
+
+.Me-xl {
+  margin-right: 2em; }
+
+.Mb-xs {
+  margin-bottom: 0.5em; }
+
+.Mb-sm {
+  margin-bottom: 0.7em; }
+
+.Mb-md {
+  margin-bottom: 1em; }
+
+.Mb-lg {
+  margin-bottom: 1.5em; }
+
+.Mb-xl {
+  margin-bottom: 2em; }
+
+.Ml-xs {
+  margin-left: 0.5em; }
+
+.Ml-sm {
+  margin-left: 0.7em; }
+
+.Ml-md {
+  margin-left: 1em; }
+
+.Ml-lg {
+  margin-left: 1.5em; }
+
+.Ml-xl {
+  margin-left: 2em; }
+
+.Ms-xs {
+  margin-left: 0.5em; }
+
+.Ms-sm {
+  margin-left: 0.7em; }
+
+.Ms-md {
+  margin-left: 1em; }
+
+.Ms-lg {
+  margin-left: 1.5em; }
+
+.Ms-xl {
+  margin-left: 2em; }
+
+.Mx-xs {
+  margin-left: 0.5em;
+  margin-right: 0.5em; }
+
+.Mx-sm {
+  margin-left: 0.7em;
+  margin-right: 0.7em; }
+
+.Mx-md {
+  margin-left: 1em;
+  margin-right: 1em; }
+
+.Mx-lg {
+  margin-left: 1.5em;
+  margin-right: 1.5em; }
+
+.Mx-xl {
+  margin-left: 2em;
+  margin-right: 2em; }
+
+.My-xs {
+  margin-top: 0.5em;
+  margin-bottom: 0.5em; }
+
+.My-sm {
+  margin-top: 0.7em;
+  margin-bottom: 0.7em; }
+
+.My-md {
+  margin-top: 1em;
+  margin-bottom: 1em; }
+
+.My-lg {
+  margin-top: 1.5em;
+  margin-bottom: 1.5em; }
+
+.My-xl {
+  margin-top: 2em;
+  margin-bottom: 2em; }
+
+.Mbox-xs {
+  margin-top: 0.5em;
+  margin-right: 0.5em;
+  margin-bottom: 0.5em;
+  margin-left: 0.5em; }
+
+.Mbox-sm {
+  margin-top: 0.7em;
+  margin-right: 0.7em;
+  margin-bottom: 0.7em;
+  margin-left: 0.7em; }
+
+.Mbox-md {
+  margin-top: 1em;
+  margin-right: 1em;
+  margin-bottom: 1em;
+  margin-left: 1em; }
+
+.Mbox-lg {
+  margin-top: 1.5em;
+  margin-right: 1.5em;
+  margin-bottom: 1.5em;
+  margin-left: 1.5em; }
+
+.Mbox-xl {
+  margin-top: 2em;
+  margin-right: 2em;
+  margin-bottom: 2em;
+  margin-left: 2em; }
+
+.t-0 {
+  top: 0; }
+
+.b-0 {
+  bottom: 0; }
+
+.l-0 {
+  left: 0; }
+
+.r-0 {
+  right: 0; }
+
+.hidden {
+  display: none; }
+
+.inline {
+  display: inline; }
+
+.block {
+  display: block; }
+
+.inline-block {
+  display: inline-block; }
+
+.absolute {
+  position: absolute; }
+
+.relative {
+  position: relative; }
+
+.o-hidden {
+  overflow: hidden; }
+
+.o-y-auto {
+  overflow-y: auto; }
+
+.left {
+  float: left; }
+
+@media (min-width: 320px) {
+  .r-xs-left {
+    float: left; } }
+
+@media (min-width: 640px) {
+  .r-sm-left {
+    float: left; } }
+
+@media (min-width: 1024px) {
+  .r-md-left {
+    float: left; } }
+
+@media (min-width: 1200px) {
+  .r-lg-left {
+    float: left; } }
+
+.right {
+  float: right; }
+
+@media (min-width: 320px) {
+  .r-xs-right {
+    float: right; } }
+
+@media (min-width: 640px) {
+  .r-sm-right {
+    float: right; } }
+
+@media (min-width: 1024px) {
+  .r-md-right {
+    float: right; } }
+
+@media (min-width: 1200px) {
+  .r-lg-right {
+    float: right; } }
+
+.full-width {
+  width: 100%; }
+
+.full-height {
+  height: 100%; }
+
+.fixed {
+  position: fixed; }
+
+.flex-column {
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-flex-direction: column;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-flex-wrap: nowrap;
+      -ms-flex-wrap: nowrap;
+          flex-wrap: nowrap;
+  -webkit-justify-content: flex-start;
+      -ms-flex-pack: start;
+          justify-content: flex-start;
+  -webkit-align-content: stretch;
+      -ms-flex-line-pack: stretch;
+          align-content: stretch;
+  -webkit-align-items: stretch;
+      -ms-flex-align: stretch;
+          align-items: stretch; }
+
+.flex-lock {
+  -webkit-flex-grow: 0;
+      -ms-flex-positive: 0;
+          flex-grow: 0;
+  -webkit-flex-shrink: 0;
+      -ms-flex-negative: 0;
+          flex-shrink: 0; }
+
+.flex-flex {
+  -webkit-flex-grow: 1;
+      -ms-flex-positive: 1;
+          flex-grow: 1;
+  -webkit-flex-shrink: 1;
+      -ms-flex-negative: 1;
+          flex-shrink: 1; }
+
+.overflow-scroll {
+  overflow: scroll; }
+
+.v-align-top {
+  vertical-align: top; }
+
+.clearfix:after {
+  content: ".";
+  display: block;
+  height: 0;
+  clear: both;
+  visibility: hidden; }
+
+/*
+# Opacity classes
+
+* .opacity-10, .opacity-20 etc.
+ */
+.opacity-10 {
+  opacity: 0.1; }
+
+.opacity-20 {
+  opacity: 0.2; }
+
+.opacity-30 {
+  opacity: 0.3; }
+
+.opacity-40 {
+  opacity: 0.4; }
+
+.opacity-50 {
+  opacity: 0.5; }
+
+.opacity-60 {
+  opacity: 0.6; }
+
+.opacity-70 {
+  opacity: 0.7; }
+
+.opacity-80 {
+  opacity: 0.8; }
+
+.opacity-90 {
+  opacity: 0.9; }
+
+.opacity-100 {
+  opacity: 1; }
+
+/*
+Most used components that are simpler to use than Atomic CSS classes.
+ */
+/* Make blocks equal height
+
+ */
+.equal-height {
+  overflow: hidden; }
+
+.equal-height-col {
+  padding-bottom: 500em;
+  margin-bottom: -500em; }
+
+/* Vertical aligned items
+
+<div class="v-align">
+    <div class="v-align-middle"></div>
+    <div class="v-align-middle"></div>
+</div>
+
+ */
+.v-align {
+  display: table; }
+
+.v-align-middle {
+  display: table-cell;
+  vertical-align: middle; }
+
+.v-align-top {
+  display: table-cell;
+  vertical-align: top; }
+
+.overlay-full {
+  position: absolute;
+  left: 0;
+  right: 0;
+  z-index: 1; }
+
+.h-center {
+  margin: 0 auto; }
+
+.x-center {
+  margin: auto;
+  position: absolute;
+  left: 50%;
+  -webkit-transform: translate(-50%, 0);
+      -ms-transform: translate(-50%, 0);
+          transform: translate(-50%, 0); }
+
+.y-center {
+  margin: auto;
+  position: absolute;
+  top: 50%;
+  -webkit-transform: translate(0, -50%);
+      -ms-transform: translate(0, -50%);
+          transform: translate(0, -50%); }
