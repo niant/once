@@ -20,9 +20,12 @@ then
   mv src/sass .
   rm -rf dist/
   rm -rf src/
+  rm -rf .gitignore
+  rm -rf gulpfile.js
 
+  git rm --cached .travis.yml
+  git rm --cached build.sh
   git add --all .
-  git add docs/
   git commit -am "New version build $ONCE_VER"
   git tag $ONCE_VER -m "New version $ONCE_VER"
   git push origin $ONCE_VER
