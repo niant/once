@@ -12,8 +12,8 @@ then
 
   rm -rf .sass-cache/
   rm -rf node-modules/
-  cp -r dist/css/* css/
-  cp -r src/sass/* sass/
+  mv dist/css .
+  mv src/sass .
   rm -rf dist/
   rm -rf src/
 
