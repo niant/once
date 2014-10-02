@@ -6,7 +6,11 @@ ONCE_VERSIONS=$(git ls-remote --tags)
 
 if [[ $ONCE_VERSIONS != *$ONCE_VER* ]]
 then
-  git config --global user.name "niant"
+  git remote rm origin
+  git remote add origin https://niant:${GH_TOKEN}@github.com/niant/once.git
+
+  git config --global user.name "Travis-CI"
+  git config --global user.email antti.niemenpaa@gmail.com
 
   git checkout -b release
 
