@@ -15,16 +15,20 @@ then
   git checkout -b release
 
   rm -rf .sass-cache/
-  rm -rf node-modules/
+  rm -rf node_modules/
   mv dist/css .
   mv src/sass .
   rm -rf dist/
   rm -rf src/
   rm -rf .gitignore
   rm -rf gulpfile.js
+  rm -rf .travis.yml
+  rm -rf build.sh
 
-  git rm --cached .travis.yml
-  git rm --cached build.sh
+  # git rm --cached .travis.yml
+  # git rm --cached build.sh
+  # git commit build.sh -m "Remove unnecessary file"
+  # git commit .travis.yml -m "Remove unnecessary"
   git add --all .
   git commit -am "New version build $ONCE_VER"
   git tag $ONCE_VER -m "New version $ONCE_VER"
