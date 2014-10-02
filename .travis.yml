@@ -7,4 +7,4 @@ after_success:
   - bash ./build.sh
 env:
   global:
-    secure: LFIc8ZiReNM7l15U2TtuddTplCMxGPPlhE6F2YJFifux9lmwhncdpPInwIqycJz6L5cm9+R5PBg+S//3EYXaplsHCMNGz3FaabqWR/z5DEkT4TjqUFNHI/lEgZN3E2AggTuG9VyDxFxIfIJ48vEVGgEYKsVdYj2QWie+ik33YRI=
+    secure: OU9CUTgJCRZ0BdbliLATAjuRphp8RySYDROaAGPDA3sN6Uu0NAgyEtBBOGJtEVIdjVWVEURzN09JZRP+fS/nc5YkTYRjzaB9ShoNByL1zV/1u5/l233HN6OxDwOS9ZTkvfno0TdsX7DqvqcXC5NPZz4pLMiF5pMDm6p5on6PMQ8=
