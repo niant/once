@@ -21,7 +21,7 @@ then
   rm -rf dist/
   rm -rf src/
 
-  git add .
+  git add --all .
   git add docs/
   git commit -am "New version build $ONCE_VER"
   git tag $ONCE_VER -m "New version $ONCE_VER"
