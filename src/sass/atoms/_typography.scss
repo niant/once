@@ -28,10 +28,6 @@ body {
 
 @include createMultipleSizeClasses('f', $typographySizes, ('font-size'));
 
-.f-blank {
-    color: #ffffff;
-}
-
 .f-normal {
     font-style: normal;
 }
