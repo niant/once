@@ -9,6 +9,19 @@ $typographySizes: (
     zeta    : 0.8em
 ) !default;
 
+$responsiveTypography: (
+  sm : (
+    giga    : 4em,
+    mega    : 3em,
+    alpha   : 2.5em,
+    beta    : 2em,
+    gamma   : 1.7em,
+    delta   : 1.5em,
+    epsilon : 1.2em,
+    zeta    : 0.8em
+  )
+) !default;
+
 body {
     font-size: 1rem; // 1rem = 16px
 }
@@ -27,6 +40,14 @@ body {
 // }
 
 @include createMultipleSizeClasses('f', $typographySizes, ('font-size'));
+
+// typography matrix generation
+@each $bpoint, $sizes in $responsiveTypography {
+    @include breakpoint($bpoint) {
+        @include createMultipleSizeClasses('f', $sizes, ('font-size'));
+    }
+}
+
 
 .f-blank {
     color: #ffffff;
