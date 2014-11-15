@@ -4,6 +4,6 @@ $baseColors: (
 ) !default;
 
 @include createMultipleSelectors('f-{key}', $baseColors, 'color');
-@include createMultipleSelectors('f-hover-{key}:hover', $baseColors, 'color');
+@include createMultipleSelectors('f-{key}-hover:hover', $baseColors, 'color');
 @include createMultipleSelectors('bg-{key}', $baseColors, 'background-color');
-@include createMultipleSelectors('bg-hover-{key}:hover', $baseColors, 'background-color');
+@include createMultipleSelectors('bg-{key}-hover:hover', $baseColors, 'background-color');
