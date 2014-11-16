@@ -1,5 +1,3 @@
-$backgroundRadiusSizes: (xs: 0.2em, sm: 0.5em, md: 1em, lg: 2em) !default;
-
 @mixin bg-hidef-img($image) {
     @media (min--moz-device-pixel-ratio: 1.3),
          (-o-min-device-pixel-ratio: 2.6/2),
@@ -11,8 +9,6 @@ $backgroundRadiusSizes: (xs: 0.2em, sm: 0.5em, md: 1em, lg: 2em) !default;
         background-image: url($image);
     }
 }
-
-@include createMultipleSizeClasses('bg-rounded', $backgroundRadiusSizes, ('border-radius'));
 
 /* Bottom aligned background */
 .bg-bottom {
