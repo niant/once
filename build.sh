@@ -23,6 +23,7 @@ then
   rm -rf .gitignore
   rm -rf gulpfile.js
   rm -rf .travis.yml
+  rm -rf .editorconfig
   rm -rf build.sh
 
   # git rm --cached .travis.yml
