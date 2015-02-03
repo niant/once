@@ -6,7 +6,7 @@ var styledocco = require('gulp-styledocco');
 var minifyCSS = require('gulp-minify-css');
 var rename = require('gulp-rename');
 var rimraf = require('rimraf');
-var sassdoc = require('gulp-sassdoc');
+var sassdoc = require('sassdoc');
 
 gulp.task('clean', function (cb) {
   rimraf('dist', cb);
@@ -47,9 +47,10 @@ gulp.task('documentation', function() {
 });
 
 gulp.task('sassdoc', function () {
-  return gulp.src('src/sass')
+  return gulp.src('src/sass/**/*.scss')
     .pipe(sassdoc({
-      dest: 'apidoc'
+      dest: 'apidoc',
+      package: 'package.json'
     }));
 });
 
