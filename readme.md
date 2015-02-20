@@ -2,13 +2,11 @@
 
 [![Build Status](https://travis-ci.org/niant/once.png?branch=master)](https://travis-ci.org/niant/once) [![devDependency Status](https://david-dm.org/niant/once/dev-status.svg?theme=shields.io)](https://david-dm.org/niant/once#info=devDependencies)
 
-Once CSS library solves the headache of repetitive CSS. We have adopted best practices from OOCSS and Atomic CSS. The goal is to write the basic widely used classes once and not repeat yourself (DRY). One class does only one job.
+Once CSS library solves the headache of repetitive CSS. We have adopted best practices from OOCSS and Atomic CSS. The goal is to write the basic widely used classes once and not repeat yourself (DRY). Basically one class does one job.
+
+Library is using SASS, but you can use pure CSS files also. We are planning to modularize project to small modules - so that you can pick only what you need (e.g. typography, grid, spacers...)
 
 ___Note!___ Project is still under heavy development
-
-## Modularization
-
-We are planning to modularize project to small modules - so that you can pick only what you need (e.g. typography, grid, spacers...)
 
 ## Documentation
 
