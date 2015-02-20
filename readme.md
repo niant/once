@@ -11,11 +11,10 @@ ___Note!___ Project is still under heavy development, we don't recommend using i
 
 ## Changes from v0.0.1 -> v0.1.0
 
-* Basic theme support (c-[color], bgc-[color] and Bc-[color])
+* Basic theme support (C-[color], C-bg-[color] and C-B-[color])
     - New atom and configuration: atoms/_theme-base.scss & $baseColors in _variables.scss
     - f-blank is now deprecated
     - Add support by adding blank into $baseColors and adding ```@include createMultipleSelectors('f-{key}', $baseColors, 'color');``` to your project
-
 
 ## Modularization
 
@@ -52,8 +51,7 @@ It's recommended to use normalize.css with Once.
 * F = Font
 * O = Overflow
 * A = Animation
-* c = color
-* bgc = background-color
+* C = Color (C-name [color], C-bg-name [background-color], C-B-name [border-color])
 
 #### Size pre/postfixes
 
