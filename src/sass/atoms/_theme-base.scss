@@ -3,10 +3,12 @@ $baseColors: (
   'black': #000
 ) !default;
 
-@include createMultipleSelectors('f-{key}', $baseColors, 'color');
-@include createMultipleSelectors('f-{key}-hover:hover', $baseColors, 'color');
-@include createMultipleSelectors('f-{key}-disabled:disabled', $baseColors, 'color');
+@include createMultipleSelectors('c-{key}', $baseColors, 'color');
+@include createMultipleSelectors('c-{key}_hover:hover', $baseColors, 'color');
+@include createMultipleSelectors('c-{key}_disabled:disabled', $baseColors, 'color');
 
-@include createMultipleSelectors('bg-{key}', $baseColors, 'background-color');
-@include createMultipleSelectors('bg-{key}-hover:hover', $baseColors, 'background-color');
-@include createMultipleSelectors('bg-{key}-disabled:disabled', $baseColors, 'background-color');
+@include createMultipleSelectors('bg-c-{key}', $baseColors, 'background-color');
+@include createMultipleSelectors('bg-c-{key}_hover:hover', $baseColors, 'background-color');
+@include createMultipleSelectors('bg-c-{key}_disabled:disabled', $baseColors, 'background-color');
+
+@include createMultipleSelectors('B-c-{key}', $baseColors, 'border-color');
