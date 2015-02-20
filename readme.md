@@ -9,6 +9,13 @@ Once CSS library solves the headache of repetitive CSS. We have adopted best pra
 
 ___Note!___ Project is still under heavy development, we don't recommend using it in production yet!
 
+## Changes from v0.0.1 -> v0.1.0
+
+* Basic theme support (c-[color], bgc-[color] and Bc-[color])
+    - New atom and configuration: atoms/_theme-base.scss & $baseColors in _variables.scss
+    - f-blank is now deprecated
+    - Add support by adding blank into $baseColors and adding ```@include createMultipleSelectors('f-{key}', $baseColors, 'color');``` to your project
+
 
 ## Modularization
 
@@ -45,6 +52,8 @@ It's recommended to use normalize.css with Once.
 * F = Font
 * O = Overflow
 * A = Animation
+* c = color
+* bgc = background-color
 
 #### Size pre/postfixes
 
