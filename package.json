@@ -30,7 +30,7 @@
     "url": "https://github.com/niant/once/issues"
   },
   "devDependencies": {
-    "gulp": "^3.8.x",
+    "gulp": "^3.8.10",
     "gulp-autoprefixer": "^0.0.8",
     "gulp-concat": "^2.3.x",
     "gulp-jshint": "^1.8.x",
@@ -40,6 +40,7 @@
     "gulp-styledocco": "0.0.1",
     "gulp-uglify": "^0.3.1",
     "rimraf": "^2.2.8",
+    "sassdoc": "^2.0.3",
     "styledocco": "~0.6.6"
   },
   "engines": {
