@@ -1,5 +1,7 @@
 # Once CSS library
 
+[![Join the chat at https://gitter.im/niant/once](https://badges.gitter.im/Join%20Chat.svg)](https://gitter.im/niant/once?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
+
 [![Build Status](https://travis-ci.org/niant/once.png?branch=master)](https://travis-ci.org/niant/once) [![devDependency Status](https://david-dm.org/niant/once/dev-status.svg?theme=shields.io)](https://david-dm.org/niant/once#info=devDependencies)
 
 Once CSS library solves the headache of repetitive CSS. We have adopted best practices from OOCSS and Atomic CSS. The goal is to write the basic widely used classes once and not repeat yourself (DRY). Basically one class does one job.
