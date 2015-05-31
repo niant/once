@@ -1,5 +1,7 @@
 $borderSizes: (xs: 1px, sm: 2px, md: 3px, lg: 4px, xl: 5px) !default;
 
+$borderRadiusSizes: (xs: 0.2em, sm: 0.5em, md: 1em, lg: 2em) !default;
+
 /*
 #Borders
 
@@ -27,6 +29,9 @@ The value can be changed by changing the variable in a config file that is not c
 @include createMultipleBoxClasses('B{dirKey}-dotted', ('border-{dir}-style': dotted));
 @include createMultipleBoxClasses('B{dirKey}-dashed', ('border-{dir}-style': dashed));
 
-.B-radius-full {
+.B-r-full {
   border-radius: 100%;
 }
+
+@include createMultipleSizeClasses('B-r', $borderRadiusSizes, ('border-radius'));
+

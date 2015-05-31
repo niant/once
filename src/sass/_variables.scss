@@ -1,5 +1,6 @@
 $spacerSizes: (xs: 0.5em, sm: 0.7em, md: 1em, lg: 1.5em, xl: 2em);
 $borderSizes: (xs: 1px, sm: 2px, md: 3px, lg: 4px, xl: 5px);
+$borderRadiusSizes: (xs: 0.2em, sm: 0.5em, md: 1em, lg: 2em);
 
 $dirs: (
     t: (top),
@@ -25,16 +26,21 @@ $typographySizes: (
 );
 
 $responsiveTypography: (
-  sm : (
-    giga    : 4em,
-    mega    : 3em,
-    alpha   : 2.5em,
-    beta    : 2em,
-    gamma   : 1.7em,
-    delta   : 1.5em,
-    epsilon : 1.2em,
-    zeta    : 0.8em
-  )
+  // sm : (
+  //   giga    : 4em,
+  //   mega    : 3em,
+  //   alpha   : 2.5em,
+  //   beta    : 2em,
+  //   gamma   : 1.7em,
+  //   delta   : 1.5em,
+  //   epsilon : 1.2em,
+  //   zeta    : 0.8em
+  // )
+);
+
+$baseColors: (
+  'white': #fff,
+  'black': #000
 );
 
 $breakpoints: (xs: 320px, sm: 640px, md: 1024px, lg: 1200px);

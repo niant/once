@@ -1,50 +1,30 @@
 # Once CSS library
 
-[![Build Status](https://travis-ci.org/niant/once.png?branch=master)](https://travis-ci.org/niant/once)
+[![Join the chat at https://gitter.im/niant/once](https://badges.gitter.im/Join%20Chat.svg)](https://gitter.im/niant/once?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
 
-[![devDependency Status](https://david-dm.org/niant/once/dev-status.svg?theme=shields.io)](https://david-dm.org/niant/once#info=devDependencies)
+[![Build Status](https://travis-ci.org/niant/once.png?branch=master)](https://travis-ci.org/niant/once) [![devDependency Status](https://david-dm.org/niant/once/dev-status.svg?theme=shields.io)](https://david-dm.org/niant/once#info=devDependencies)
 
+Once CSS library solves the headache of repetitive CSS. We have adopted best practices from OOCSS and Atomic CSS. The goal is to write the basic widely used classes once and not repeat yourself (DRY). Basically one class does one job.
 
-Once CSS library solves the headache of repetitive CSS. We have adopted best practices from OOCSS and Atomic CSS. The goal is to write the basic widely used classes once and not repeat yourself (DRY).
+Library is using SASS, but you can use pure CSS files also. We are planning to modularize project to small modules - so that you can pick only what you need (e.g. typography, grid, spacers...)
 
-___Note!___ Project is still under heavy development, we don't recommend using it in production yet!
-
-
-## Modularization
-
-After the initial heavy development mode, we are planning to modularize project to small modules - so that you can pick only what you need (e.g. typography, grid, spacers...)
-
-## Preprocessors
-
-Currently we're supporting SASS, but plan is to support LESS also
-
-## Recommendations
-
-It's recommended to use normalize.css with Once.
-
-## Development environment setup
-
-1. Clone Once to your desired location:
-
-    git clone https://github.com/niant/once.git destination/
-2. Download & install Node.js
-3. Run: npm install
-4. Start coding: npm start
+___Note!___ Project is still under heavy development
 
 ## Documentation
 
-[Detailed documentation](docs/index.html) is still incomplete but it gives you a hunch of what we are doing.
-
-### Naming policies (working draft, most likely to be changed)
+### Naming policies 
 
 #### Class prefixes
 
 * P = Padding
 * M = Margin
 * B = Border
-* F = Font
-* O = Overflow
-* A = Animation
+* f = Font/typography
+* o = Overflow
+* a = Animation
+* c = Color (e.g. c-white)
+* bg = Background (e.g. bg-c-white)
+* r = Reactive classes (e.g. r-sm-left)
 
 #### Size pre/postfixes
 
@@ -64,6 +44,9 @@ It's recommended to use normalize.css with Once.
 
 #### Other naming policies
 
+``` [property][direction]-[feature]-[value]_[attribute] ```
+
+* Uppercase prefix characters if it has direction
 * 0 = Make element property size of zero ```.Mt-0 { margin-top:0; }```
 * Reactive/responsive classes have a prefix of reactive breakpoint ```r-xs-, r-sm-, r-md-, r-lg, r-xl- ```
 
@@ -104,3 +87,19 @@ It's recommended to use normalize.css with Once.
 </div>
 
 ```
+
+## Changes from v0.0.1 -> v0.1.0
+
+* Basic theme support (c-color, bg-c-color, B-c-color)
+    - New atom and configuration: atoms/_theme-base.scss & $baseColors in _variables.scss
+    - f-blank is now deprecated
+    - Add support by adding blank into $baseColors and adding ```@include createMultipleSelectors('f-{key}', $baseColors, 'color');``` to your project
+
+
+## Development environment setup
+
+1. Clone Once to your desired location:
+    git clone https://github.com/niant/once.git destination/
+2. Download & install Node.js
+3. Run: npm install
+4. Start coding: npm start

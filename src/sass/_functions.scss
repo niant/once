@@ -70,6 +70,30 @@ Output:
     }
 }
 
+
+/*
+# Generate multiple css classes according to values
+
+```scss
+@include createMultipleSelectors('f-{key}', ('white': #fff, 'black': #000), 'color');
+```
+
+Output:
+
+```scss
+.f-white {
+    color: #fff;
+}
+```
+
+ */
+@mixin createMultipleSelectors($selectorName, $values, $property) {
+    @each $name, $val in $values {
+        $newSelector: str-replace($selectorName, '{key}', $name);
+        @include createSelector($newSelector, ($property: $val));
+    }
+}
+
 /*
 # Generate multiple selectors (TBD)
 
@@ -126,7 +150,7 @@ Output:
 }
 
 /*
-# Create multiple sized box classes 
+# Create multiple sized box classes
 
 Create CSS classes (multiple sizes) of elements that have top, right, bottom & left values
 

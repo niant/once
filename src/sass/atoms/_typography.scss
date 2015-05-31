@@ -9,49 +9,7 @@ $typographySizes: (
     zeta    : 0.8em
 ) !default;
 
-$responsiveTypography: (
-  sm : (
-    giga    : 4em,
-    mega    : 3em,
-    alpha   : 2.5em,
-    beta    : 2em,
-    gamma   : 1.7em,
-    delta   : 1.5em,
-    epsilon : 1.2em,
-    zeta    : 0.8em
-  )
-) !default;
-
-body {
-    font-size: 1rem; // 1rem = 16px
-}
-
-// Should default margin be moved to h1-h6?
-// .f-giga,
-// .f-mega,
-// .f-alpha,
-// .f-beta,
-// .f-gamma,
-// .f-delta,
-// .f-epsilon,
-// .f-zeta {
-//     margin-top: 0.5em;
-//     margin-bottom: 0.5em;
-// }
-
 @include createMultipleSizeClasses('f', $typographySizes, ('font-size'));
-
-// typography matrix generation
-@each $bpoint, $sizes in $responsiveTypography {
-    @include breakpoint($bpoint) {
-        @include createMultipleSizeClasses('f', $sizes, ('font-size'));
-    }
-}
-
-
-.f-blank {
-    color: #ffffff;
-}
 
 .f-normal {
     font-style: normal;
