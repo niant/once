@@ -1,6 +1,6 @@
 var gulp = require('gulp');
 var jshint = require('gulp-jshint');
-var sass = require('gulp-ruby-sass');
+var sass = require('gulp-sass');
 var prefix = require('gulp-autoprefixer');
 var styledocco = require('gulp-styledocco');
 var minifyCSS = require('gulp-minify-css');
