@@ -11,7 +11,7 @@ $dirs: (
     s: (left),
     x: (left, right),
     y: (top, bottom),
-    box: (top, right, bottom, left)
+    '': (top, right, bottom, left)
 );
 
 $typographySizes: (
