@@ -40,7 +40,7 @@ ___Note!___ Project is still under heavy development
 * s: (start - left)
 * x: (left, right)
 * y: (top, bottom)
-* box: (top, right, bottom, left)
+* (empty): (top, right, bottom, left)
 
 #### Other naming policies
 
@@ -57,7 +57,7 @@ ___Note!___ Project is still under heavy development
   padding-top: 0.5em;
 }
 
-.Bbox-sm {
+.B-sm {
   border-top: 1em;
   border-right: 1em;
   border-bottom: 1em;
@@ -75,13 +75,13 @@ ___Note!___ Project is still under heavy development
 
 ```html
 <!-- Option 1: sizes with xs, sm, md, lg, xl -->
-<div class="left Pbox-md Bbox-xs r-md-right">
+<div class="left P-md B-xs r-md-right">
     <h4 class="F-gamma My-md">Example</h4>
     <div class="Px-sm Pt-sm F-zeta r-md-Px-md r-md-Pt-md">Content</div>
 </div>
 
 <!-- Option 2: Same as 2nd except removing r- prefix from reactive classes -->
-<div class="left Pbox-md Bbox-xs md-right">
+<div class="left P-md B-xs md-right">
     <h4 class="F-gamma My-md">Example</h4>
     <div class="Px-sm Pt-sm F-zeta md-Px-md md-Pt-md">Content</div>
 </div>
