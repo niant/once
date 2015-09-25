@@ -62,10 +62,11 @@ Output:
 ```
 
  */
+
 @mixin createSelector($selectorName, $properties) {
     .#{$selectorName} {
         @each $property, $value in $properties {
-            #{$property}: $value;
+            #{$property}: #{$value};
         }
     }
 }
@@ -90,7 +91,7 @@ Output:
 @mixin createMultipleSelectors($selectorName, $values, $property) {
     @each $name, $val in $values {
         $newSelector: str-replace($selectorName, '{key}', $name);
-        @include createSelector($newSelector, ($property: $val));
+        @include createSelector(#{$newSelector}, ($property: $val));
     }
 }
 
@@ -145,7 +146,7 @@ Output:
             $values: map-merge($values, ($property: $size));
         }
 
-        @include createSelector($selectorPrefix + '-' + $sizeName, $values);
+        @include createSelector(#{$selectorPrefix + '-' + $sizeName}, $values);
     }
 }
 
@@ -184,10 +185,9 @@ Will generate for example following classes
 
         @each $property in $dirProperties {
             $newProperty: str-replace($cssProperty, '{dir}', $property);
-            $properties: append($properties, $newProperty);
+            $properties: append($properties, #{$newProperty});
         }
-
-        @include createMultipleSizeClasses($newSelector, $sizes, $properties);
+        @include createMultipleSizeClasses(#{$newSelector}, $sizes, $properties);
     }
 }
 
@@ -226,6 +226,6 @@ Will generate for example following classes:
             }
         }
 
-        @include createSelector($newSelector, $properties);
+        @include createSelector(#{$newSelector}, $properties);
     }
 }
