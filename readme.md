@@ -88,7 +88,14 @@ ___Note!___ Project is still under heavy development
 
 ```
 
-## Changes from v0.0.1 -> v0.1.0
+## Changelog
+
+### v0.x.x (next upcoming version)
+
+* box direction is changed to empty string, so Pbox, Mbox etc. becomes just P and M
+* Add support for node-sass versions (3.3.3) 
+
+### v0.1.0
 
 * Basic theme support (c-color, bg-c-color, B-c-color)
     - New atom and configuration: atoms/_theme-base.scss & $baseColors in _variables.scss
