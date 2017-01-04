@@ -1,6 +1,7 @@
 @import
     'variables',
     'functions',
+    'classes',
     'core',
     'atoms/breakpoints',
     'atoms/grid-fluid',
@@ -15,4 +16,5 @@
     'atoms/layout',
     'atoms/opacity',
     'atoms/theme-base',
-    'components/components';
+    'components/components',
+    'atoms/layout-responsive';

@@ -20,10 +20,6 @@ $breakpoints: (xs: 320, sm: 640, md: 1024, lg: 1200) !default;
 }
 
 @mixin reactiveClasses($selectorName, $_breakpoints: $breakpoints) {
-    .#{$selectorName} {
-        @content;
-    }
-
     @include createReactiveClasses('r-{bp}-' + $selectorName, $_breakpoints) {
         @content;
     };
