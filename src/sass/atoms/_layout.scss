@@ -1,43 +1,37 @@
-/**
-    Some of the Once's classes are created using the mapping in _classes.scss
-*/
-@each $classKey, $className in $classes {
-  .#{$classKey} {  
-    #{map-get($className, key)}: map-get($className, value);
-  }
-}
+$layoutClasses: (
+    t-0: ( top: 0 ),
+    r-0: ( right: 0 ),
+    b-0: ( bottom: 0 ),
+    l-0: ( left: 0 ),
 
-.flex-column {
-    display: flex;
-    flex-direction: column;
-    flex-wrap: nowrap;
-    justify-content: flex-start;
-    align-content: stretch;
-    align-items: stretch;
-}
+    hidden: ( display: none ),
+    inline: ( display: inline ),
+    block: ( display: block ),
+    inline-block: ( display: inline-block ),
 
-.flex-lock {
-    flex-grow: 0;
-    flex-shrink: 0; //1
-}
+    absolute: ( position: absolute ),
+    relative: ( position: relative ),
+    fixed: ( position: fixed ),
 
-.flex-flex {
-    flex-grow: 1;
-    flex-shrink: 1;
-}
+    o-hidden: ( overflow: hidden ),
+    o-scroll: ( overflow: scroll ),
+    o-y-auto: ( overflow-y: auto ),
 
-.overflow-scroll {
-    overflow: scroll;
-}
+    full-width: ( width: 100% ),
+    full-height: ( height: 100% ),
 
-// refactor to use the new clearfix? + we shouldn't even need one?
-.clearfix {
-    // display: inline-block;
-    &:after {
-        content: ".";
-        display: block;
-        height: 0;
-        clear: both;
-        visibility: hidden;
-    }
-}
+    v-align-top: ( vertical-align: top ),
+
+    left: ( float: left ),
+    right: ( float: right ),
+
+    overflow-scroll: (
+        overflow: scroll
+    )
+);
+
+/* Layout classes */
+@include createClasses($layoutClasses);
+
+/* Responsive layout classes */
+@include createResponsiveClasses($layoutClasses);
