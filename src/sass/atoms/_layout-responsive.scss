@@ -1,8 +1,0 @@
-/**
-    Responsive classes are created using the mapping in _classes.scss
-*/
-@each $classKey, $className in $classes {
-    @include reactiveClasses($classKey) {
-        #{map-get($className, key)}: map-get($className, value);
-    }
-}
