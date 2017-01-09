@@ -1,0 +1,11 @@
+// refactor to use the new clearfix? + we shouldn't even need one?
+.clearfix {
+    // display: inline-block;
+    &:after {
+        content: ".";
+        display: block;
+        height: 0;
+        clear: both;
+        visibility: hidden;
+    }
+}
