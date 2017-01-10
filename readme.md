@@ -90,6 +90,17 @@ ___Note!___ Project is still under heavy development
 
 ## Changelog
 
+### v0.3.0
+
+* _deprecated.scss added containing the following classes
+    - flex-column
+    - flex-lock
+    - flex-flex
+
+    - It's not recommened to use those classes anymore but if you must, just import the _deprecated.scss in main.scss 
+
+* Flexbox classes added
+
 ### v0.2.0
 
 * box direction is changed to empty string, so Pbox, Mbox etc. becomes just P and M

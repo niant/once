@@ -1,0 +1,21 @@
+// @warn ".flex-column class has been deprecated in v0.3.0";
+.flex-column {
+    display: flex,
+    flex-direction: column,
+    flex-wrap: nowrap,
+    justify-content: flex-start,
+    align-content: stretch,
+    align-items: stretch
+}
+
+// @warn ".flex-lock class has been deprecated in v0.3.0";
+.flex-lock {
+    flex-grow: 0,
+    flex-shrink: 0 // 1
+}
+
+// @warn ".flex-flex class has been deprecated in v0.3.0";
+.flex-flex {
+    flex-grow: 1,
+    flex-shrink: 1
+}

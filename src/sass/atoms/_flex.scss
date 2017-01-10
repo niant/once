@@ -1,52 +1,37 @@
 $flexClasses: (
-    flex: ( display: flex ),
-
-    flex-ai-fs: ( align-items: flex-start ),
-    flex-ai-fe: ( align-items: flex-end ),
-    flex-ai-c: ( align-items: center ),
-    flex-ai-b: ( align-items: baseline ),
-    flex-ai-s: ( align-items: stretch ),
-    flex-ai-inherit: ( align-items: inherit ),
-    flex-ai-initial: ( align-items: initial ),
-    
-    flex-jc-fs: ( justify-content: flex-start ),
-    flex-jc-fe: ( justify-content: flex-end ),
-    flex-jc-c: ( justify-content: center ),
-    flex-jc-sa: ( justify-content: space-around ),
-    flex-jc-sb: ( justify-content: space-between ),
-    flex-jc-se: ( justify-content: space-evenly ),
-    flex-jc-initial: ( justify-content: initial ),
-    flex-jc-inherit: ( justify-content: inherit ),
-
-    flex-wrap-0: ( flex-wrap: nowrap ),
-    flex-wrap-w: ( flex-wrap: wrap ),
-    flex-wrap-wr: ( flex-wrap: wrap-reverse ),
-    flex-wrap-inherit: ( flex-wrap: inherit ),
-
-    flex-d-c: ( flex-direction: column ),
-    flex-d-r: ( flex-direction: row ),
-
-    flex-1 ( flex: 1 ),
-    flex-2 ( flex: 2 ),
-    flex-3 ( flex: 3 ),
-    flex-4 ( flex: 4 ),
-    flex-5 ( flex: 5 ),
-
-    flex-column: (
+    flex: (
         display: flex,
-        flex-direction: column,
-        flex-wrap: nowrap,
-        justify-content: flex-start,
-        align-content: stretch,
-        align-items: stretch
-    ),
-    flex-lock: (
-        flex-grow: 0,
-        flex-shrink: 0 // 1
-    ),
-    flex-flex: (
-        flex-grow: 1,
-        flex-shrink: 1
+
+        flex-align-start: ( align-items: flex-start ),
+        flex-align-end: ( align-items: flex-end ),
+        flex-align-center: ( align-items: center ),
+        flex-align-baseline: ( align-items: baseline ),
+        flex-align-stretch: ( align-items: stretch ),
+        flex-align-inherit: ( align-items: inherit ),
+        flex-align-initial: ( align-items: initial ),
+
+        flex-justify-start: ( justify-content: flex-start ),
+        flex-justify-end: ( justify-content: flex-end ),
+        flex-justify-center: ( justify-content: center ),
+        flex-justify-space-around: ( justify-content: space-around ),
+        flex-justify-space-between: ( justify-content: space-between ),
+        flex-justify-space-evently: ( justify-content: space-evenly ),
+        flex-justify-initial: ( justify-content: initial ),
+        flex-justify-inherit: ( justify-content: inherit ),
+
+        flex-wrap-0: ( flex-wrap: nowrap ),
+        flex-wrap: ( flex-wrap: wrap ),
+        flex-wrap-reverse: ( flex-wrap: wrap-reverse ),
+        flex-wrap-inherit: ( flex-wrap: inherit ),
+
+        flex-column: ( flex-direction: column ),
+        flex-row: ( flex-direction: row ),
+        
+        flex-1: ( flex: 1 ),
+        flex-2: ( flex: 2 ),
+        flex-3: ( flex: 3 ),
+        flex-4: ( flex: 4 ),
+        flex-5: ( flex: 5 )
     )
 );
 
