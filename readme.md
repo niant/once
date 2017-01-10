@@ -90,9 +90,6 @@ ___Note!___ Project is still under heavy development
 
 ## Changelog
 
-### v0.3.0
-* Yarn in use. Lock file created. gulp-minify-css is replaced with gulp-clean-css as recommended by gulp-minify-css package. Install the NPM packages using Yarn for now on.
-
 ### v0.2.0
 * box direction is changed to empty string, so Pbox, Mbox etc. becomes just P and M
 * Add support for node-sass versions (3.3.3) 
