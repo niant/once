@@ -91,7 +91,6 @@ ___Note!___ Project is still under heavy development
 ## Changelog
 
 ### v0.2.0
-
 * box direction is changed to empty string, so Pbox, Mbox etc. becomes just P and M
 * Add support for node-sass versions (3.3.3) 
 
