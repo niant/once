@@ -45,6 +45,28 @@ $output => 'something here will change'
     @return $slice;
 }
 
+
+/*
+# CSS property generator with a specific properties
+
+```scss
+@include properties(( float: left, padding: 0 ));
+```
+
+Output:
+
+```scss
+float: left;
+padding: 0;
+```
+
+ */
+@mixin properties($properties) {
+  @each $property, $value in $properties {
+    #{$property}: #{$value};
+  }
+}
+
 /*
 # CSS class generator with a specific name and properties
 
@@ -65,9 +87,7 @@ Output:
 
 @mixin createSelector($selectorName, $properties) {
     .#{$selectorName} {
-        @each $property, $value in $properties {
-            #{$property}: #{$value};
-        }
+        @include properties($properties)
     }
 }
 
@@ -238,19 +258,16 @@ Will generate for example following classes:
 
 @mixin createClasses($map) {
     @each $selector, $definition in $map {
-        .#{$selector} {
-            @each $property, $value in $definition {
-                #{$property}: $value;
-            }
-        }
+        @include createSelector($selector, $definition)
     }
 }
 
-@mixin responsiveClasses($selector, $_breakpoints: $breakpoints) {
-    @each $name, $value in $breakpoints {
-        $responsiveSelector: 'r-' + $name + '-' + $selector;
+@mixin responsiveClasses($selector, $_responsiveClassScheme: $responsiveClassScheme, $_breakpoints: $breakpoints) {
+    @each $breakpoint, $value in $breakpoints {
+        $responsiveSelector: str-replace($_responsiveClassScheme, '{breakpoint}', $breakpoint);
+        $responsiveSelector: str-replace($responsiveSelector, '{selector}', $selector);
         .#{$responsiveSelector} {
-            @include breakpoint($name, $breakpoints) {
+            @include breakpoint($breakpoint, $breakpoints) {
                 @content;
             }
         }
@@ -260,9 +277,7 @@ Will generate for example following classes:
 @mixin createResponsiveClasses($map) {
     @each $selector, $definition in $map {
         @include responsiveClasses($selector) {
-            @each $property, $value in $definition {
-                #{$property}: $value;
-            }
+            @include properties($definition)
         }
     }
 }

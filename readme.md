@@ -90,6 +90,11 @@ ___Note!___ Project is still under heavy development
 
 ## Changelog
 
+## v0.3.0
+* $responsiveClassScheme added to _variables.scss for freedom to specify the syntax of responsive classes. The default syntax is r-{breakpoint}-{selector}.
+* Responsive classes are created with createResponsiveClasses mixin.
+* .clearfix class has been deprecated
+
 ### v0.2.0
 
 * box direction is changed to empty string, so Pbox, Mbox etc. becomes just P and M
