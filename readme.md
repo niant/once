@@ -90,6 +90,9 @@ ___Note!___ Project is still under heavy development
 
 ## Changelog
 
+### v0.3.0
+* $baseColors variable in _variables.scss is renamed to $colors
+
 ### v0.2.0
 
 * box direction is changed to empty string, so Pbox, Mbox etc. becomes just P and M
@@ -100,7 +103,7 @@ ___Note!___ Project is still under heavy development
 * Basic theme support (c-color, bg-c-color, B-c-color)
     - New atom and configuration: atoms/_theme-base.scss & $colors in _variables.scss
     - f-blank is now deprecated
-    - Add support by adding blank into $colors and adding ```@include createMultipleSelectors('f-{key}', $colors, 'color');``` to your project
+    - Add support by adding blank into $colors and adding ```@include createMultipleSelectors('f-{key}', $baseColors, 'color');``` to your project
 
 
 ## Development environment setup
