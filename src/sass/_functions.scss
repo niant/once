@@ -45,6 +45,28 @@ $output => 'something here will change'
     @return $slice;
 }
 
+
+/*
+# CSS property generator with a specific properties
+
+```scss
+@include properties(( float: left, padding: 0 ));
+```
+
+Output:
+
+```scss
+float: left;
+padding: 0;
+```
+
+ */
+@mixin properties($properties) {
+  @each $property, $value in $properties {
+    #{$property}: #{$value};
+  }
+}
+
 /*
 # CSS class generator with a specific name and properties
 
@@ -65,9 +87,7 @@ Output:
 
 @mixin createSelector($selectorName, $properties) {
     .#{$selectorName} {
-        @each $property, $value in $properties {
-            #{$property}: #{$value};
-        }
+        @include properties($properties)
     }
 }
 
@@ -227,5 +247,37 @@ Will generate for example following classes:
         }
 
         @include createSelector(#{$newSelector}, $properties);
+    }
+}
+
+// @include breakpoint('xs') { width: 90%; }
+@mixin breakpoint($bpName, $breakpoints: $breakpoints) {
+    $bpValue: map-get($breakpoints, $bpName);
+    @media (min-width: $bpValue) { @content; }
+}
+
+@mixin createClasses($definitions) {
+    @each $selector, $definition in $definitions {
+        @include createSelector($selector, $definition)
+    }
+}
+
+@mixin responsiveClasses($selector, $_responsiveClassScheme: $responsiveClassScheme, $_breakpoints: $breakpoints) {
+    @each $breakpoint, $value in $breakpoints {
+        $responsiveSelector: str-replace($_responsiveClassScheme, '{breakpoint}', $breakpoint);
+        $responsiveSelector: str-replace($responsiveSelector, '{selector}', $selector);
+        .#{$responsiveSelector} {
+            @include breakpoint($breakpoint, $breakpoints) {
+                @content;
+            }
+        }
+    }
+}
+
+@mixin createResponsiveClasses($definitions) {
+    @each $selector, $definition in $definitions {
+        @include responsiveClasses($selector) {
+            @include properties($definition)
+        }
     }
 }
