@@ -18,4 +18,16 @@
 .flex-flex {
     flex-grow: 1,
     flex-shrink: 1
+
+@warn ".clearfix class has been deprecated in v0.3.0";
+// refactor to use the new clearfix? + we shouldn't even need one?
+.clearfix {
+    // display: inline-block;
+    &:after {
+        content: ".";
+        display: block;
+        height: 0;
+        clear: both;
+        visibility: hidden;
+    }
 }
