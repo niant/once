@@ -256,8 +256,8 @@ Will generate for example following classes:
     @media (min-width: $bpValue) { @content; }
 }
 
-@mixin createClasses($map) {
-    @each $selector, $definition in $map {
+@mixin createClasses($definitions) {
+    @each $selector, $definition in $definitions {
         @include createSelector($selector, $definition)
     }
 }
@@ -274,8 +274,8 @@ Will generate for example following classes:
     }
 }
 
-@mixin createResponsiveClasses($map) {
-    @each $selector, $definition in $map {
+@mixin createResponsiveClasses($definitions) {
+    @each $selector, $definition in $definitions {
         @include responsiveClasses($selector) {
             @include properties($definition)
         }
