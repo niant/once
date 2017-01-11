@@ -90,7 +90,7 @@ ___Note!___ Project is still under heavy development
 
 ## Changelog
 
-## v0.3.0
+### v0.3.0
 * $baseColors variable in _variables.scss is renamed to $colors
 * $responsiveClassScheme added to _variables.scss for freedom to specify the syntax of responsive classes. The default syntax is r-{breakpoint}-{selector}.
 * reactiveClasses mixin is renamed to responsiveClasses and its parameters are now $selector, $_responsiveClassScheme: $responsiveClassScheme, $_breakpoints: $breakpoints
