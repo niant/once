@@ -1,5 +1,25 @@
-@warn ".clearfix class has been deprecated in v0.3.0";
-// refactor to use the new clearfix? + we shouldn't even need one?
+// .flex-column class has been deprecated in v0.3.0
+.flex-column {
+    display: flex;
+    flex-direction: column;
+    flex-wrap: nowrap;
+    justify-content: flex-start;
+    align-content: stretch;
+    align-items: stretch;
+}
+
+// .flex-lock class has been deprecated in v0.3.0
+.flex-lock {
+    flex-grow: 0;
+    flex-shrink: 0; // 1
+}
+
+// .flex-flex class has been deprecated in v0.3.0
+.flex-flex {
+    flex-grow: 1;
+    flex-shrink: 1;
+}
+// .clearfix class has been deprecated in v0.3.0
 .clearfix {
     // display: inline-block;
     &:after {

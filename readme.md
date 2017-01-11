@@ -91,12 +91,19 @@ ___Note!___ Project is still under heavy development
 ## Changelog
 
 ### v0.3.0
+* _deprecated.scss added containing the following classes
+    - flex-column
+    - flex-lock
+    - flex-flex
+    - clearfix
+
+    - It's not recommened to use those classes anymore but if you must, just import the _deprecated.scss in main.scss 
+* Flexbox classes added
 * $baseColors variable in _variables.scss is renamed to $colors
 * $responsiveClassScheme added to _variables.scss for freedom to specify the syntax of responsive classes. The default syntax is r-{breakpoint}-{selector}.
 * reactiveClasses mixin is renamed to responsiveClasses and its parameters are now $selector, $_responsiveClassScheme: $responsiveClassScheme, $_breakpoints: $breakpoints
 * createReactiveClasses mixin is renamed to createResponsiveClasses and it takes only one parameter now. The parameter is a mapping, formatted as following: ( selector: ( property: value [, property2: value2, ...] ) [, selector2: ( ... ), ... ] )
 * Responsive classes are created with createResponsiveClasses mixin. The mixin adds responsive styles for layout classes.
-* .clearfix class has been deprecated
 * _breakpoints.scss has been deleted
 
 ### v0.2.0
