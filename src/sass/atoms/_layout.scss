@@ -1,106 +1,37 @@
-.t-0 {
-    top: 0;
-}
+$layoutClasses: (
+    t-0: ( top: 0 ),
+    r-0: ( right: 0 ),
+    b-0: ( bottom: 0 ),
+    l-0: ( left: 0 ),
 
-.b-0 {
-    bottom: 0;
-}
+    hidden: ( display: none ),
+    inline: ( display: inline ),
+    block: ( display: block ),
+    inline-block: ( display: inline-block ),
 
-.l-0 {
-    left: 0;
-}
+    absolute: ( position: absolute ),
+    relative: ( position: relative ),
+    fixed: ( position: fixed ),
 
-.r-0 {
-    right: 0;
-}
+    o-hidden: ( overflow: hidden ),
+    o-scroll: ( overflow: scroll ),
+    o-y-auto: ( overflow-y: auto ),
 
-.hidden {
-    display: none;
-}
+    full-width: ( width: 100% ),
+    full-height: ( height: 100% ),
 
-.inline {
-    display: inline;
-}
+    v-align-top: ( vertical-align: top ),
 
-.block {
-    display: block;
-}
+    left: ( float: left ),
+    right: ( float: right ),
 
-.inline-block {
-    display: inline-block;
-}
+    overflow-scroll: (
+        overflow: scroll
+    )
+);
 
-.absolute {
-    position: absolute;
-}
+/* Layout classes */
+@include createClasses($layoutClasses);
 
-.relative {
-    position: relative;
-}
-
-.o-hidden {
-    overflow: hidden;
-}
-
-.o-y-auto {
-    overflow-y: auto;
-}
-
-@include reactiveClasses('left') {
-    float: left;
-}
-
-@include reactiveClasses('right') {
-    float: right;
-}
-
-.full-width {
-    width: 100%;
-}
-
-.full-height {
-    height: 100%;
-}
-
-.fixed {
-    position: fixed;
-}
-
-.flex-column {
-    display: flex;
-    flex-direction: column;
-    flex-wrap: nowrap;
-    justify-content: flex-start;
-    align-content: stretch;
-    align-items: stretch;
-}
-
-.flex-lock {
-    flex-grow: 0;
-    flex-shrink: 0; //1
-}
-
-.flex-flex {
-    flex-grow: 1;
-    flex-shrink: 1;
-}
-
-.overflow-scroll {
-    overflow: scroll;
-}
-
-.v-align-top {
-    vertical-align: top;
-}
-
-// refactor to use the new clearfix? + we shouldn't even need one?
-.clearfix {
-    // display: inline-block;
-    &:after {
-        content: ".";
-        display: block;
-        height: 0;
-        clear: both;
-        visibility: hidden;
-    }
-}
+/* Responsive layout classes */
+@include createResponsiveClasses($layoutClasses);
