@@ -4,13 +4,23 @@
 
 [![Build Status](https://travis-ci.org/niant/once.png?branch=master)](https://travis-ci.org/niant/once) [![devDependency Status](https://david-dm.org/niant/once/dev-status.svg?theme=shields.io)](https://david-dm.org/niant/once#info=devDependencies)
 
-Once CSS library solves the headache of repetitive CSS. We have adopted best practices from OOCSS and Atomic CSS. The goal is to write the basic widely used classes once and not repeat yourself (DRY). Basically one class does one job.
-
-Library is using SASS, but you can use pure CSS files also. We are planning to modularize project to small modules - so that you can pick only what you need (e.g. typography, grid, spacers...)
-
-___Note!___ Project is still under heavy development
+Once CSS/SASS library solves the headache of repetitive CSS. We have adopted best practices from OOCSS and atomic/functional CSS. The goal is to write the basic widely used classes once for everyone to use and not repeat yourself. Basically one class does one specific job but can do multiple CSS properties.
 
 ## Documentation
+
+### Install
+
+```npm install niant/once```
+
+Or just download a release (https://github.com/niant/once/releases)
+
+**CSS usage**
+
+Import either css/main.css or css/main.min.css to your project
+
+**SASS usage**
+
+Import .scss files you need from sass/ directory in your projects SCSS. If you like to use all the features - you can copy content from sass/main.scss into your project.
 
 ### Naming policies 
 
@@ -91,20 +101,23 @@ ___Note!___ Project is still under heavy development
 ## Changelog
 
 ### v0.3.0
-* _deprecated.scss added containing the following classes
-    - flex-column
-    - flex-lock
-    - flex-flex
-    - clearfix
 
-    - It's not recommened to use those classes anymore but if you must, just import the _deprecated.scss in main.scss 
-* Flexbox classes added
-* $baseColors variable in _variables.scss is renamed to $colors
-* $responsiveClassScheme added to _variables.scss for freedom to specify the syntax of responsive classes. The default syntax is r-{breakpoint}-{selector}.
-* reactiveClasses mixin is renamed to responsiveClasses and its parameters are now $selector, $_responsiveClassScheme: $responsiveClassScheme, $_breakpoints: $breakpoints
-* createReactiveClasses mixin is renamed to createResponsiveClasses and it takes only one parameter now. The parameter is a mapping, formatted as following: ( selector: ( property: value [, property2: value2, ...] ) [, selector2: ( ... ), ... ] )
-* Responsive classes are created with createResponsiveClasses mixin. The mixin adds responsive styles for layout classes.
-* _breakpoints.scss has been deleted
+* New features
+  * Responsive classes are created with createResponsiveClasses mixin.
+  * Responsive _layout.scss classes
+  * Flexbox classes added _flex.scss
+  * Added _deprecated.scss for deprecated features
+  * $responsiveClassScheme added to _variables.scss for freedom to specify the syntax of responsive classes. The default syntax is r-{breakpoint}-{selector}.
+* Changes from v0.2.0
+  * $baseColors variable in _variables.scss is renamed to $colors
+  * reactiveClasses mixin is renamed to responsiveClasses and its parameters are now $selector, $_responsiveClassScheme: $responsiveClassScheme, $_breakpoints: $breakpoints
+  * createReactiveClasses mixin is renamed to createResponsiveClasses and it takes only one parameter now. The parameter is a mapping, formatted as following: ( selector: ( property: value [, property2: value2, ...] ) [, selector2: ( ... ), ... ] )
+* Deprecated features
+  * .flex-column
+  * .flex-lock
+  * .flex-flex
+  * .clearfix
+  * _breakpoints.scss has been deleted
 
 ### v0.2.0
 
@@ -119,7 +132,7 @@ ___Note!___ Project is still under heavy development
     - Add support by adding blank into $baseColors and adding ```@include createMultipleSelectors('f-{key}', $baseColors, 'color');``` to your project
 
 
-## Development environment setup
+## Development environment setup (for Once development)
 
 1. Clone Once to your desired location:
     git clone https://github.com/niant/once.git destination/
