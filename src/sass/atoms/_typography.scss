@@ -9,56 +9,35 @@ $typographySizes: (
     zeta    : 0.8em
 ) !default;
 
-@include createMultipleSizeClasses('f', $typographySizes, ('font-size'));
+$typographyClasses: (
+    f-italic: ( font-style: italic ),
+    f-normal: ( font-style: normal ),
+    f-oblique: ( font-style: oblique ),
+    f-w-normal: ( font-weight: normal ),
+    f-w-bold: ( font-weight: bold ),
+    f-w-700: ( font-weight: 700 ),
+    f-uppercase: ( text-transform: uppercase ),
+    f-line-through: ( text-decoration: line-through ),
+    f-no-decoration: ( text-decoration: none ),
+    f-underline: ( text-decoration: underline ),
+    f-left: ( text-align: left ),
+    f-center: ( text-align: center ),
+    f-right: ( text-align: right ),
+    f-no-wrap: ( white-space: nowrap )
+);
 
-.f-normal {
-    font-style: normal;
+@function mergeTypographySizesAndClasses($prefix, $definitions, $mapToMergeWith) {
+  @each $key, $value in $definitions {
+    $converted: ( #{$prefix}#{$key}: ( font-size: $value ));
+    $mapToMergeWith: map-merge($mapToMergeWith, $converted);
+  }
+  @return $mapToMergeWith;
 }
 
-.f-bold {
-    font-weight: bold;
-}
+$merged: mergeTypographySizesAndClasses('f-', $typographySizes, $typographyClasses);
 
-.f-italic {
-    font-style:italic;
-}
+/* Typography classes */
+@include createClasses($merged);
 
-.f-w-normal {
-    font-weight: normal;
-}
-
-.f-w-700 {
-    font-weight: 700;
-}
-
-.f-uppercase {
-    text-transform: uppercase;
-}
-
-.f-line-through {
-    text-decoration: line-through;
-}
-
-.f-no-decoration {
-    text-decoration: none;
-}
-
-.f-underline {
-    text-decoration: underline;
-}
-
-.f-right {
-    text-align: right;
-}
-
-.f-left {
-    text-align: left;
-}
-
-.f-center {
-    text-align: center;
-}
-
-.f-no-wrap {
-    white-space: nowrap;
-}
+/* Responsive typography classes */
+@include createResponsiveClasses($merged);
