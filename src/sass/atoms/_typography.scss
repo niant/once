@@ -26,18 +26,10 @@ $typographyClasses: (
     f-no-wrap: ( white-space: nowrap )
 );
 
-@function mergeTypographySizesAndClasses($prefix, $definitions, $mapToMergeWith) {
-  @each $key, $value in $definitions {
-    $converted: ( #{$prefix}#{$key}: ( font-size: $value ));
-    $mapToMergeWith: map-merge($mapToMergeWith, $converted);
-  }
-  @return $mapToMergeWith;
-}
+$fontSizeClasses: multipleDefinitions('f-', $typographySizes, ('font-size'));
 
-$merged: mergeTypographySizesAndClasses('f-', $typographySizes, $typographyClasses);
+$allTypographyClasses: map-merge($typographyClasses, $fontSizeClasses);
 
-/* Typography classes */
-@include createClasses($merged);
+@include createClasses($allTypographyClasses);
 
-/* Responsive typography classes */
-@include createResponsiveClasses($merged);
+@include createResponsiveClasses($allTypographyClasses);
