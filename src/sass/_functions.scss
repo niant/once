@@ -138,6 +138,29 @@ $output => (xs: 'Px-xs', sm: 'Px-sm', md: 'Px-md');
 }
 
 /*
+multipleDefinitions('f', (sm: 0.7em, md: 1.2em, lg: 2.5em), ('font-size'));
+
+/*
+(
+  f-sm: (font-size: 0.7em),
+  f-md: (font-size: 1.2em),
+  f-lg: (font-size: 2.5em)
+)
+*/
+@function multipleDefinitions($selectorPrefix, $selectorNamesAndPropertyValues, $properties) {
+  $definitions: ();
+  @each $selectorName, $propValue in $selectorNamesAndPropertyValues {
+    $propertiesWithValues: ();
+    @each $property in $properties {
+      $propertiesWithValues: map-merge($propertiesWithValues, ($property: $propValue));
+    }
+    $definition: ( #{$selectorPrefix}#{$selectorName}: $propertiesWithValues);
+    $definitions: map-merge($definitions, $definition);
+  }
+  @return $definitions;
+}
+
+/*
 # Create multiple sized classes
 
 ```scss

@@ -86,17 +86,31 @@ Import .scss files you need from sass/ directory in your projects SCSS. If you l
 ```html
 <!-- Option 1: sizes with xs, sm, md, lg, xl -->
 <div class="left P-md B-xs r-md-right">
-    <h4 class="F-gamma My-md">Example</h4>
-    <div class="Px-sm Pt-sm F-zeta r-md-Px-md r-md-Pt-md">Content</div>
-</div>
-
-<!-- Option 2: Same as 2nd except removing r- prefix from reactive classes -->
-<div class="left P-md B-xs md-right">
-    <h4 class="F-gamma My-md">Example</h4>
-    <div class="Px-sm Pt-sm F-zeta md-Px-md md-Pt-md">Content</div>
+    <h4 class="f-gamma My-md">Example</h4>
+    <div class="Px-sm Pt-sm f-zeta r-md-Px-md r-md-Pt-md">Content</div>
 </div>
 
 ```
+
+### Functions & Mixins
+
+#### ```@function multipleDefinitions($selectorPrefix, $selectorNamesAndPropertyValues, $properties)```
+
+Create multiple class definitions in a map. For example:
+
+
+```scss
+multipleDefinitions('f', (sm: 0.7em, md: 1.2em, lg: 2.5em), ('font-size'));
+
+/*
+(
+  f-sm: (font-size: 0.7em),
+  f-md: (font-size: 1.2em),
+  f-lg: (font-size: 2.5em)
+)
+ */
+```
+
 
 ## Changelog
 
@@ -105,19 +119,24 @@ Import .scss files you need from sass/ directory in your projects SCSS. If you l
 * New features
   * Responsive classes are created with createResponsiveClasses mixin.
   * Responsive _layout.scss classes
+  * Responsive _typography.scss classes
+  * Added a function for generating multiple definitions ```@function multipleDefinitions```
   * Flexbox classes added _flex.scss
   * Added _deprecated.scss for deprecated features
-  * $responsiveClassScheme added to _variables.scss for freedom to specify the syntax of responsive classes. The default syntax is r-{breakpoint}-{selector}.
+  * $responsiveClassScheme added to _variables.scss for freedom to specify the syntax of responsive classes. The default syntax is ```r-{breakpoint}-{selector}```.
+
 * Changes from v0.2.0
   * $baseColors variable in _variables.scss is renamed to $colors
-  * reactiveClasses mixin is renamed to responsiveClasses and its parameters are now $selector, $_responsiveClassScheme: $responsiveClassScheme, $_breakpoints: $breakpoints
-  * createReactiveClasses mixin is renamed to createResponsiveClasses and it takes only one parameter now. The parameter is a mapping, formatted as following: ( selector: ( property: value [, property2: value2, ...] ) [, selector2: ( ... ), ... ] )
+  * reactiveClasses mixin is renamed to responsiveClasses and its parameters are now ```$selector, $_responsiveClassScheme: $responsiveClassScheme, $_breakpoints: $breakpoints``
+  * createReactiveClasses mixin is renamed to createResponsiveClasses and it takes only one parameter now. The parameter is a mapping, formatted as following: ```( selector: ( property: value [, property2: value2, ...] ) [, selector2: ( ... ), ... ] )```
+
 * Deprecated features
   * .flex-column
   * .flex-lock
   * .flex-flex
   * .clearfix
-  * _breakpoints.scss has been deleted
+  * _breakpoints.scss has been deleted and relevant functions moved into _functions.scss
+  * _typography_responsive.scss deleted: responsive typography is now generated the same as all the other styles. See typography.scss
 
 ### v0.2.0
 

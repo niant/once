@@ -9,56 +9,27 @@ $typographySizes: (
     zeta    : 0.8em
 ) !default;
 
-@include createMultipleSizeClasses('f', $typographySizes, ('font-size'));
+$typographyClasses: (
+    f-italic: ( font-style: italic ),
+    f-normal: ( font-style: normal ),
+    f-oblique: ( font-style: oblique ),
+    f-w-normal: ( font-weight: normal ),
+    f-w-bold: ( font-weight: bold ),
+    f-w-700: ( font-weight: 700 ),
+    f-uppercase: ( text-transform: uppercase ),
+    f-line-through: ( text-decoration: line-through ),
+    f-no-decoration: ( text-decoration: none ),
+    f-underline: ( text-decoration: underline ),
+    f-left: ( text-align: left ),
+    f-center: ( text-align: center ),
+    f-right: ( text-align: right ),
+    f-no-wrap: ( white-space: nowrap )
+);
 
-.f-normal {
-    font-style: normal;
-}
+$fontSizeClasses: multipleDefinitions('f-', $typographySizes, ('font-size'));
 
-.f-bold {
-    font-weight: bold;
-}
+$allTypographyClasses: map-merge($typographyClasses, $fontSizeClasses);
 
-.f-italic {
-    font-style:italic;
-}
+@include createClasses($allTypographyClasses);
 
-.f-w-normal {
-    font-weight: normal;
-}
-
-.f-w-700 {
-    font-weight: 700;
-}
-
-.f-uppercase {
-    text-transform: uppercase;
-}
-
-.f-line-through {
-    text-decoration: line-through;
-}
-
-.f-no-decoration {
-    text-decoration: none;
-}
-
-.f-underline {
-    text-decoration: underline;
-}
-
-.f-right {
-    text-align: right;
-}
-
-.f-left {
-    text-align: left;
-}
-
-.f-center {
-    text-align: center;
-}
-
-.f-no-wrap {
-    white-space: nowrap;
-}
+@include createResponsiveClasses($allTypographyClasses);
