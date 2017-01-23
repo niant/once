@@ -120,7 +120,7 @@ multipleDefinitions('f', (sm: 0.7em, md: 1.2em, lg: 2.5em), ('font-size'));
   * Responsive classes are created with createResponsiveClasses mixin.
   * Responsive _layout.scss classes
   * Responsive _typography.scss classes
-  * Add function for generating multiple definitions ```@function multipleDefinitions```
+  * Added a function for generating multiple definitions ```@function multipleDefinitions```
   * Flexbox classes added _flex.scss
   * Added _deprecated.scss for deprecated features
   * $responsiveClassScheme added to _variables.scss for freedom to specify the syntax of responsive classes. The default syntax is ```r-{breakpoint}-{selector}```.
