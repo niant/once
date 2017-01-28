@@ -1,7 +1,7 @@
 {
   "name": "once-css",
   "version": "0.2.0",
-  "description": "Once CSS framework",
+  "description": "Once CSS library",
   "main": "gulpfile.js",
   "scripts": {
     "test": "gulp build",
