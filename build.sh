@@ -4,7 +4,7 @@ set -ev
 ONCE_VER=$(grep version package.json | cut -d':' -f2 | cut -d'"' -f2 | sort -g -r | head -1)
 ONCE_VERSIONS=$(git ls-remote --tags)
 
-if [[ $ONCE_VERSIONS != *$ONCE_VER* ]]
+if [[ $ONCE_VERSIONS != $ONCE_VER ]]
 then
   git remote rm origin
   git remote add origin https://niant:${GH_TOKEN}@github.com/niant/once.git
