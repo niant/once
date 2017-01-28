@@ -285,22 +285,14 @@ Will generate for example following classes:
     }
 }
 
-@mixin responsiveClasses($selector, $_responsiveClassScheme: $responsiveClassScheme, $_breakpoints: $breakpoints) {
+@mixin createResponsiveClasses($definitions, $_responsiveClassScheme: $responsiveClassScheme, $_breakpoints: $breakpoints) {
     @each $breakpoint, $value in $breakpoints {
-        $responsiveSelector: str-replace($_responsiveClassScheme, '{breakpoint}', $breakpoint);
-        $responsiveSelector: str-replace($responsiveSelector, '{selector}', $selector);
-        .#{$responsiveSelector} {
-            @include breakpoint($breakpoint, $breakpoints) {
-                @content;
+        $responsiveSelectorBase: str-replace($_responsiveClassScheme, '{breakpoint}', $breakpoint);
+        @include breakpoint($breakpoint, $breakpoints) {
+            @each $selector, $definition in $definitions {
+                $responsiveSelector: str-replace($responsiveSelectorBase, '{selector}', $selector);
+                @include createSelector($responsiveSelector, $definition);
             }
-        }
-    }
-}
-
-@mixin createResponsiveClasses($definitions) {
-    @each $selector, $definition in $definitions {
-        @include responsiveClasses($selector) {
-            @include properties($definition)
         }
     }
 }
