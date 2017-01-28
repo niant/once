@@ -51,9 +51,7 @@ gulp.task('watch', function() {
   gulp.watch('src/sass/**/*.scss', ['documentation']);
 });
 
-gulp.task('runbuild', ['jslint', 'sass', 'build-min'], function () {
-  gulp.start('documentation');
-});
+gulp.task('runbuild', ['jslint', 'sass', 'build-min'], function () {});
 
 gulp.task('build', ['clean'], function () {
   gulp.start('runbuild');
