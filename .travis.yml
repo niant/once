@@ -7,12 +7,5 @@ after_success:
 - bash ./build.sh
 env:
   global:
-    secure: ixeJaFFC9BVs6J0yvRfeBFFabIpiHa1MjNaha0C3uRR539fjWIM+QAYAK17BGNRZoB6Ghkf96apxTl+nCHnIzD2nfrpDRJHghF8a3T+FgZH+UnCf0LXVcCSknOZm87vMyXn1OScGmW9jZ0Dgkom33HPJ35UIKJCy1G1/a90nmD0=
-deploy:
-  provider: npm
-  email: antti.niemenpaa@gmail.com
-  api_key:
-    secure: kElN3jUzSecBwipOxYVZtvyXjd3GNOnK8Wiif5r/pxPsTW6IcZeVKkC6mhGBN2Xey6+TNjtEy8cjX9hHdNrCRSy2QvMT4xw3JY5kPDGFJFzbdFesZ9gP4M3d8TPFBUIU31AbHfA9PrXQyxqK6KhORPiarbXFX/aGE4M++12ht8s=
-  on:
-    tags: true
-    repo: niant/once
+  - secure: ixeJaFFC9BVs6J0yvRfeBFFabIpiHa1MjNaha0C3uRR539fjWIM+QAYAK17BGNRZoB6Ghkf96apxTl+nCHnIzD2nfrpDRJHghF8a3T+FgZH+UnCf0LXVcCSknOZm87vMyXn1OScGmW9jZ0Dgkom33HPJ35UIKJCy1G1/a90nmD0=
+  - secure: py/KvDNlQN5Yc5aRzNbdFJLaRiwmcFv/cIrLMJHOTqvtdt0eLr1XltLx4yQDtKDizJkaptAvKoN9L89GWqevFJZa+2v1Kd6SkylxDrkp4GJ9y0QZjyKUOL5HgdWqDBloMVk3GSWooAt+Kde978tjaDZ05L3wYN2QQ63NhasbNrk=
