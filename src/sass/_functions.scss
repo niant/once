@@ -291,9 +291,7 @@ Will generate for example following classes:
         @include breakpoint($breakpoint, $breakpoints) {
             @each $selector, $definition in $definitions {
                 $responsiveSelector: str-replace($responsiveSelectorBase, '{selector}', $selector);
-                .#{$responsiveSelector} {
-                    @include properties($definition)
-                }
+                @include createSelector($responsiveSelector, $definition);
             }
         }
     }
