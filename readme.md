@@ -127,7 +127,7 @@ multipleDefinitions('f', (sm: 0.7em, md: 1.2em, lg: 2.5em), ('font-size'));
 
 * Changes from v0.2.0
   * $baseColors variable in _variables.scss is renamed to $colors
-  * createReactiveClasses mixin is renamed to createResponsiveClasses and its parameters are now ```$definitions, $_responsiveClassScheme: $responsiveClassScheme, $_breakpoints: $breakpoints``
+  * reactiveClasses mixin is renamed to createResponsiveClasses and its parameters are now ```$definitions, $_responsiveClassScheme: $responsiveClassScheme, $_breakpoints: $breakpoints``
 
 * Deprecated features
   * .flex-column
@@ -136,7 +136,6 @@ multipleDefinitions('f', (sm: 0.7em, md: 1.2em, lg: 2.5em), ('font-size'));
   * .clearfix
   * _breakpoints.scss has been deleted and relevant functions moved into _functions.scss
   * _typography_responsive.scss deleted: responsive typography is now generated the same as all the other styles. See typography.scss
-  * reactiveClasses mixin removed
 
 ### v0.2.0
 
