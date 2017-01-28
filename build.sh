@@ -36,7 +36,7 @@ then
   git push origin $ONCE_VER
 
   echo "//registry.npmjs.org/:_authToken=${NPM_TOKEN}" >> .npmrc
-  npm publish --tag $ONCE_VER
+  npm publish
 
   rm .npmrc
   git checkout master
