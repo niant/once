@@ -3,10 +3,6 @@
   "version": "0.2.0",
   "description": "Once CSS framework",
   "main": "gulpfile.js",
-  "directories": {
-    "doc": "doc",
-    "test": "tests"
-  },
   "scripts": {
     "test": "gulp build",
     "start": "gulp",
@@ -23,8 +19,6 @@
     "atomic",
     "oocss"
   ],
-  "private": true,
-  "author": "",
   "license": "MIT",
   "bugs": {
     "url": "https://github.com/niant/once/issues"
