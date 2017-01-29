@@ -10,9 +10,9 @@ Once CSS/SASS library solves the headache of repetitive CSS. We have adopted bes
 
 ### Install
 
-```npm install niant/once```
+```npm install once-css```
 
-Or just download a release (https://github.com/niant/once/releases)
+Or just download a release [(https://github.com/niant/once/releases)](https://github.com/niant/once/releases)
 
 **CSS usage**
 
@@ -20,7 +20,7 @@ Import either css/main.css or css/main.min.css to your project
 
 **SASS usage**
 
-Import .scss files you need from sass/ directory in your projects SCSS. If you like to use all the features - you can copy content from sass/main.scss into your project.
+Import .scss files you need from sass/ directory in your projects SCSS. If you like to use all the features - you can import sass/main.scss or copy content from sass/main.scss into your project.
 
 ### Naming policies 
 
