@@ -114,6 +114,13 @@ multipleDefinitions('f', (sm: 0.7em, md: 1.2em, lg: 2.5em), ('font-size'));
 
 ## Changelog
 
+### v0.4.0
+
+* Deprecated
+  * @mixin createMultipleSizeClasses - See @function multipleDefinitions
+  * @mixin createMultipleSizeBoxClasses - See @function directionalMultipleSizeDefinitions
+  * @mixin createMultipleBoxClasses - See @function directionalDefinitions
+
 ### v0.3.0
 
 * New features
