@@ -183,6 +183,7 @@ Output:
 
  */
 @mixin createMultipleSizeClasses($selectorPrefix, $sizes, $properties) {
+    @warn "Deprecated in 0.4.0, see @function multipleDefinitions instead";
     @each $sizeName, $size in $sizes {
         $values: ();
         @each $property in $properties {
@@ -222,6 +223,7 @@ Will generate for example following classes
 ```
  */
 @mixin createMultipleSizeBoxClasses($selectorName, $sizes, $cssProperty) {
+    @warn "Deprecated in 0.4.0, see @function directionalMultipleSizeDefinitions instead";
     @each $dirKey, $dirProperties in $dirs {
         $newSelector: str-replace($selectorName, '{dirKey}', $dirKey);
         $properties: ();
@@ -232,6 +234,23 @@ Will generate for example following classes
         }
         @include createMultipleSizeClasses(#{$newSelector}, $sizes, $properties);
     }
+}
+
+@function directionalMultipleSizeDefinitions($selectorName, $sizes, $cssProperty, $_dirs: $dirs) {
+  $directionalMultipleDefinitions: ();
+  @each $dirKey, $dirProperties in $_dirs {
+      $newSelector: str-replace($selectorName, '{dirKey}', $dirKey);
+      $properties: ();
+
+      @each $property in $dirProperties {
+          $newProperty: str-replace($cssProperty, '{dir}', $property);
+          $properties: append($properties, #{$newProperty});
+      }
+
+      $definitions: multipleDefinitions($newSelector + '-', $sizes, $properties);
+      $directionalMultipleDefinitions: map-merge($directionalMultipleDefinitions, $definitions);
+  }
+  @return $directionalMultipleDefinitions;
 }
 
 /*
@@ -258,6 +277,7 @@ Will generate for example following classes:
 
  */
 @mixin createMultipleBoxClasses($selectorName, $cssProperties) {
+  @warn "Deprecated in 0.4.0, see @function directionalDefinitions instead";
     @each $dirKey, $dirSelection in $dirs {
         $newSelector: str-replace($selectorName, '{dirKey}', $dirKey);
         $properties: ();
@@ -272,6 +292,25 @@ Will generate for example following classes:
         @include createSelector(#{$newSelector}, $properties);
     }
 }
+
+@function directionalDefinitions($selectorName, $cssProperties, $_dirs: $dirs) {
+    $directionalDefinitions: ();
+    @each $dirKey, $dirSelection in $_dirs {
+        $newSelector: str-replace($selectorName, '{dirKey}', $dirKey);
+        $properties: ();
+
+        @each $dir in $dirSelection {
+            @each $prop, $value in $cssProperties {
+                $newProperty: str-replace($prop, '{dir}', $dir);
+                $properties: map-merge($properties, ($newProperty: $value));
+            }
+        }
+
+        $directionalDefinitions: map-merge($directionalDefinitions, ($newSelector: $properties));
+    }
+    @return $directionalDefinitions;
+}
+
 
 // @include breakpoint('xs') { width: 90%; }
 @mixin breakpoint($bpName, $breakpoints: $breakpoints) {
