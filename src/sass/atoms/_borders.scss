@@ -40,6 +40,10 @@ The value can be changed by changing the variable in a config file that is not c
   directionalDefinitions('B{dirKey}-dashed', ('border-{dir}-style': dashed))
 );
 
+@include createClasses(
+  directionalDefinitions('B{dirKey}-double', ('border-{dir}-style': double))
+);
+
 .B-r-full {
   border-radius: 100%;
 }

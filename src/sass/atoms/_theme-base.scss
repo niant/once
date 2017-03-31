@@ -25,3 +25,7 @@ $colors: (
 @include createMultipleSelectors('bg-c-{key}_disabled:disabled', $colors, 'background-color');
 
 @include createMultipleSelectors('B-c-{key}', $colors, 'border-color');
+@include createClasses(
+  directionalMultipleSizeDefinitions('B{dirKey}-c-{key}', $colors, 'border-{dir}-color')
+);
+
