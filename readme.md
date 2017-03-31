@@ -116,6 +116,12 @@ multipleDefinitions('f', (sm: 0.7em, md: 1.2em, lg: 2.5em), ('font-size'));
 
 ### v0.4.0
 
+* New features
+  * _theme-base.scss includes c-{key}_active and bg-c-{key}_active colors
+
+* Changes from v0.3.0
+  *  _theme-base.scss: c-{key}_hover and bg-c-{key}_hover classes are wrapped in ```@media (pointer: fine)``` to not include hover states on touch devices and such.
+
 * Deprecated
   * @mixin createMultipleSizeClasses - See @function multipleDefinitions
   * @mixin createMultipleSizeBoxClasses - See @function directionalMultipleSizeDefinitions
