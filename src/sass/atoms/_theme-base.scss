@@ -3,6 +3,11 @@ $colors: (
   'black': #000
 ) !default;
 
+// :hover should only be available when pointer devices are precise.
+// -> touch devices should not have hover
+//
+// :active should be available only on enabled elements (not on disabled)
+
 // Colors
 @include createMultipleSelectors('c-{key}', $colors, 'color');
 @media (pointer: fine) {
