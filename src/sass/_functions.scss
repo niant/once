@@ -32,13 +32,14 @@ $output => 'something here will change'
 
  */
 @function str-replace($string, $search, $replace) {
+    $replaceStr: inspect($replace);
     $searchLength: str-length($search);
-    $length: str-length($replace);
+    $length: str-length($replaceStr);
     $index: str-index($string, $search);
     $slice: $string;
     @while $index != 0 and type-of($index) == number {
         $slice: str-slice($slice, 0, $index - 1);
-        $slice: $slice + $replace;
+        $slice: $slice + $replaceStr;
         $slice: $slice + str-slice($string, $index + $searchLength);
         $index: str-index($slice, $search);
     }
@@ -138,7 +139,7 @@ $output => (xs: 'Px-xs', sm: 'Px-sm', md: 'Px-md');
 }
 
 /*
-multipleDefinitions('f', (sm: 0.7em, md: 1.2em, lg: 2.5em), ('font-size'));
+multipleDefinitions('f-{key}', (sm: 0.7em, md: 1.2em, lg: 2.5em), ('font-size'));
 
 /*
 (
@@ -147,14 +148,15 @@ multipleDefinitions('f', (sm: 0.7em, md: 1.2em, lg: 2.5em), ('font-size'));
   f-lg: (font-size: 2.5em)
 )
 */
-@function multipleDefinitions($selectorPrefix, $selectorNamesAndPropertyValues, $properties) {
+@function multipleDefinitions($selectorNameScheme, $selectorKeysAndPropertyValues, $properties) {
   $definitions: ();
-  @each $selectorName, $propValue in $selectorNamesAndPropertyValues {
+  @each $selectorKey, $propValue in $selectorKeysAndPropertyValues {
+    $selectorName: str-replace($selectorNameScheme, '{key}', $selectorKey);
     $propertiesWithValues: ();
     @each $property in $properties {
       $propertiesWithValues: map-merge($propertiesWithValues, ($property: $propValue));
     }
-    $definition: ( #{$selectorPrefix}#{$selectorName}: $propertiesWithValues);
+    $definition: ( #{$selectorName}: $propertiesWithValues);
     $definitions: map-merge($definitions, $definition);
   }
   @return $definitions;
@@ -247,7 +249,7 @@ Will generate for example following classes
           $properties: append($properties, #{$newProperty});
       }
 
-      $definitions: multipleDefinitions($newSelector + '-', $sizes, $properties);
+      $definitions: multipleDefinitions($newSelector, $sizes, $properties);
       $directionalMultipleDefinitions: map-merge($directionalMultipleDefinitions, $definitions);
   }
   @return $directionalMultipleDefinitions;

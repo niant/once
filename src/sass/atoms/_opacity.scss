@@ -18,5 +18,5 @@ $opacities: (
 );
 
 @include createClasses(
-  multipleDefinitions('opacity-', $opacities, ('opacity'))
+  multipleDefinitions('opacity-{key}', $opacities, ('opacity'))
 );

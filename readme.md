@@ -94,13 +94,13 @@ Import .scss files you need from sass/ directory in your projects SCSS. If you l
 
 ### Functions & Mixins
 
-#### ```@function multipleDefinitions($selectorPrefix, $selectorNamesAndPropertyValues, $properties)```
+#### ```@function multipleDefinitions($selectorScheme, $selectorNamesAndPropertyValues, $properties)```
 
 Create multiple class definitions in a map. For example:
 
 
 ```scss
-multipleDefinitions('f', (sm: 0.7em, md: 1.2em, lg: 2.5em), ('font-size'));
+multipleDefinitions('f-{key}', (sm: 0.7em, md: 1.2em, lg: 2.5em), ('font-size'));
 
 /*
 (
