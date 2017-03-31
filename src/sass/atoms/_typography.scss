@@ -26,7 +26,7 @@ $typographyClasses: (
     f-no-wrap: ( white-space: nowrap )
 );
 
-$fontSizeClasses: multipleDefinitions('f-', $typographySizes, ('font-size'));
+$fontSizeClasses: multipleDefinitions('f-{key}', $typographySizes, ('font-size'));
 
 $allTypographyClasses: map-merge($typographyClasses, $fontSizeClasses);
 
