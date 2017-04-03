@@ -113,7 +113,7 @@ multipleDefinitions('f-{key}', (sm: 0.7em, md: 1.2em, lg: 2.5em), ('font-size'))
 
 #### ```@function directionalDefinitions($selectorName, $sizes, $cssProperty, $_dirs: $dirs)```
 
-Create multiple class definitions in a map (with a map and directions). For example:
+Create multiple class definitions in a map (multiplied by directions and key/value map). For example:
 
 
 ```scss
