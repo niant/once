@@ -143,7 +143,7 @@ directionalDefinitions(
   * _theme-base.scss includes c-{key}_active and bg-c-{key}_active colors
   * _theme-base.scss include B{dirKey}-c-{key} colors
   * _borders.scss include B{dirKey}-double styling for borders
-  * ```@function directionalDefinitions```
+  * New function for generating directional definitions ```@function directionalDefinitions```
 
 * Changes from v0.3.0
   *  _theme-base.scss: c-{key}_hover and bg-c-{key}_hover classes are wrapped in ```@media (pointer: fine)``` to not include hover states on touch devices and such.
