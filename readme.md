@@ -111,6 +111,29 @@ multipleDefinitions('f-{key}', (sm: 0.7em, md: 1.2em, lg: 2.5em), ('font-size'))
  */
 ```
 
+#### ```@function directionalDefinitions($selectorName, $sizes, $cssProperty, $_dirs: $dirs)```
+
+Create multiple class definitions in a map (with a map and directions). For example:
+
+
+```scss
+directionalDefinitions(
+  'P{dirKey}-{key}', 
+  (sm: 0.5em, md: 1em), 
+  'padding-{dir}', 
+  (t: (top), b: (bottom))
+);
+
+/*
+(
+  Pt-sm: (padding-top: 0.5em),
+  Pb-sm: (padding-bottom: 0.5em),
+  Pt-md: (padding-top: 1em),
+  Pb-md: (padding-bottom: 1em)
+)
+ */
+```
+
 
 ## Changelog
 
@@ -120,13 +143,14 @@ multipleDefinitions('f-{key}', (sm: 0.7em, md: 1.2em, lg: 2.5em), ('font-size'))
   * _theme-base.scss includes c-{key}_active and bg-c-{key}_active colors
   * _theme-base.scss include B{dirKey}-c-{key} colors
   * _borders.scss include B{dirKey}-double styling for borders
+  * ```@function directionalDefinitions```
 
 * Changes from v0.3.0
   *  _theme-base.scss: c-{key}_hover and bg-c-{key}_hover classes are wrapped in ```@media (pointer: fine)``` to not include hover states on touch devices and such.
 
 * Deprecated
   * @mixin createMultipleSizeClasses - See @function multipleDefinitions
-  * @mixin createMultipleSizeBoxClasses - See @function directionalMultipleSizeDefinitions
+  * @mixin createMultipleSizeBoxClasses - See @function directionalDefinitions
   * @mixin createMultipleBoxClasses - See @function directionalDefinitions
 
 ### v0.3.0

@@ -25,7 +25,7 @@ The value can be changed by changing the variable in a config file that is not c
 }
 
 @include createClasses(
-  directionalMultipleSizeDefinitions('B{dirKey}-{key}', $borderSizes, 'border-{dir}-width')
+  directionalDefinitions('B{dirKey}-{key}', $borderSizes, 'border-{dir}-width')
 );
 
 @include createClasses(

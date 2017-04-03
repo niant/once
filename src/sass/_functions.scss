@@ -225,7 +225,7 @@ Will generate for example following classes
 ```
  */
 @mixin createMultipleSizeBoxClasses($selectorName, $sizes, $cssProperty) {
-    @warn "Deprecated in 0.4.0, see @function directionalMultipleSizeDefinitions instead";
+    @warn "Deprecated in 0.4.0, see @function directionalDefinitions instead";
     @each $dirKey, $dirProperties in $dirs {
         $newSelector: str-replace($selectorName, '{dirKey}', $dirKey);
         $properties: ();
@@ -238,8 +238,29 @@ Will generate for example following classes
     }
 }
 
-@function directionalMultipleSizeDefinitions($selectorName, $sizes, $cssProperty, $_dirs: $dirs) {
-  $directionalMultipleDefinitions: ();
+/*
+Create multiple class definitions in a map (multiplied by directions and another key/value map). For example:
+
+
+```scss
+directionalDefinitions(
+  'P{dirKey}-{key}',
+  (sm: 0.5em, md: 1em),
+  'padding-{dir}',
+  (t: (top), b: (bottom))
+);
+
+/*
+(
+  Pt-sm: (padding-top: 0.5em),
+  Pb-sm: (padding-bottom: 0.5em),
+  Pt-md: (padding-top: 1em),
+  Pb-md: (padding-bottom: 1em)
+)
+```
+ */
+@function directionalDefinitions($selectorName, $sizes, $cssProperty, $_dirs: $dirs) {
+  $directionalDefinitions: ();
   @each $dirKey, $dirProperties in $_dirs {
       $newSelector: str-replace($selectorName, '{dirKey}', $dirKey);
       $properties: ();
@@ -250,9 +271,9 @@ Will generate for example following classes
       }
 
       $definitions: multipleDefinitions($newSelector, $sizes, $properties);
-      $directionalMultipleDefinitions: map-merge($directionalMultipleDefinitions, $definitions);
+      $directionalDefinitions: map-merge($directionalDefinitions, $definitions);
   }
-  @return $directionalMultipleDefinitions;
+  @return $directionalDefinitions;
 }
 
 /*

@@ -26,6 +26,6 @@ $colors: (
 
 @include createMultipleSelectors('B-c-{key}', $colors, 'border-color');
 @include createClasses(
-  directionalMultipleSizeDefinitions('B{dirKey}-c-{key}', $colors, 'border-{dir}-color')
+  directionalDefinitions('B{dirKey}-c-{key}', $colors, 'border-{dir}-color')
 );
 
