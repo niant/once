@@ -62,7 +62,7 @@ Import .scss files you need from sass/ directory in your projects SCSS. If you l
 
 #### Examples of elements
 
-```scss
+```sass
 .Pt-xs {
   padding-top: 0.5em;
 }
@@ -99,7 +99,7 @@ Import .scss files you need from sass/ directory in your projects SCSS. If you l
 Create multiple class definitions in a map. For example:
 
 
-```scss
+```sass
 multipleDefinitions('f-{key}', (sm: 0.7em, md: 1.2em, lg: 2.5em), ('font-size'));
 
 /*
@@ -116,7 +116,7 @@ multipleDefinitions('f-{key}', (sm: 0.7em, md: 1.2em, lg: 2.5em), ('font-size'))
 Create multiple class definitions in a map (multiplied by directions and key/value map). For example:
 
 
-```scss
+```sass
 directionalDefinitions(
   'P{dirKey}-{key}', 
   (sm: 0.5em, md: 1em), 
