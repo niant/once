@@ -1,6 +1,6 @@
 $borderSizes: (xs: 1px, sm: 2px, md: 3px, lg: 4px, xl: 5px) !default;
-
 $borderRadiusSizes: (xs: 0.2em, sm: 0.5em, md: 1em, lg: 2em) !default;
+$borderStyles: (solid: 'solid', dotted: 'dotted', dashed: 'dashed', double: 'double') !default;
 
 /*
 #Borders
@@ -25,23 +25,11 @@ The value can be changed by changing the variable in a config file that is not c
 }
 
 @include createClasses(
-  directionalDefinitions('B{dirKey}-{key}', $borderSizes, 'border-{dir}-width')
+  directionalDefinitions('B{dirKey}-{key}', $borderSizes, ('border-{dir}-width'))
 );
 
 @include createClasses(
-  directionalDefinitions('B{dirKey}-solid', ('border-{dir}-style': solid))
-);
-
-@include createClasses(
-  directionalDefinitions('B{dirKey}-dotted', ('border-{dir}-style': dotted))
-);
-
-@include createClasses(
-  directionalDefinitions('B{dirKey}-dashed', ('border-{dir}-style': dashed))
-);
-
-@include createClasses(
-  directionalDefinitions('B{dirKey}-double', ('border-{dir}-style': double))
+  directionalDefinitions('B{dirKey}-{key}', $borderStyles, ('border-{dir}-style'))
 );
 
 .B-r-full {

@@ -111,17 +111,17 @@ multipleDefinitions('f-{key}', (sm: 0.7em, md: 1.2em, lg: 2.5em), ('font-size'))
  */
 ```
 
-#### ```@function directionalDefinitions($selectorName, $sizes, $cssProperty, $_dirs: $dirs)```
+#### ```@function directionalDefinitions($selectorScheme, $selectorKeysAndPropertyValues, $cssProperties, $_dirs: $dirs)```
 
 Create multiple class definitions in a map (multiplied by directions and key/value map). For example:
 
 
 ```sass
+$dirs: (t: (top), b: (bottom)); 
+$sizes: (sm: 0.5em, md: 1em);
+
 directionalDefinitions(
-  'P{dirKey}-{key}', 
-  (sm: 0.5em, md: 1em), 
-  'padding-{dir}', 
-  (t: (top), b: (bottom))
+  'P{dirKey}-{key}', $sizes, ('padding-{dir}'), $dirs
 );
 
 /*

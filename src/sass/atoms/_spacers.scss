@@ -44,8 +44,8 @@ $spacerSizes: (xs: 0.5em, sm: 0.7em, md: 1em, lg: 1.5em, xl: 2em) !default;
     padding: 0;
 }
 
-$paddings: directionalDefinitions('P{dirKey}-{key}', $spacerSizes, 'padding-{dir}');
+$paddings: directionalDefinitions('P{dirKey}-{key}', $spacerSizes, ('padding-{dir}'));
 @include createClasses($paddings);
 
-$margins: directionalDefinitions('M{dirKey}-{key}', $spacerSizes, 'margin-{dir}');
+$margins: directionalDefinitions('M{dirKey}-{key}', $spacerSizes, ('margin-{dir}'));
 @include createClasses($margins);

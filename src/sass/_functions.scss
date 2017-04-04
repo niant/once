@@ -163,6 +163,77 @@ multipleDefinitions('f-{key}', (sm: 0.7em, md: 1.2em, lg: 2.5em), ('font-size'))
 }
 
 /*
+Create multiple class definitions in a map (multiplied by directions and another key/value map). For example:
+
+
+
+```sass
+$dirs: (t: (top), b: (bottom));
+$sizes: (sm: 0.5em, md: 1em);
+
+directionalDefinitions(
+  'P{dirKey}-{key}', $sizes, 'padding-{dir}', $dirs
+);
+
+// (
+//   Pt-sm: (padding-top: 0.5em),
+//   Pb-sm: (padding-bottom: 0.5em),
+//   Pt-md: (padding-top: 1em),
+//   Pb-md: (padding-bottom: 1em)
+// )
+
+```
+ */
+@function directionalDefinitions($selectorScheme, $selectorKeysAndPropertyValues, $cssProperties, $_dirs: $dirs) {
+  $directionalDefinitions: ();
+
+  @each $dirKey, $dirProperties in $_dirs {
+    $newSelector: str-replace($selectorScheme, '{dirKey}', $dirKey);
+    $properties: ();
+
+    @each $dir in $dirProperties {
+      @each $property in $cssProperties {
+        $newProperty: str-replace($property, '{dir}', $dir);
+        $properties: append($properties, $newProperty);
+      }
+    }
+
+    $definitions: multipleDefinitions($newSelector, $selectorKeysAndPropertyValues, $properties);
+    $directionalDefinitions: map-merge($directionalDefinitions, $definitions);
+  }
+
+  @return $directionalDefinitions;
+}
+
+// @include breakpoint('xs') { width: 90%; }
+@mixin breakpoint($bpName, $breakpoints: $breakpoints) {
+    $bpValue: map-get($breakpoints, $bpName);
+    @media (min-width: $bpValue) { @content; }
+}
+
+@mixin createClasses($definitions) {
+    @each $selector, $definition in $definitions {
+        @include createSelector($selector, $definition)
+    }
+}
+
+@mixin createResponsiveClasses($definitions, $_responsiveClassScheme: $responsiveClassScheme, $_breakpoints: $breakpoints) {
+    @each $breakpoint, $value in $breakpoints {
+        $responsiveSelectorBase: str-replace($_responsiveClassScheme, '{breakpoint}', $breakpoint);
+        @include breakpoint($breakpoint, $breakpoints) {
+            @each $selector, $definition in $definitions {
+                $responsiveSelector: str-replace($responsiveSelectorBase, '{selector}', $selector);
+                @include createSelector($responsiveSelector, $definition);
+            }
+        }
+    }
+}
+
+// ------------------------------------------------------------------------
+// Deprecated functions below
+// ------------------------------------------------------------------------
+
+/*
 # Create multiple sized classes
 
 ```scss
@@ -239,44 +310,6 @@ Will generate for example following classes
 }
 
 /*
-Create multiple class definitions in a map (multiplied by directions and another key/value map). For example:
-
-
-```scss
-directionalDefinitions(
-  'P{dirKey}-{key}',
-  (sm: 0.5em, md: 1em),
-  'padding-{dir}',
-  (t: (top), b: (bottom))
-);
-
-/*
-(
-  Pt-sm: (padding-top: 0.5em),
-  Pb-sm: (padding-bottom: 0.5em),
-  Pt-md: (padding-top: 1em),
-  Pb-md: (padding-bottom: 1em)
-)
-```
- */
-@function directionalDefinitions($selectorName, $sizes, $cssProperty, $_dirs: $dirs) {
-  $directionalDefinitions: ();
-  @each $dirKey, $dirProperties in $_dirs {
-      $newSelector: str-replace($selectorName, '{dirKey}', $dirKey);
-      $properties: ();
-
-      @each $property in $dirProperties {
-          $newProperty: str-replace($cssProperty, '{dir}', $property);
-          $properties: append($properties, #{$newProperty});
-      }
-
-      $definitions: multipleDefinitions($newSelector, $sizes, $properties);
-      $directionalDefinitions: map-merge($directionalDefinitions, $definitions);
-  }
-  @return $directionalDefinitions;
-}
-
-/*
 # Create multiple box classes
 
 ```scss
@@ -313,48 +346,5 @@ Will generate for example following classes:
         }
 
         @include createSelector(#{$newSelector}, $properties);
-    }
-}
-
-@function directionalDefinitions($selectorName, $cssProperties, $_dirs: $dirs) {
-    $directionalDefinitions: ();
-    @each $dirKey, $dirSelection in $_dirs {
-        $newSelector: str-replace($selectorName, '{dirKey}', $dirKey);
-        $properties: ();
-
-        @each $dir in $dirSelection {
-            @each $prop, $value in $cssProperties {
-                $newProperty: str-replace($prop, '{dir}', $dir);
-                $properties: map-merge($properties, ($newProperty: $value));
-            }
-        }
-
-        $directionalDefinitions: map-merge($directionalDefinitions, ($newSelector: $properties));
-    }
-    @return $directionalDefinitions;
-}
-
-
-// @include breakpoint('xs') { width: 90%; }
-@mixin breakpoint($bpName, $breakpoints: $breakpoints) {
-    $bpValue: map-get($breakpoints, $bpName);
-    @media (min-width: $bpValue) { @content; }
-}
-
-@mixin createClasses($definitions) {
-    @each $selector, $definition in $definitions {
-        @include createSelector($selector, $definition)
-    }
-}
-
-@mixin createResponsiveClasses($definitions, $_responsiveClassScheme: $responsiveClassScheme, $_breakpoints: $breakpoints) {
-    @each $breakpoint, $value in $breakpoints {
-        $responsiveSelectorBase: str-replace($_responsiveClassScheme, '{breakpoint}', $breakpoint);
-        @include breakpoint($breakpoint, $breakpoints) {
-            @each $selector, $definition in $definitions {
-                $responsiveSelector: str-replace($responsiveSelectorBase, '{selector}', $selector);
-                @include createSelector($responsiveSelector, $definition);
-            }
-        }
     }
 }
