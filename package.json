@@ -31,10 +31,8 @@
     "gulp-jshint": "^1.11.0",
     "gulp-rename": "~1.2.2",
     "gulp-sass": "^2.0.4",
-    "gulp-styledocco": "0.0.3",
     "gulp-uglify": "^1.2.0",
-    "rimraf": "^2.3.4",
-    "styledocco": "~0.6.6"
+    "rimraf": "^2.3.4"
   },
   "engines": {
     "node": ">=0.8.0"

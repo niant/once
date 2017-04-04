@@ -1,21 +1,12 @@
 var gulp = require('gulp');
-var jshint = require('gulp-jshint');
 var sass = require('gulp-sass');
 var prefix = require('gulp-autoprefixer');
-var styledocco = require('gulp-styledocco');
 var cleanCSS = require('gulp-clean-css');
 var rename = require('gulp-rename');
 var rimraf = require('rimraf');
 
 gulp.task('clean', function (cb) {
   rimraf('dist', cb);
-});
-
-gulp.task('jslint', function() {
-  return gulp.src('gulpfile.js')
-    .pipe(jshint())
-    .pipe(jshint.reporter('default')
-  );
 });
 
 gulp.task('sass', function() {
@@ -35,31 +26,17 @@ gulp.task('build-min', function () {
     .pipe(gulp.dest('dist/css'));
 });
 
-gulp.task('documentation', function() {
-  return gulp.src('src/sass/*.scss')
-	  .pipe(styledocco({
-		  verbose: true,
-		  out: 'docs',
-		  name: 'Once'
-	  })
-  );
-});
-
 gulp.task('watch', function() {
-  gulp.watch('gulpfile.js', ['jslint']);
   gulp.watch('src/sass/**/*.scss', ['sass']);
-  gulp.watch('src/sass/**/*.scss', ['documentation']);
 });
 
-gulp.task('runbuild', ['jslint', 'sass', 'build-min'], function () {});
+gulp.task('runbuild', ['sass', 'build-min'], function () {});
 
 gulp.task('build', ['clean'], function () {
   gulp.start('runbuild');
 });
 
-gulp.task('dev', ['jslint', 'sass', 'watch'], function () {
-  gulp.start('documentation');
-});
+gulp.task('dev', ['sass', 'watch'], function () {});
 
 gulp.task('default', ['clean'], function () {
   gulp.start('dev');
