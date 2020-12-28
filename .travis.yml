@@ -6,4 +6,4 @@ after_success:
 env:
   global:
   - secure: py/KvDNlQN5Yc5aRzNbdFJLaRiwmcFv/cIrLMJHOTqvtdt0eLr1XltLx4yQDtKDizJkaptAvKoN9L89GWqevFJZa+2v1Kd6SkylxDrkp4GJ9y0QZjyKUOL5HgdWqDBloMVk3GSWooAt+Kde978tjaDZ05L3wYN2QQ63NhasbNrk=
-  - secure: ByJ1YDEs/+hircineTQHZ4sYJ/Yxo/JRZRRGn3McutFd+XFVNKzX421B3/fB12piFyHoxN/5AMuzOAW9V+mfs092IWqSl0LwXQqUq7jc+vqB3OtyNeRPA1Y85P/v/xlp/JYEgnWSDX1rveXYAthGwSfDKNqx0vSqK9Edk1nr/bQ=
+  - secure: aYf08Yae4QqgxUqKpcKUl2sdbDtavFmN22m+oVgAfSHqsFgITGLrZJblc5cmJKOe+bMm+pjiy46+7QQtaT34WoSPcd3+t4phiuXHLYq9qwacN8wGP4yv2lSIOqDQ0fejj3rNTMzuofFo4dehrICIjKVcPEIZyC4OzE6l3gvQQDg=
