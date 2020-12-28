@@ -143,6 +143,7 @@ directionalDefinitions(
   * Replace str_replace function to support strings better (new node-sass and Dart Sass)
   * Change compiler from node-sass into Dart Sass
   * Update development dependencies
+  * Drop support for older Node.js versions (14.0.0 is minimum version supported)
 
 ### v0.4.0
 
