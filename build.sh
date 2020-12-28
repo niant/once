@@ -1,4 +1,6 @@
 #!/bin/bash
+
+# travis encrypt GH_TOKEN=***REMOVED*** --add env.global
 set -e
 
 ONCE_VER=$(grep version package.json | cut -d':' -f2 | cut -d'"' -f2 | sort -g -r | head -1)
@@ -37,10 +39,10 @@ else
   git tag $ONCE_VER -m "New version $ONCE_VER"
   git push origin $ONCE_VER
 
-  echo "//registry.npmjs.org/:_authToken=${NPM_TOKEN}" >> .npmrc
-  npm publish
+  # echo "//registry.npmjs.org/:_authToken=${NPM_TOKEN}" >> .npmrc
+  # npm publish
 
-  rm .npmrc
-  git checkout master
-  git branch -D release
+  # rm .npmrc
+  # git checkout master
+  # git branch -D release
 fi
