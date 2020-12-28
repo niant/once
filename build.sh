@@ -1,11 +1,13 @@
 #!/bin/bash
-set -ev
+set -e
 
 ONCE_VER=$(grep version package.json | cut -d':' -f2 | cut -d'"' -f2 | sort -g -r | head -1)
-ONCE_VERSIONS=$(git ls-remote --tags)
 
-if [[ $ONCE_VERSIONS != $ONCE_VER ]]
+if [ $(git tag -l "$ONCE_VER") ];
 then
+  echo "Version $ONCE_VER exists already"
+  exit 1
+else
   git remote rm origin
   git remote add origin https://niant:${GH_TOKEN}@github.com/niant/once.git
 
