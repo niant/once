@@ -10,6 +10,7 @@ then
   echo "Version $ONCE_VER exists already"
   exit 1
 else
+  echo "Creating new release for $ONCE_VER"
   git remote rm origin
   git remote add origin https://niant:${GH_TOKEN}@github.com/niant/once.git
 
