@@ -1,6 +1,6 @@
 # Once CSS library
 
-[![Join the chat at https://gitter.im/niant/once](https://badges.gitter.im/Join%20Chat.svg)](https://gitter.im/niant/once?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
+__Future development of this library has been ended. See if [Tailwind CSS](https://tailwindcss.com/) library answers your needs__
 
 [![Build Status](https://travis-ci.org/niant/once.png?branch=master)](https://travis-ci.org/niant/once) [![devDependency Status](https://david-dm.org/niant/once/dev-status.svg?theme=shields.io)](https://david-dm.org/niant/once#info=devDependencies)
 
@@ -136,6 +136,13 @@ directionalDefinitions(
 
 
 ## Changelog
+
+### v0.4.1
+
+* Changes from v0.4.0
+  * Replace str_replace function to support strings better (new node-sass and Dart Sass)
+  * Change compiler from node-sass into Dart Sass
+  * Update development dependencies
 
 ### v0.4.0
 

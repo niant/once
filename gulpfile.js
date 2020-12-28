@@ -1,15 +1,15 @@
 var gulp = require('gulp');
-var sass = require('gulp-sass');
+var sass = require('gulp-dart-sass');
 var prefix = require('gulp-autoprefixer');
 var cleanCSS = require('gulp-clean-css');
 var rename = require('gulp-rename');
 var rimraf = require('rimraf');
 
-gulp.task('clean', function (cb) {
+gulp.task('clean', (cb) => {
   rimraf('dist', cb);
 });
 
-gulp.task('sass', function() {
+gulp.task('sass', () => {
 	return gulp.src('src/sass/main.scss')
 		.pipe(sass())
 		.pipe(prefix('last 1 version', '> 1%'))
@@ -17,7 +17,7 @@ gulp.task('sass', function() {
   );
 });
 
-gulp.task('build-min', function () {
+gulp.task('build-min', () => {
   return gulp.src('src/sass/main.scss')
     .pipe(sass())
     .pipe(prefix('last 1 version', '> 1%'))
@@ -26,20 +26,16 @@ gulp.task('build-min', function () {
     .pipe(gulp.dest('dist/css'));
 });
 
-gulp.task('watch', function() {
+gulp.task('watch', () => {
   gulp.watch('src/sass/**/*.scss', ['sass']);
 });
 
-gulp.task('runbuild', ['sass', 'build-min'], function () {});
+gulp.task('runbuild', gulp.series('sass', 'build-min'));
 
-gulp.task('build', ['clean'], function () {
-  gulp.start('runbuild');
-});
+gulp.task('build', gulp.series('clean', 'runbuild'));
 
-gulp.task('dev', ['sass', 'watch'], function () {});
+gulp.task('dev', gulp.series('sass', 'watch'));
 
-gulp.task('default', ['clean'], function () {
-  gulp.start('dev');
-});
+gulp.task('default', gulp.series('clean', 'dev'));
 
 
