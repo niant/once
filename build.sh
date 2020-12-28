@@ -1,6 +1,6 @@
 #!/bin/bash
 
-# travis encrypt GH_TOKEN=***REMOVED*** --add env.global
+# travis encrypt GH_TOKEN=<secret> --add env.global
 set -e
 
 ONCE_VER=$(grep version package.json | cut -d':' -f2 | cut -d'"' -f2 | sort -g -r | head -1)
