@@ -31,21 +31,20 @@ $output => 'something here will change'
 ```
 
  */
-@function str-replace($string, $search, $replace) {
-    $replaceStr: inspect($replace);
-    $searchLength: str-length($search);
-    $length: str-length($replaceStr);
-    $index: str-index($string, $search);
-    $slice: $string;
-    @while $index != 0 and type-of($index) == number {
-        $slice: str-slice($slice, 0, $index - 1);
-        $slice: $slice + $replaceStr;
-        $slice: $slice + str-slice($string, $index + $searchLength);
-        $index: str-index($slice, $search);
-    }
-    @return $slice;
+@function str-replace($string, $search, $replace: '') {
+  $index: str-index($string, $search);
+    
+  @if $index {
+    @return str-slice($string, 1, $index - 1) + $replace + 
+      str-replace(
+        str-slice($string, $index + str-length($search)), 
+        $search, 
+        $replace
+      );
+  }
+    
+  @return $string;
 }
-
 
 /*
 # CSS property generator with a specific properties
