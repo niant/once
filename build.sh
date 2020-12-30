@@ -4,8 +4,9 @@
 set -e
 
 ONCE_VER=$(grep version package.json | cut -d':' -f2 | cut -d'"' -f2 | sort -g -r | head -1)
+VERSION_EXISTS=$(git tag -l "$ONCE_VER")
 
-if [ $(git tag -l "$ONCE_VER") ];
+if [ $VERSION_EXISTS ]
 then
   echo "Version $ONCE_VER exists already"
   exit 1
