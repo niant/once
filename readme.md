@@ -137,7 +137,7 @@ directionalDefinitions(
 
 ## Changelog
 
-### v0.4.1
+### v1.0.0
 
 * Changes from v0.4.0
   * Replace str_replace function to support strings better (new node-sass and Dart Sass)
