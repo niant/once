@@ -4,8 +4,9 @@
 set -e
 
 ONCE_VER=$(grep version package.json | cut -d':' -f2 | cut -d'"' -f2 | sort -g -r | head -1)
-VERSION_EXISTS=$(git tag -l "$ONCE_VER")
-VERSIONS=$(git tag -l)
+# VERSION_EXISTS=$(git tag -l "$ONCE_VER")
+VERSIONS=$(git ls-remote --tags origin)
+VERSION_EXISTS=$(git ls-remote --tags origin "$ONCE_VER")
 
 echo "Versions in the Git repository:"
 echo "$VERSIONS\n"
