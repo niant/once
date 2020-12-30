@@ -5,5 +5,5 @@ after_success:
 - bash ./build.sh
 env:
   global:
-  - secure: py/KvDNlQN5Yc5aRzNbdFJLaRiwmcFv/cIrLMJHOTqvtdt0eLr1XltLx4yQDtKDizJkaptAvKoN9L89GWqevFJZa+2v1Kd6SkylxDrkp4GJ9y0QZjyKUOL5HgdWqDBloMVk3GSWooAt+Kde978tjaDZ05L3wYN2QQ63NhasbNrk=
   - secure: aYf08Yae4QqgxUqKpcKUl2sdbDtavFmN22m+oVgAfSHqsFgITGLrZJblc5cmJKOe+bMm+pjiy46+7QQtaT34WoSPcd3+t4phiuXHLYq9qwacN8wGP4yv2lSIOqDQ0fejj3rNTMzuofFo4dehrICIjKVcPEIZyC4OzE6l3gvQQDg=
+  - secure: kcyyP6gSAkFLTiJ3liz0hxJYdKVH7mMFqkwMVkYv79HqjZhwU3Cn+fnppuE9N+Baumfkmo3DExmY4DeRmjEk63qVAUVYjeDRnnxxaZ+akICSzAN/oweQIQeLUNUUEx8i/Fau8WUjeAmLazIB8TvvoHlfYO9B16enu/fEKxw5OYM=
