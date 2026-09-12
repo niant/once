@@ -3,9 +3,9 @@
   "version": "1.0.0",
   "description": "Once CSS library",
   "scripts": {
-    "build": "sass src/sass/main.scss dist/css/main.css && sass --style=compressed src/sass/main.scss dist/css/main.min.css",
+    "build": "sass --no-source-map src/sass/main.scss dist/css/main.css && sass --no-source-map --style=compressed src/sass/main.scss dist/css/main.min.css",
     "dev": "sass --watch src/sass/main.scss:dist/css/main.css",
-    "test": "npm run build",
+    "test": "npm run build && node --test",
     "prepack": "npm run build && node scripts/package.js prepare",
     "postpack": "node scripts/package.js clean",
     "pack:check": "npm pack --dry-run"

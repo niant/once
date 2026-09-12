@@ -32,7 +32,10 @@ function preparePackage() {
   fs.writeFileSync(stagingMarker, "");
 
   try {
-    fs.cpSync(distCssDirectory, cssDirectory, { recursive: true });
+    fs.cpSync(distCssDirectory, cssDirectory, {
+      recursive: true,
+      filter: (source) => !source.endsWith(".map"),
+    });
     fs.cpSync(srcSassDirectory, sassDirectory, { recursive: true });
   } catch (error) {
     cleanStaging();
