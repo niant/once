@@ -3,18 +3,20 @@
   "version": "1.0.0",
   "description": "Once CSS library",
   "scripts": {
+    "build": "sass src/sass/main.scss dist/css/main.css && sass --style=compressed src/sass/main.scss dist/css/main.min.css",
+    "dev": "sass --watch src/sass/main.scss:dist/css/main.css",
     "test": "npm run build",
-    "start": "npm run dev",
-    "clean": "rm -rf dist",
-    "sass": "sass src/sass/main.scss dist/css/main.css",
-    "build-min": "sass --style=compressed src/sass/main.scss dist/css/main.min.css",
-    "build": "npm run clean && npm run sass && npm run build-min",
-    "watch": "sass --watch src/sass/main.scss:dist/css/main.css",
-    "dev": "npm run clean && npm run watch"
+    "prepack": "npm run build && node scripts/package.js prepare",
+    "postpack": "node scripts/package.js clean",
+    "pack:check": "npm pack --dry-run"
   },
+  "files": [
+    "css/",
+    "sass/"
+  ],
   "repository": {
     "type": "git",
-    "url": "git://github.com/niant/once.git"
+    "url": "https://github.com/niant/once.git"
   },
   "keywords": [
     "once",
@@ -26,6 +28,10 @@
   "license": "MIT",
   "bugs": {
     "url": "https://github.com/niant/once/issues"
+  },
+  "publishConfig": {
+    "access": "public",
+    "registry": "https://registry.npmjs.org/"
   },
   "devDependencies": {
     "sass": "^1.104"
