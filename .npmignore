@@ -4,7 +4,6 @@
 .gitignore
 .travis.yml
 .editorconfig
-gulpfile.js
 build.sh
 config.rb
 node_modules

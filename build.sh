@@ -36,7 +36,6 @@ else
   rm -rf dist/
   rm -rf src/
   rm -rf .gitignore
-  rm -rf gulpfile.js
   rm -rf .travis.yml
   rm -rf .editorconfig
   rm -rf build.sh

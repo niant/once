@@ -2,11 +2,15 @@
   "name": "once-css",
   "version": "1.0.0",
   "description": "Once CSS library",
-  "main": "gulpfile.js",
   "scripts": {
-    "test": "gulp build",
-    "start": "gulp",
-    "build": "gulp build"
+    "test": "npm run build",
+    "start": "npm run dev",
+    "clean": "rm -rf dist",
+    "sass": "sass src/sass/main.scss dist/css/main.css",
+    "build-min": "sass --style=compressed src/sass/main.scss dist/css/main.min.css",
+    "build": "npm run clean && npm run sass && npm run build-min",
+    "watch": "sass --watch src/sass/main.scss:dist/css/main.css",
+    "dev": "npm run clean && npm run watch"
   },
   "repository": {
     "type": "git",
@@ -24,18 +28,9 @@
     "url": "https://github.com/niant/once/issues"
   },
   "devDependencies": {
-    "gulp": "^4.0.2",
-    "gulp-autoprefixer": "^7.0.1",
-    "gulp-clean-css": "^4.3.0",
-    "gulp-concat": "^2.5.2",
-    "gulp-dart-sass": "^1.0.2",
-    "gulp-jshint": "^2.1.0",
-    "gulp-rename": "^2.0.0",
-    "gulp-uglify": "^3.0.2",
-    "rimraf": "^3.0.2",
-    "sass": "^1.30.0"
+    "sass": "^1.104"
   },
   "engines": {
-    "node": ">=14.0.0"
+    "node": ">=26.0.0"
   }
 }
