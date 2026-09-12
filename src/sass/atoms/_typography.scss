@@ -1,35 +1,66 @@
+@use "sass:map";
+@use "../functions" as fn;
+
 $typographySizes: (
-    giga    : 4em,
-    mega    : 3em,
-    alpha   : 2.5em,
-    beta    : 2em,
-    gamma   : 1.7em,
-    delta   : 1.5em,
-    epsilon : 1.2em,
-    zeta    : 0.8em
+  giga: 4em,
+  mega: 3em,
+  alpha: 2.5em,
+  beta: 2em,
+  gamma: 1.7em,
+  delta: 1.5em,
+  epsilon: 1.2em,
+  zeta: 0.8em,
 ) !default;
 
 $typographyClasses: (
-    f-italic: ( font-style: italic ),
-    f-normal: ( font-style: normal ),
-    f-oblique: ( font-style: oblique ),
-    f-w-normal: ( font-weight: normal ),
-    f-w-bold: ( font-weight: bold ),
-    f-w-700: ( font-weight: 700 ),
-    f-uppercase: ( text-transform: uppercase ),
-    f-line-through: ( text-decoration: line-through ),
-    f-no-decoration: ( text-decoration: none ),
-    f-underline: ( text-decoration: underline ),
-    f-left: ( text-align: left ),
-    f-center: ( text-align: center ),
-    f-right: ( text-align: right ),
-    f-no-wrap: ( white-space: nowrap )
+  f-italic: (
+    font-style: italic,
+  ),
+  f-normal: (
+    font-style: normal,
+  ),
+  f-oblique: (
+    font-style: oblique,
+  ),
+  f-w-normal: (
+    font-weight: normal,
+  ),
+  f-w-bold: (
+    font-weight: bold,
+  ),
+  f-w-700: (
+    font-weight: 700,
+  ),
+  f-uppercase: (
+    text-transform: uppercase,
+  ),
+  f-line-through: (
+    text-decoration: line-through,
+  ),
+  f-no-decoration: (
+    text-decoration: none,
+  ),
+  f-underline: (
+    text-decoration: underline,
+  ),
+  f-left: (
+    text-align: left,
+  ),
+  f-center: (
+    text-align: center,
+  ),
+  f-right: (
+    text-align: right,
+  ),
+  f-no-wrap: (
+    white-space: nowrap,
+  ),
 );
 
-$fontSizeClasses: multipleDefinitions('f-{key}', $typographySizes, ('font-size'));
+$fontSizeClasses: fn.multipleDefinitions("f-{key}", $typographySizes, ("font-size"));
 
-$allTypographyClasses: map-merge($typographyClasses, $fontSizeClasses);
+$allTypographyClasses: map.merge($typographyClasses, $fontSizeClasses);
 
-@include createClasses($allTypographyClasses);
+@include fn.createClasses($allTypographyClasses);
 
-@include createResponsiveClasses($allTypographyClasses);
+@include fn.createResponsiveClasses($allTypographyClasses);

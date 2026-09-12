@@ -1,4 +1,13 @@
-$breakpoints: (xs: 320px, sm: 640px, md: 1024px, lg: 1200px) !default;
+@use "sass:math";
+@use "sass:string";
+@use "../functions" as fn;
+
+$breakpoints: (
+  xs: 320px,
+  sm: 640px,
+  md: 1024px,
+  lg: 1200px,
+) !default;
 $gridColumnCount: 12 !default;
 $columnGutter: 1rem !default;
 
@@ -7,22 +16,22 @@ $columnGutter: 1rem !default;
 
 */
 @mixin fixedGrid($columns, $unit, $breakpoints: $breakpoints) {
-    @each $name, $value in $breakpoints {
-        @include breakpoint($name, $breakpoints) {
-            @for $i from 1 through $columns {
-                $unitlessValue: strip-units($value);
-                .#{$name}-#{$i} {
-                    width: unquote($i * ($unitlessValue/$columns) + $unit);
-                }
-            }
+  @each $name, $value in $breakpoints {
+    @include fn.breakpoint($name, $breakpoints) {
+      @for $i from 1 through $columns {
+        $unitlessValue: fn.strip-units($value);
+        .#{$name}-#{$i} {
+          width: string.unquote($i * math.div($unitlessValue, $columns) + $unit);
         }
+      }
     }
+  }
 }
 
-@include fixedGrid($gridColumnCount, 'px', $breakpoints);
+@include fixedGrid($gridColumnCount, "px", $breakpoints);
 
 .row {
-    float: left;
-    clear: both;
-    width: 100%;
+  float: left;
+  clear: both;
+  width: 100%;
 }

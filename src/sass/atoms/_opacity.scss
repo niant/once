@@ -1,3 +1,5 @@
+@use "../functions" as fn;
+
 /*
 # Opacity classes
 
@@ -14,9 +16,7 @@ $opacities: (
   70: 0.7,
   80: 0.8,
   90: 0.9,
-  100: 1
+  100: 1,
 );
 
-@include createClasses(
-  multipleDefinitions('opacity-{key}', $opacities, ('opacity'))
-);
+@include fn.createClasses(fn.multipleDefinitions("opacity-{key}", $opacities, ("opacity")));

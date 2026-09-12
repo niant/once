@@ -1,17 +1,17 @@
-@import
-    'variables',
-    'functions',
-    'core',
-    'atoms/flex',
-    'atoms/grid-fluid',
-    'atoms/borders',
-    'atoms/composite-borders',
-    'atoms/backgrounds',
-    'atoms/lists',
-    'atoms/animations',
-    'atoms/typography',
-    'atoms/spacers',
-    'atoms/layout',
-    'atoms/opacity',
-    'atoms/theme-base',
-    'components/components';
+@forward "variables";
+@forward "functions";
+
+@use "core";
+@use "atoms/flex";
+@use "atoms/grid-fluid";
+@use "atoms/borders";
+@use "atoms/composite-borders";
+@use "atoms/backgrounds";
+@use "atoms/lists";
+@use "atoms/animations";
+@use "atoms/typography";
+@use "atoms/spacers";
+@use "atoms/layout";
+@use "atoms/opacity";
+@use "atoms/theme-base";
+@use "components/components";

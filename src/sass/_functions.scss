@@ -1,3 +1,9 @@
+@use "sass:list";
+@use "sass:map";
+@use "sass:math";
+@use "sass:string";
+@use "variables" as vars;
+
 /*
 # Strip units from a number with units.
 
@@ -13,7 +19,7 @@ $number => 3
 
  */
 @function strip-units($number) {
-    @return $number / ($number * 0 + 1);
+  @return math.div($number, ($number * 0 + 1));
 }
 
 /*
@@ -31,18 +37,14 @@ $output => 'something here will change'
 ```
 
  */
-@function str-replace($string, $search, $replace: '') {
-  $index: str-index($string, $search);
-    
+@function str-replace($string, $search, $replace: "") {
+  $index: string.index($string, $search);
+
   @if $index {
-    @return str-slice($string, 1, $index - 1) + $replace + 
-      str-replace(
-        str-slice($string, $index + str-length($search)), 
-        $search, 
-        $replace
-      );
+    @return string.slice($string, 1, $index - 1) + $replace +
+      str-replace(string.slice($string, $index + string.length($search)), $search, $replace);
   }
-    
+
   @return $string;
 }
 
@@ -86,11 +88,10 @@ Output:
  */
 
 @mixin createSelector($selectorName, $properties) {
-    .#{$selectorName} {
-        @include properties($properties)
-    }
+  .#{$selectorName} {
+    @include properties($properties);
+  }
 }
-
 
 /*
 # Generate multiple css classes according to values
@@ -109,10 +110,15 @@ Output:
 
  */
 @mixin createMultipleSelectors($selectorName, $values, $property) {
-    @each $name, $val in $values {
-        $newSelector: str-replace($selectorName, '{key}', $name);
-        @include createSelector(#{$newSelector}, ($property: $val));
-    }
+  @each $name, $val in $values {
+    $newSelector: str-replace($selectorName, "{key}", $name);
+    @include createSelector(
+      #{$newSelector},
+      (
+        $property: $val,
+      )
+    );
+  }
 }
 
 /*
@@ -129,12 +135,12 @@ $output => (xs: 'Px-xs', sm: 'Px-sm', md: 'Px-md');
 ```
  */
 @function generateMultipleSelectors($selectorNamePrefix, $selectorGeneratorIds) {
-    $selectors: ();
-    @each $id in $selectorGeneratorIds {
-        $selectors: map-merge($selectors, $selectorNamePrefix + '-' + $id);
-    }
+  $selectors: ();
+  @each $id in $selectorGeneratorIds {
+    $selectors: map.merge($selectors, $selectorNamePrefix + "-" + $id);
+  }
 
-    @return $selectors; // $selectors: ('xs': 'Px-xs', 'sm': 'Px-sm'...)
+  @return $selectors; // $selectors: ('xs': 'Px-xs', 'sm': 'Px-sm'...)
 }
 
 /*
@@ -150,13 +156,18 @@ multipleDefinitions('f-{key}', (sm: 0.7em, md: 1.2em, lg: 2.5em), ('font-size'))
 @function multipleDefinitions($selectorNameScheme, $selectorKeysAndPropertyValues, $properties) {
   $definitions: ();
   @each $selectorKey, $propValue in $selectorKeysAndPropertyValues {
-    $selectorName: str-replace($selectorNameScheme, '{key}', $selectorKey);
+    $selectorName: str-replace($selectorNameScheme, "{key}", $selectorKey);
     $propertiesWithValues: ();
     @each $property in $properties {
-      $propertiesWithValues: map-merge($propertiesWithValues, ($property: $propValue));
+      $propertiesWithValues: map.merge(
+        $propertiesWithValues,
+        (
+          $property: $propValue,
+        )
+      );
     }
-    $definition: ( #{$selectorName}: $propertiesWithValues);
-    $definitions: map-merge($definitions, $definition);
+    $definition: (#{$selectorName}: $propertiesWithValues);
+    $definitions: map.merge($definitions, $definition);
   }
   @return $definitions;
 }
@@ -183,49 +194,60 @@ directionalDefinitions(
 
 ```
  */
-@function directionalDefinitions($selectorScheme, $selectorKeysAndPropertyValues, $cssProperties, $_dirs: $dirs) {
+@function directionalDefinitions(
+  $selectorScheme,
+  $selectorKeysAndPropertyValues,
+  $cssProperties,
+  $_dirs: vars.$dirs
+) {
   $directionalDefinitions: ();
 
   @each $dirKey, $dirProperties in $_dirs {
-    $newSelector: str-replace($selectorScheme, '{dirKey}', $dirKey);
+    $newSelector: str-replace($selectorScheme, "{dirKey}", $dirKey);
     $properties: ();
 
     @each $dir in $dirProperties {
       @each $property in $cssProperties {
-        $newProperty: str-replace($property, '{dir}', $dir);
-        $properties: append($properties, $newProperty);
+        $newProperty: str-replace($property, "{dir}", $dir);
+        $properties: list.append($properties, $newProperty);
       }
     }
 
     $definitions: multipleDefinitions($newSelector, $selectorKeysAndPropertyValues, $properties);
-    $directionalDefinitions: map-merge($directionalDefinitions, $definitions);
+    $directionalDefinitions: map.merge($directionalDefinitions, $definitions);
   }
 
   @return $directionalDefinitions;
 }
 
 // @include breakpoint('xs') { width: 90%; }
-@mixin breakpoint($bpName, $breakpoints: $breakpoints) {
-    $bpValue: map-get($breakpoints, $bpName);
-    @media (min-width: $bpValue) { @content; }
+@mixin breakpoint($bpName, $breakpoints: vars.$breakpoints) {
+  $bpValue: map.get($breakpoints, $bpName);
+  @media (min-width: $bpValue) {
+    @content;
+  }
 }
 
 @mixin createClasses($definitions) {
-    @each $selector, $definition in $definitions {
-        @include createSelector($selector, $definition)
-    }
+  @each $selector, $definition in $definitions {
+    @include createSelector($selector, $definition);
+  }
 }
 
-@mixin createResponsiveClasses($definitions, $_responsiveClassScheme: $responsiveClassScheme, $_breakpoints: $breakpoints) {
-    @each $breakpoint, $value in $breakpoints {
-        $responsiveSelectorBase: str-replace($_responsiveClassScheme, '{breakpoint}', $breakpoint);
-        @include breakpoint($breakpoint, $breakpoints) {
-            @each $selector, $definition in $definitions {
-                $responsiveSelector: str-replace($responsiveSelectorBase, '{selector}', $selector);
-                @include createSelector($responsiveSelector, $definition);
-            }
-        }
+@mixin createResponsiveClasses(
+  $definitions,
+  $_responsiveClassScheme: vars.$responsiveClassScheme,
+  $_breakpoints: vars.$breakpoints
+) {
+  @each $breakpoint, $value in $_breakpoints {
+    $responsiveSelectorBase: str-replace($_responsiveClassScheme, "{breakpoint}", $breakpoint);
+    @include breakpoint($breakpoint, $_breakpoints) {
+      @each $selector, $definition in $definitions {
+        $responsiveSelector: str-replace($responsiveSelectorBase, "{selector}", $selector);
+        @include createSelector($responsiveSelector, $definition);
+      }
     }
+  }
 }
 
 // ------------------------------------------------------------------------
@@ -255,15 +277,20 @@ Output:
 
  */
 @mixin createMultipleSizeClasses($selectorPrefix, $sizes, $properties) {
-    @warn "Deprecated in 0.4.0, see @function multipleDefinitions instead";
-    @each $sizeName, $size in $sizes {
-        $values: ();
-        @each $property in $properties {
-            $values: map-merge($values, ($property: $size));
-        }
-
-        @include createSelector(#{$selectorPrefix + '-' + $sizeName}, $values);
+  @warn "Deprecated in 0.4.0, see @function multipleDefinitions instead";
+  @each $sizeName, $size in $sizes {
+    $values: ();
+    @each $property in $properties {
+      $values: map.merge(
+        $values,
+        (
+          $property: $size,
+        )
+      );
     }
+
+    @include createSelector(#{$selectorPrefix + "-" + $sizeName}, $values);
+  }
 }
 
 /*
@@ -295,17 +322,17 @@ Will generate for example following classes
 ```
  */
 @mixin createMultipleSizeBoxClasses($selectorName, $sizes, $cssProperty) {
-    @warn "Deprecated in 0.4.0, see @function directionalDefinitions instead";
-    @each $dirKey, $dirProperties in $dirs {
-        $newSelector: str-replace($selectorName, '{dirKey}', $dirKey);
-        $properties: ();
+  @warn "Deprecated in 0.4.0, see @function directionalDefinitions instead";
+  @each $dirKey, $dirProperties in $dirs {
+    $newSelector: str-replace($selectorName, "{dirKey}", $dirKey);
+    $properties: ();
 
-        @each $property in $dirProperties {
-            $newProperty: str-replace($cssProperty, '{dir}', $property);
-            $properties: append($properties, #{$newProperty});
-        }
-        @include createMultipleSizeClasses(#{$newSelector}, $sizes, $properties);
+    @each $property in $dirProperties {
+      $newProperty: str-replace($cssProperty, "{dir}", $property);
+      $properties: list.append($properties, #{$newProperty});
     }
+    @include createMultipleSizeClasses(#{$newSelector}, $sizes, $properties);
+  }
 }
 
 /*
@@ -333,17 +360,22 @@ Will generate for example following classes:
  */
 @mixin createMultipleBoxClasses($selectorName, $cssProperties) {
   @warn "Deprecated in 0.4.0, see @function directionalDefinitions instead";
-    @each $dirKey, $dirSelection in $dirs {
-        $newSelector: str-replace($selectorName, '{dirKey}', $dirKey);
-        $properties: ();
+  @each $dirKey, $dirSelection in $dirs {
+    $newSelector: str-replace($selectorName, "{dirKey}", $dirKey);
+    $properties: ();
 
-        @each $dir in $dirSelection {
-            @each $prop, $value in $cssProperties {
-                $newProperty: str-replace($prop, '{dir}', $dir);
-                $properties: map-merge($properties, ($newProperty: $value));
-            }
-        }
-
-        @include createSelector(#{$newSelector}, $properties);
+    @each $dir in $dirSelection {
+      @each $prop, $value in $cssProperties {
+        $newProperty: str-replace($prop, "{dir}", $dir);
+        $properties: map.merge(
+          $properties,
+          (
+            $newProperty: $value,
+          )
+        );
+      }
     }
+
+    @include createSelector(#{$newSelector}, $properties);
+  }
 }
