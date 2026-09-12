@@ -2,7 +2,7 @@
 
 const assert = require("node:assert/strict");
 const { execFileSync } = require("node:child_process");
-const { readFileSync } = require("node:fs");
+const { readFileSync, writeFileSync } = require("node:fs");
 const path = require("node:path");
 const { test } = require("node:test");
 
@@ -10,8 +10,30 @@ const packageRoot = path.resolve(__dirname, "..");
 const cssFile = path.join(packageRoot, "dist", "css", "main.css");
 const cssSnapshotFile = path.join(__dirname, "main.css.snapshot");
 
-test("main.css contains the expected content", (t) => {
-  t.assert.fileSnapshot(readFileSync(cssFile, "utf8"), cssSnapshotFile);
+test("main.css contains the expected content", () => {
+  const actualCss = readFileSync(cssFile, "utf8");
+  const expectedCss = readFileSync(cssSnapshotFile, "utf8");
+
+  if (actualCss !== expectedCss) {
+    if (process.execArgv.includes("--test-update-snapshots")) {
+      writeFileSync(cssSnapshotFile, actualCss);
+      return;
+    }
+
+    let diff;
+    try {
+      diff = execFileSync("diff", ["-u", cssSnapshotFile, cssFile], {
+        encoding: "utf8",
+      });
+    } catch (error) {
+      if (error.status !== 1) {
+        throw error;
+      }
+      diff = error.stdout;
+    }
+
+    assert.fail(`CSS snapshot mismatch:\n${diff}`);
+  }
 });
 
 test("publishable package contains the public CSS and Sass files", () => {

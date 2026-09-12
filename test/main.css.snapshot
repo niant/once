@@ -1,1 +1,2855 @@
-"/*\n# Strip units from a number with units.\n\n```scss\n$number: strip-units(3px);\n```\n\nOutput:\n\n```scss\n$number => 3\n```\n\n */\n/*\n# Replace a string with another string\n\n```scss\n$output: str-replace('something here {might} change', '{might}', 'will');\n$output => 'something here will change'\n```\n\nOutput:\n\n```scss\n$output => 'something here will change'\n```\n\n */\n/*\n# CSS property generator with a specific properties\n\n```scss\n@include properties(( float: left, padding: 0 ));\n```\n\nOutput:\n\n```scss\nfloat: left;\npadding: 0;\n```\n\n */\n/*\n# CSS class generator with a specific name and properties\n\n```scss\n@include createSelector('Px-xs', ('padding-left': 1em, 'padding-right': 1em));\n```\n\nOutput:\n\n```scss\n.Px-xs {\n    padding-left: 1em;\n    padding-right: 1em;\n}\n```\n\n */\n/*\n# Generate multiple css classes according to values\n\n```scss\n@include createMultipleSelectors('f-{key}', ('white': #fff, 'black': #000), 'color');\n```\n\nOutput:\n\n```scss\n.f-white {\n    color: #fff;\n}\n```\n\n */\n/*\n# Generate multiple selectors (TBD)\n\n```scss\n$output: generateMultipleSelectors('Px', (xs, sm, md));\n```\n\nOutput\n\n```scss\n$output => (xs: 'Px-xs', sm: 'Px-sm', md: 'Px-md');\n```\n */\n/*\nmultipleDefinitions('f-{key}', (sm: 0.7em, md: 1.2em, lg: 2.5em), ('font-size'));\n\n/*\n(\n  f-sm: (font-size: 0.7em),\n  f-md: (font-size: 1.2em),\n  f-lg: (font-size: 2.5em)\n)\n*/\n/*\nCreate multiple class definitions in a map (multiplied by directions and another key/value map). For example:\n\n\n\n```sass\n$dirs: (t: (top), b: (bottom));\n$sizes: (sm: 0.5em, md: 1em);\n\ndirectionalDefinitions(\n  'P{dirKey}-{key}', $sizes, 'padding-{dir}', $dirs\n);\n\n// (\n//   Pt-sm: (padding-top: 0.5em),\n//   Pb-sm: (padding-bottom: 0.5em),\n//   Pt-md: (padding-top: 1em),\n//   Pb-md: (padding-bottom: 1em)\n// )\n\n```\n */\n/*\n# Create multiple sized classes\n\n```scss\n@include createMultipleSizeClasses('Px', (sm: 1em, md: 2em), ('padding-left', 'padding-right'));\n```\n\nOutput:\n\n```scss\n.Px-sm {\n    padding-left: 1em;\n    padding-right: 1em;\n}\n\n.Px-md {\n    padding-left: 2em;\n    padding-right: 2em;\n}\n```\n\n */\n/*\n# Create multiple sized box classes\n\nCreate CSS classes (multiple sizes) of elements that have top, right, bottom & left values\n\n```scss\n@include createMultipleSizeBoxClasses('P{dirKey}', (xs: 1em, sm: 2em), 'padding-{dir}');\n```\n\nWill generate for example following classes\n\n```scss\n.Pt-xs {\n    padding-top: 1em;\n}\n\n.Pt-sm {\n    padding-top: 2em;\n}\n\n.Py-xs {\n    padding-top: 1em;\n    padding-bottom: 1em;\n}\n\n...\n```\n */\n/*\n# Create multiple box classes\n\n```scss\n@include createMultipleBoxClasses('B{dirKey}-solid', ('border-{dir}-style': 'solid'));\n```\n\nWill generate for example following classes:\n\n```scss\n.Br-solid {\n    border-right-style: solid;\n}\n\n.Bx-solid {\n    border-right-style: solid;\n    border-left-style: solid;\n}\n\n...\n```\n\n */\n* {\n  box-sizing: border-box;\n}\n\n/* Flex classes */\n.flex {\n  display: flex;\n}\n\n.flex-align-start {\n  align-items: flex-start;\n}\n\n.flex-align-end {\n  align-items: flex-end;\n}\n\n.flex-align-center {\n  align-items: center;\n}\n\n.flex-align-baseline {\n  align-items: baseline;\n}\n\n.flex-align-stretch {\n  align-items: stretch;\n}\n\n.flex-align-inherit {\n  align-items: inherit;\n}\n\n.flex-align-initial {\n  align-items: initial;\n}\n\n.flex-justify-start {\n  justify-content: flex-start;\n}\n\n.flex-justify-end {\n  justify-content: flex-end;\n}\n\n.flex-justify-center {\n  justify-content: center;\n}\n\n.flex-justify-space-around {\n  justify-content: space-around;\n}\n\n.flex-justify-space-between {\n  justify-content: space-between;\n}\n\n.flex-justify-space-evently {\n  justify-content: space-evenly;\n}\n\n.flex-justify-initial {\n  justify-content: initial;\n}\n\n.flex-justify-inherit {\n  justify-content: inherit;\n}\n\n.flex-wrap-0 {\n  flex-wrap: nowrap;\n}\n\n.flex-wrap {\n  flex-wrap: wrap;\n}\n\n.flex-wrap-reverse {\n  flex-wrap: wrap-reverse;\n}\n\n.flex-wrap-inherit {\n  flex-wrap: inherit;\n}\n\n.flex-column {\n  flex-direction: column;\n}\n\n.flex-row {\n  flex-direction: row;\n}\n\n.flex-1 {\n  flex: 1;\n}\n\n.flex-2 {\n  flex: 2;\n}\n\n.flex-3 {\n  flex: 3;\n}\n\n.flex-4 {\n  flex: 4;\n}\n\n.flex-5 {\n  flex: 5;\n}\n\n/* Responsive flex classes */\n@media (min-width: 320px) {\n  .r-xs-flex {\n    display: flex;\n  }\n  .r-xs-flex-align-start {\n    align-items: flex-start;\n  }\n  .r-xs-flex-align-end {\n    align-items: flex-end;\n  }\n  .r-xs-flex-align-center {\n    align-items: center;\n  }\n  .r-xs-flex-align-baseline {\n    align-items: baseline;\n  }\n  .r-xs-flex-align-stretch {\n    align-items: stretch;\n  }\n  .r-xs-flex-align-inherit {\n    align-items: inherit;\n  }\n  .r-xs-flex-align-initial {\n    align-items: initial;\n  }\n  .r-xs-flex-justify-start {\n    justify-content: flex-start;\n  }\n  .r-xs-flex-justify-end {\n    justify-content: flex-end;\n  }\n  .r-xs-flex-justify-center {\n    justify-content: center;\n  }\n  .r-xs-flex-justify-space-around {\n    justify-content: space-around;\n  }\n  .r-xs-flex-justify-space-between {\n    justify-content: space-between;\n  }\n  .r-xs-flex-justify-space-evently {\n    justify-content: space-evenly;\n  }\n  .r-xs-flex-justify-initial {\n    justify-content: initial;\n  }\n  .r-xs-flex-justify-inherit {\n    justify-content: inherit;\n  }\n  .r-xs-flex-wrap-0 {\n    flex-wrap: nowrap;\n  }\n  .r-xs-flex-wrap {\n    flex-wrap: wrap;\n  }\n  .r-xs-flex-wrap-reverse {\n    flex-wrap: wrap-reverse;\n  }\n  .r-xs-flex-wrap-inherit {\n    flex-wrap: inherit;\n  }\n  .r-xs-flex-column {\n    flex-direction: column;\n  }\n  .r-xs-flex-row {\n    flex-direction: row;\n  }\n  .r-xs-flex-1 {\n    flex: 1;\n  }\n  .r-xs-flex-2 {\n    flex: 2;\n  }\n  .r-xs-flex-3 {\n    flex: 3;\n  }\n  .r-xs-flex-4 {\n    flex: 4;\n  }\n  .r-xs-flex-5 {\n    flex: 5;\n  }\n}\n@media (min-width: 640px) {\n  .r-sm-flex {\n    display: flex;\n  }\n  .r-sm-flex-align-start {\n    align-items: flex-start;\n  }\n  .r-sm-flex-align-end {\n    align-items: flex-end;\n  }\n  .r-sm-flex-align-center {\n    align-items: center;\n  }\n  .r-sm-flex-align-baseline {\n    align-items: baseline;\n  }\n  .r-sm-flex-align-stretch {\n    align-items: stretch;\n  }\n  .r-sm-flex-align-inherit {\n    align-items: inherit;\n  }\n  .r-sm-flex-align-initial {\n    align-items: initial;\n  }\n  .r-sm-flex-justify-start {\n    justify-content: flex-start;\n  }\n  .r-sm-flex-justify-end {\n    justify-content: flex-end;\n  }\n  .r-sm-flex-justify-center {\n    justify-content: center;\n  }\n  .r-sm-flex-justify-space-around {\n    justify-content: space-around;\n  }\n  .r-sm-flex-justify-space-between {\n    justify-content: space-between;\n  }\n  .r-sm-flex-justify-space-evently {\n    justify-content: space-evenly;\n  }\n  .r-sm-flex-justify-initial {\n    justify-content: initial;\n  }\n  .r-sm-flex-justify-inherit {\n    justify-content: inherit;\n  }\n  .r-sm-flex-wrap-0 {\n    flex-wrap: nowrap;\n  }\n  .r-sm-flex-wrap {\n    flex-wrap: wrap;\n  }\n  .r-sm-flex-wrap-reverse {\n    flex-wrap: wrap-reverse;\n  }\n  .r-sm-flex-wrap-inherit {\n    flex-wrap: inherit;\n  }\n  .r-sm-flex-column {\n    flex-direction: column;\n  }\n  .r-sm-flex-row {\n    flex-direction: row;\n  }\n  .r-sm-flex-1 {\n    flex: 1;\n  }\n  .r-sm-flex-2 {\n    flex: 2;\n  }\n  .r-sm-flex-3 {\n    flex: 3;\n  }\n  .r-sm-flex-4 {\n    flex: 4;\n  }\n  .r-sm-flex-5 {\n    flex: 5;\n  }\n}\n@media (min-width: 1024px) {\n  .r-md-flex {\n    display: flex;\n  }\n  .r-md-flex-align-start {\n    align-items: flex-start;\n  }\n  .r-md-flex-align-end {\n    align-items: flex-end;\n  }\n  .r-md-flex-align-center {\n    align-items: center;\n  }\n  .r-md-flex-align-baseline {\n    align-items: baseline;\n  }\n  .r-md-flex-align-stretch {\n    align-items: stretch;\n  }\n  .r-md-flex-align-inherit {\n    align-items: inherit;\n  }\n  .r-md-flex-align-initial {\n    align-items: initial;\n  }\n  .r-md-flex-justify-start {\n    justify-content: flex-start;\n  }\n  .r-md-flex-justify-end {\n    justify-content: flex-end;\n  }\n  .r-md-flex-justify-center {\n    justify-content: center;\n  }\n  .r-md-flex-justify-space-around {\n    justify-content: space-around;\n  }\n  .r-md-flex-justify-space-between {\n    justify-content: space-between;\n  }\n  .r-md-flex-justify-space-evently {\n    justify-content: space-evenly;\n  }\n  .r-md-flex-justify-initial {\n    justify-content: initial;\n  }\n  .r-md-flex-justify-inherit {\n    justify-content: inherit;\n  }\n  .r-md-flex-wrap-0 {\n    flex-wrap: nowrap;\n  }\n  .r-md-flex-wrap {\n    flex-wrap: wrap;\n  }\n  .r-md-flex-wrap-reverse {\n    flex-wrap: wrap-reverse;\n  }\n  .r-md-flex-wrap-inherit {\n    flex-wrap: inherit;\n  }\n  .r-md-flex-column {\n    flex-direction: column;\n  }\n  .r-md-flex-row {\n    flex-direction: row;\n  }\n  .r-md-flex-1 {\n    flex: 1;\n  }\n  .r-md-flex-2 {\n    flex: 2;\n  }\n  .r-md-flex-3 {\n    flex: 3;\n  }\n  .r-md-flex-4 {\n    flex: 4;\n  }\n  .r-md-flex-5 {\n    flex: 5;\n  }\n}\n@media (min-width: 1200px) {\n  .r-lg-flex {\n    display: flex;\n  }\n  .r-lg-flex-align-start {\n    align-items: flex-start;\n  }\n  .r-lg-flex-align-end {\n    align-items: flex-end;\n  }\n  .r-lg-flex-align-center {\n    align-items: center;\n  }\n  .r-lg-flex-align-baseline {\n    align-items: baseline;\n  }\n  .r-lg-flex-align-stretch {\n    align-items: stretch;\n  }\n  .r-lg-flex-align-inherit {\n    align-items: inherit;\n  }\n  .r-lg-flex-align-initial {\n    align-items: initial;\n  }\n  .r-lg-flex-justify-start {\n    justify-content: flex-start;\n  }\n  .r-lg-flex-justify-end {\n    justify-content: flex-end;\n  }\n  .r-lg-flex-justify-center {\n    justify-content: center;\n  }\n  .r-lg-flex-justify-space-around {\n    justify-content: space-around;\n  }\n  .r-lg-flex-justify-space-between {\n    justify-content: space-between;\n  }\n  .r-lg-flex-justify-space-evently {\n    justify-content: space-evenly;\n  }\n  .r-lg-flex-justify-initial {\n    justify-content: initial;\n  }\n  .r-lg-flex-justify-inherit {\n    justify-content: inherit;\n  }\n  .r-lg-flex-wrap-0 {\n    flex-wrap: nowrap;\n  }\n  .r-lg-flex-wrap {\n    flex-wrap: wrap;\n  }\n  .r-lg-flex-wrap-reverse {\n    flex-wrap: wrap-reverse;\n  }\n  .r-lg-flex-wrap-inherit {\n    flex-wrap: inherit;\n  }\n  .r-lg-flex-column {\n    flex-direction: column;\n  }\n  .r-lg-flex-row {\n    flex-direction: row;\n  }\n  .r-lg-flex-1 {\n    flex: 1;\n  }\n  .r-lg-flex-2 {\n    flex: 2;\n  }\n  .r-lg-flex-3 {\n    flex: 3;\n  }\n  .r-lg-flex-4 {\n    flex: 4;\n  }\n  .r-lg-flex-5 {\n    flex: 5;\n  }\n}\n@media (min-width: 320px) {\n  .xs-1 {\n    width: 8.3333333333%;\n    float: left;\n    height: 100%;\n    padding-left: 1rem;\n    padding-right: 1rem;\n  }\n  .xs-2 {\n    width: 16.6666666667%;\n    float: left;\n    height: 100%;\n    padding-left: 1rem;\n    padding-right: 1rem;\n  }\n  .xs-3 {\n    width: 25%;\n    float: left;\n    height: 100%;\n    padding-left: 1rem;\n    padding-right: 1rem;\n  }\n  .xs-4 {\n    width: 33.3333333333%;\n    float: left;\n    height: 100%;\n    padding-left: 1rem;\n    padding-right: 1rem;\n  }\n  .xs-5 {\n    width: 41.6666666667%;\n    float: left;\n    height: 100%;\n    padding-left: 1rem;\n    padding-right: 1rem;\n  }\n  .xs-6 {\n    width: 50%;\n    float: left;\n    height: 100%;\n    padding-left: 1rem;\n    padding-right: 1rem;\n  }\n  .xs-7 {\n    width: 58.3333333333%;\n    float: left;\n    height: 100%;\n    padding-left: 1rem;\n    padding-right: 1rem;\n  }\n  .xs-8 {\n    width: 66.6666666667%;\n    float: left;\n    height: 100%;\n    padding-left: 1rem;\n    padding-right: 1rem;\n  }\n  .xs-9 {\n    width: 75%;\n    float: left;\n    height: 100%;\n    padding-left: 1rem;\n    padding-right: 1rem;\n  }\n  .xs-10 {\n    width: 83.3333333333%;\n    float: left;\n    height: 100%;\n    padding-left: 1rem;\n    padding-right: 1rem;\n  }\n  .xs-11 {\n    width: 91.6666666667%;\n    float: left;\n    height: 100%;\n    padding-left: 1rem;\n    padding-right: 1rem;\n  }\n  .xs-12 {\n    width: 100%;\n    float: left;\n    height: 100%;\n    padding-left: 1rem;\n    padding-right: 1rem;\n  }\n}\n@media (min-width: 640px) {\n  .sm-1 {\n    width: 8.3333333333%;\n    float: left;\n    height: 100%;\n    padding-left: 1rem;\n    padding-right: 1rem;\n  }\n  .sm-2 {\n    width: 16.6666666667%;\n    float: left;\n    height: 100%;\n    padding-left: 1rem;\n    padding-right: 1rem;\n  }\n  .sm-3 {\n    width: 25%;\n    float: left;\n    height: 100%;\n    padding-left: 1rem;\n    padding-right: 1rem;\n  }\n  .sm-4 {\n    width: 33.3333333333%;\n    float: left;\n    height: 100%;\n    padding-left: 1rem;\n    padding-right: 1rem;\n  }\n  .sm-5 {\n    width: 41.6666666667%;\n    float: left;\n    height: 100%;\n    padding-left: 1rem;\n    padding-right: 1rem;\n  }\n  .sm-6 {\n    width: 50%;\n    float: left;\n    height: 100%;\n    padding-left: 1rem;\n    padding-right: 1rem;\n  }\n  .sm-7 {\n    width: 58.3333333333%;\n    float: left;\n    height: 100%;\n    padding-left: 1rem;\n    padding-right: 1rem;\n  }\n  .sm-8 {\n    width: 66.6666666667%;\n    float: left;\n    height: 100%;\n    padding-left: 1rem;\n    padding-right: 1rem;\n  }\n  .sm-9 {\n    width: 75%;\n    float: left;\n    height: 100%;\n    padding-left: 1rem;\n    padding-right: 1rem;\n  }\n  .sm-10 {\n    width: 83.3333333333%;\n    float: left;\n    height: 100%;\n    padding-left: 1rem;\n    padding-right: 1rem;\n  }\n  .sm-11 {\n    width: 91.6666666667%;\n    float: left;\n    height: 100%;\n    padding-left: 1rem;\n    padding-right: 1rem;\n  }\n  .sm-12 {\n    width: 100%;\n    float: left;\n    height: 100%;\n    padding-left: 1rem;\n    padding-right: 1rem;\n  }\n}\n@media (min-width: 1024px) {\n  .md-1 {\n    width: 8.3333333333%;\n    float: left;\n    height: 100%;\n    padding-left: 1rem;\n    padding-right: 1rem;\n  }\n  .md-2 {\n    width: 16.6666666667%;\n    float: left;\n    height: 100%;\n    padding-left: 1rem;\n    padding-right: 1rem;\n  }\n  .md-3 {\n    width: 25%;\n    float: left;\n    height: 100%;\n    padding-left: 1rem;\n    padding-right: 1rem;\n  }\n  .md-4 {\n    width: 33.3333333333%;\n    float: left;\n    height: 100%;\n    padding-left: 1rem;\n    padding-right: 1rem;\n  }\n  .md-5 {\n    width: 41.6666666667%;\n    float: left;\n    height: 100%;\n    padding-left: 1rem;\n    padding-right: 1rem;\n  }\n  .md-6 {\n    width: 50%;\n    float: left;\n    height: 100%;\n    padding-left: 1rem;\n    padding-right: 1rem;\n  }\n  .md-7 {\n    width: 58.3333333333%;\n    float: left;\n    height: 100%;\n    padding-left: 1rem;\n    padding-right: 1rem;\n  }\n  .md-8 {\n    width: 66.6666666667%;\n    float: left;\n    height: 100%;\n    padding-left: 1rem;\n    padding-right: 1rem;\n  }\n  .md-9 {\n    width: 75%;\n    float: left;\n    height: 100%;\n    padding-left: 1rem;\n    padding-right: 1rem;\n  }\n  .md-10 {\n    width: 83.3333333333%;\n    float: left;\n    height: 100%;\n    padding-left: 1rem;\n    padding-right: 1rem;\n  }\n  .md-11 {\n    width: 91.6666666667%;\n    float: left;\n    height: 100%;\n    padding-left: 1rem;\n    padding-right: 1rem;\n  }\n  .md-12 {\n    width: 100%;\n    float: left;\n    height: 100%;\n    padding-left: 1rem;\n    padding-right: 1rem;\n  }\n}\n@media (min-width: 1200px) {\n  .lg-1 {\n    width: 8.3333333333%;\n    float: left;\n    height: 100%;\n    padding-left: 1rem;\n    padding-right: 1rem;\n  }\n  .lg-2 {\n    width: 16.6666666667%;\n    float: left;\n    height: 100%;\n    padding-left: 1rem;\n    padding-right: 1rem;\n  }\n  .lg-3 {\n    width: 25%;\n    float: left;\n    height: 100%;\n    padding-left: 1rem;\n    padding-right: 1rem;\n  }\n  .lg-4 {\n    width: 33.3333333333%;\n    float: left;\n    height: 100%;\n    padding-left: 1rem;\n    padding-right: 1rem;\n  }\n  .lg-5 {\n    width: 41.6666666667%;\n    float: left;\n    height: 100%;\n    padding-left: 1rem;\n    padding-right: 1rem;\n  }\n  .lg-6 {\n    width: 50%;\n    float: left;\n    height: 100%;\n    padding-left: 1rem;\n    padding-right: 1rem;\n  }\n  .lg-7 {\n    width: 58.3333333333%;\n    float: left;\n    height: 100%;\n    padding-left: 1rem;\n    padding-right: 1rem;\n  }\n  .lg-8 {\n    width: 66.6666666667%;\n    float: left;\n    height: 100%;\n    padding-left: 1rem;\n    padding-right: 1rem;\n  }\n  .lg-9 {\n    width: 75%;\n    float: left;\n    height: 100%;\n    padding-left: 1rem;\n    padding-right: 1rem;\n  }\n  .lg-10 {\n    width: 83.3333333333%;\n    float: left;\n    height: 100%;\n    padding-left: 1rem;\n    padding-right: 1rem;\n  }\n  .lg-11 {\n    width: 91.6666666667%;\n    float: left;\n    height: 100%;\n    padding-left: 1rem;\n    padding-right: 1rem;\n  }\n  .lg-12 {\n    width: 100%;\n    float: left;\n    height: 100%;\n    padding-left: 1rem;\n    padding-right: 1rem;\n  }\n}\n/*\n#Borders\n\nIn some countries they write from right to left so we decided to create start and end values for borders.\nThe value can be changed by changing the variable in a config file that is not created yet.\n\n* Bs = left or right border depending of the direction of writing\n* Bt = border-top\n* Br = border-right\n* Bb = border-bottom\n* Bl = border-left\n* Bx = border-left and border-right\n* By = border-top and border-bottom\n\n####No border top\n\n\t<div class=\"B-0\">There is no top border in this div.</div>\n*/\n.B-0 {\n  border: none;\n}\n\n.Bt-xs {\n  border-top-width: 1px;\n}\n\n.Bt-sm {\n  border-top-width: 2px;\n}\n\n.Bt-md {\n  border-top-width: 3px;\n}\n\n.Bt-lg {\n  border-top-width: 4px;\n}\n\n.Bt-xl {\n  border-top-width: 5px;\n}\n\n.Br-xs {\n  border-right-width: 1px;\n}\n\n.Br-sm {\n  border-right-width: 2px;\n}\n\n.Br-md {\n  border-right-width: 3px;\n}\n\n.Br-lg {\n  border-right-width: 4px;\n}\n\n.Br-xl {\n  border-right-width: 5px;\n}\n\n.Be-xs {\n  border-right-width: 1px;\n}\n\n.Be-sm {\n  border-right-width: 2px;\n}\n\n.Be-md {\n  border-right-width: 3px;\n}\n\n.Be-lg {\n  border-right-width: 4px;\n}\n\n.Be-xl {\n  border-right-width: 5px;\n}\n\n.Bb-xs {\n  border-bottom-width: 1px;\n}\n\n.Bb-sm {\n  border-bottom-width: 2px;\n}\n\n.Bb-md {\n  border-bottom-width: 3px;\n}\n\n.Bb-lg {\n  border-bottom-width: 4px;\n}\n\n.Bb-xl {\n  border-bottom-width: 5px;\n}\n\n.Bl-xs {\n  border-left-width: 1px;\n}\n\n.Bl-sm {\n  border-left-width: 2px;\n}\n\n.Bl-md {\n  border-left-width: 3px;\n}\n\n.Bl-lg {\n  border-left-width: 4px;\n}\n\n.Bl-xl {\n  border-left-width: 5px;\n}\n\n.Bs-xs {\n  border-left-width: 1px;\n}\n\n.Bs-sm {\n  border-left-width: 2px;\n}\n\n.Bs-md {\n  border-left-width: 3px;\n}\n\n.Bs-lg {\n  border-left-width: 4px;\n}\n\n.Bs-xl {\n  border-left-width: 5px;\n}\n\n.Bx-xs {\n  border-left-width: 1px;\n  border-right-width: 1px;\n}\n\n.Bx-sm {\n  border-left-width: 2px;\n  border-right-width: 2px;\n}\n\n.Bx-md {\n  border-left-width: 3px;\n  border-right-width: 3px;\n}\n\n.Bx-lg {\n  border-left-width: 4px;\n  border-right-width: 4px;\n}\n\n.Bx-xl {\n  border-left-width: 5px;\n  border-right-width: 5px;\n}\n\n.By-xs {\n  border-top-width: 1px;\n  border-bottom-width: 1px;\n}\n\n.By-sm {\n  border-top-width: 2px;\n  border-bottom-width: 2px;\n}\n\n.By-md {\n  border-top-width: 3px;\n  border-bottom-width: 3px;\n}\n\n.By-lg {\n  border-top-width: 4px;\n  border-bottom-width: 4px;\n}\n\n.By-xl {\n  border-top-width: 5px;\n  border-bottom-width: 5px;\n}\n\n.B-xs {\n  border-top-width: 1px;\n  border-right-width: 1px;\n  border-bottom-width: 1px;\n  border-left-width: 1px;\n}\n\n.B-sm {\n  border-top-width: 2px;\n  border-right-width: 2px;\n  border-bottom-width: 2px;\n  border-left-width: 2px;\n}\n\n.B-md {\n  border-top-width: 3px;\n  border-right-width: 3px;\n  border-bottom-width: 3px;\n  border-left-width: 3px;\n}\n\n.B-lg {\n  border-top-width: 4px;\n  border-right-width: 4px;\n  border-bottom-width: 4px;\n  border-left-width: 4px;\n}\n\n.B-xl {\n  border-top-width: 5px;\n  border-right-width: 5px;\n  border-bottom-width: 5px;\n  border-left-width: 5px;\n}\n\n.Bt-solid {\n  border-top-style: solid;\n}\n\n.Bt-dotted {\n  border-top-style: dotted;\n}\n\n.Bt-dashed {\n  border-top-style: dashed;\n}\n\n.Bt-double {\n  border-top-style: double;\n}\n\n.Br-solid {\n  border-right-style: solid;\n}\n\n.Br-dotted {\n  border-right-style: dotted;\n}\n\n.Br-dashed {\n  border-right-style: dashed;\n}\n\n.Br-double {\n  border-right-style: double;\n}\n\n.Be-solid {\n  border-right-style: solid;\n}\n\n.Be-dotted {\n  border-right-style: dotted;\n}\n\n.Be-dashed {\n  border-right-style: dashed;\n}\n\n.Be-double {\n  border-right-style: double;\n}\n\n.Bb-solid {\n  border-bottom-style: solid;\n}\n\n.Bb-dotted {\n  border-bottom-style: dotted;\n}\n\n.Bb-dashed {\n  border-bottom-style: dashed;\n}\n\n.Bb-double {\n  border-bottom-style: double;\n}\n\n.Bl-solid {\n  border-left-style: solid;\n}\n\n.Bl-dotted {\n  border-left-style: dotted;\n}\n\n.Bl-dashed {\n  border-left-style: dashed;\n}\n\n.Bl-double {\n  border-left-style: double;\n}\n\n.Bs-solid {\n  border-left-style: solid;\n}\n\n.Bs-dotted {\n  border-left-style: dotted;\n}\n\n.Bs-dashed {\n  border-left-style: dashed;\n}\n\n.Bs-double {\n  border-left-style: double;\n}\n\n.Bx-solid {\n  border-left-style: solid;\n  border-right-style: solid;\n}\n\n.Bx-dotted {\n  border-left-style: dotted;\n  border-right-style: dotted;\n}\n\n.Bx-dashed {\n  border-left-style: dashed;\n  border-right-style: dashed;\n}\n\n.Bx-double {\n  border-left-style: double;\n  border-right-style: double;\n}\n\n.By-solid {\n  border-top-style: solid;\n  border-bottom-style: solid;\n}\n\n.By-dotted {\n  border-top-style: dotted;\n  border-bottom-style: dotted;\n}\n\n.By-dashed {\n  border-top-style: dashed;\n  border-bottom-style: dashed;\n}\n\n.By-double {\n  border-top-style: double;\n  border-bottom-style: double;\n}\n\n.B-solid {\n  border-top-style: solid;\n  border-right-style: solid;\n  border-bottom-style: solid;\n  border-left-style: solid;\n}\n\n.B-dotted {\n  border-top-style: dotted;\n  border-right-style: dotted;\n  border-bottom-style: dotted;\n  border-left-style: dotted;\n}\n\n.B-dashed {\n  border-top-style: dashed;\n  border-right-style: dashed;\n  border-bottom-style: dashed;\n  border-left-style: dashed;\n}\n\n.B-double {\n  border-top-style: double;\n  border-right-style: double;\n  border-bottom-style: double;\n  border-left-style: double;\n}\n\n.B-r-full {\n  border-radius: 100%;\n}\n\n.B-r-xs {\n  border-radius: 0.2em;\n}\n\n.B-r-sm {\n  border-radius: 0.5em;\n}\n\n.B-r-md {\n  border-radius: 1em;\n}\n\n.B-r-lg {\n  border-radius: 2em;\n}\n\n/* \n    Creates borders using mappings for border widths, border styles and colors.\n    You can define the mappings in the style sheets of your project.\n*/\n/* Bottom aligned background */\n.bg-bottom {\n  background-position: bottom;\n}\n\n/* Top aligned background */\n.bg-top {\n  background-position: top;\n}\n\n.bg-transparent {\n  background: transparent;\n}\n\n.bg-none {\n  background: none;\n}\n\n/*\n#Lists\n\n####List without styles\n\n\t<ul>\n\t\t<li>This list has no styles.</li>\n\t</ul>\n*/\n.list-no-style {\n  list-style: none;\n}\n\n.a-width-sm {\n  transition: width 0.5s ease-in-out;\n}\n\n.a-accordion {\n  max-height: 0;\n  overflow: hidden;\n}\n\n.a-accordion-sm {\n  height: auto;\n  max-height: 2000px;\n}\n\n.a-accordion-md {\n  height: auto;\n  max-height: 4000px;\n}\n\n.f-italic {\n  font-style: italic;\n}\n\n.f-normal {\n  font-style: normal;\n}\n\n.f-oblique {\n  font-style: oblique;\n}\n\n.f-w-normal {\n  font-weight: normal;\n}\n\n.f-w-bold {\n  font-weight: bold;\n}\n\n.f-w-700 {\n  font-weight: 700;\n}\n\n.f-uppercase {\n  text-transform: uppercase;\n}\n\n.f-line-through {\n  text-decoration: line-through;\n}\n\n.f-no-decoration {\n  text-decoration: none;\n}\n\n.f-underline {\n  text-decoration: underline;\n}\n\n.f-left {\n  text-align: left;\n}\n\n.f-center {\n  text-align: center;\n}\n\n.f-right {\n  text-align: right;\n}\n\n.f-no-wrap {\n  white-space: nowrap;\n}\n\n.f-giga {\n  font-size: 4em;\n}\n\n.f-mega {\n  font-size: 3em;\n}\n\n.f-alpha {\n  font-size: 2.5em;\n}\n\n.f-beta {\n  font-size: 2em;\n}\n\n.f-gamma {\n  font-size: 1.7em;\n}\n\n.f-delta {\n  font-size: 1.5em;\n}\n\n.f-epsilon {\n  font-size: 1.2em;\n}\n\n.f-zeta {\n  font-size: 0.8em;\n}\n\n@media (min-width: 320px) {\n  .r-xs-f-italic {\n    font-style: italic;\n  }\n  .r-xs-f-normal {\n    font-style: normal;\n  }\n  .r-xs-f-oblique {\n    font-style: oblique;\n  }\n  .r-xs-f-w-normal {\n    font-weight: normal;\n  }\n  .r-xs-f-w-bold {\n    font-weight: bold;\n  }\n  .r-xs-f-w-700 {\n    font-weight: 700;\n  }\n  .r-xs-f-uppercase {\n    text-transform: uppercase;\n  }\n  .r-xs-f-line-through {\n    text-decoration: line-through;\n  }\n  .r-xs-f-no-decoration {\n    text-decoration: none;\n  }\n  .r-xs-f-underline {\n    text-decoration: underline;\n  }\n  .r-xs-f-left {\n    text-align: left;\n  }\n  .r-xs-f-center {\n    text-align: center;\n  }\n  .r-xs-f-right {\n    text-align: right;\n  }\n  .r-xs-f-no-wrap {\n    white-space: nowrap;\n  }\n  .r-xs-f-giga {\n    font-size: 4em;\n  }\n  .r-xs-f-mega {\n    font-size: 3em;\n  }\n  .r-xs-f-alpha {\n    font-size: 2.5em;\n  }\n  .r-xs-f-beta {\n    font-size: 2em;\n  }\n  .r-xs-f-gamma {\n    font-size: 1.7em;\n  }\n  .r-xs-f-delta {\n    font-size: 1.5em;\n  }\n  .r-xs-f-epsilon {\n    font-size: 1.2em;\n  }\n  .r-xs-f-zeta {\n    font-size: 0.8em;\n  }\n}\n@media (min-width: 640px) {\n  .r-sm-f-italic {\n    font-style: italic;\n  }\n  .r-sm-f-normal {\n    font-style: normal;\n  }\n  .r-sm-f-oblique {\n    font-style: oblique;\n  }\n  .r-sm-f-w-normal {\n    font-weight: normal;\n  }\n  .r-sm-f-w-bold {\n    font-weight: bold;\n  }\n  .r-sm-f-w-700 {\n    font-weight: 700;\n  }\n  .r-sm-f-uppercase {\n    text-transform: uppercase;\n  }\n  .r-sm-f-line-through {\n    text-decoration: line-through;\n  }\n  .r-sm-f-no-decoration {\n    text-decoration: none;\n  }\n  .r-sm-f-underline {\n    text-decoration: underline;\n  }\n  .r-sm-f-left {\n    text-align: left;\n  }\n  .r-sm-f-center {\n    text-align: center;\n  }\n  .r-sm-f-right {\n    text-align: right;\n  }\n  .r-sm-f-no-wrap {\n    white-space: nowrap;\n  }\n  .r-sm-f-giga {\n    font-size: 4em;\n  }\n  .r-sm-f-mega {\n    font-size: 3em;\n  }\n  .r-sm-f-alpha {\n    font-size: 2.5em;\n  }\n  .r-sm-f-beta {\n    font-size: 2em;\n  }\n  .r-sm-f-gamma {\n    font-size: 1.7em;\n  }\n  .r-sm-f-delta {\n    font-size: 1.5em;\n  }\n  .r-sm-f-epsilon {\n    font-size: 1.2em;\n  }\n  .r-sm-f-zeta {\n    font-size: 0.8em;\n  }\n}\n@media (min-width: 1024px) {\n  .r-md-f-italic {\n    font-style: italic;\n  }\n  .r-md-f-normal {\n    font-style: normal;\n  }\n  .r-md-f-oblique {\n    font-style: oblique;\n  }\n  .r-md-f-w-normal {\n    font-weight: normal;\n  }\n  .r-md-f-w-bold {\n    font-weight: bold;\n  }\n  .r-md-f-w-700 {\n    font-weight: 700;\n  }\n  .r-md-f-uppercase {\n    text-transform: uppercase;\n  }\n  .r-md-f-line-through {\n    text-decoration: line-through;\n  }\n  .r-md-f-no-decoration {\n    text-decoration: none;\n  }\n  .r-md-f-underline {\n    text-decoration: underline;\n  }\n  .r-md-f-left {\n    text-align: left;\n  }\n  .r-md-f-center {\n    text-align: center;\n  }\n  .r-md-f-right {\n    text-align: right;\n  }\n  .r-md-f-no-wrap {\n    white-space: nowrap;\n  }\n  .r-md-f-giga {\n    font-size: 4em;\n  }\n  .r-md-f-mega {\n    font-size: 3em;\n  }\n  .r-md-f-alpha {\n    font-size: 2.5em;\n  }\n  .r-md-f-beta {\n    font-size: 2em;\n  }\n  .r-md-f-gamma {\n    font-size: 1.7em;\n  }\n  .r-md-f-delta {\n    font-size: 1.5em;\n  }\n  .r-md-f-epsilon {\n    font-size: 1.2em;\n  }\n  .r-md-f-zeta {\n    font-size: 0.8em;\n  }\n}\n@media (min-width: 1200px) {\n  .r-lg-f-italic {\n    font-style: italic;\n  }\n  .r-lg-f-normal {\n    font-style: normal;\n  }\n  .r-lg-f-oblique {\n    font-style: oblique;\n  }\n  .r-lg-f-w-normal {\n    font-weight: normal;\n  }\n  .r-lg-f-w-bold {\n    font-weight: bold;\n  }\n  .r-lg-f-w-700 {\n    font-weight: 700;\n  }\n  .r-lg-f-uppercase {\n    text-transform: uppercase;\n  }\n  .r-lg-f-line-through {\n    text-decoration: line-through;\n  }\n  .r-lg-f-no-decoration {\n    text-decoration: none;\n  }\n  .r-lg-f-underline {\n    text-decoration: underline;\n  }\n  .r-lg-f-left {\n    text-align: left;\n  }\n  .r-lg-f-center {\n    text-align: center;\n  }\n  .r-lg-f-right {\n    text-align: right;\n  }\n  .r-lg-f-no-wrap {\n    white-space: nowrap;\n  }\n  .r-lg-f-giga {\n    font-size: 4em;\n  }\n  .r-lg-f-mega {\n    font-size: 3em;\n  }\n  .r-lg-f-alpha {\n    font-size: 2.5em;\n  }\n  .r-lg-f-beta {\n    font-size: 2em;\n  }\n  .r-lg-f-gamma {\n    font-size: 1.7em;\n  }\n  .r-lg-f-delta {\n    font-size: 1.5em;\n  }\n  .r-lg-f-epsilon {\n    font-size: 1.2em;\n  }\n  .r-lg-f-zeta {\n    font-size: 0.8em;\n  }\n}\n/*\n#Margins\n\n####M is an abbreviation for margin.\n\n* Mt = margin-top\n* Mr = margin-right\n* Mb = margin-bottom\n* Ml = margin-left\n\n####No margins\n\n\t<div class=\"M-0\">There are no margins in this div.</div>\n*/\n.M-0 {\n  margin: 0;\n}\n\n/*\n####No top margin\n\n\t<div class=\"Mt-0\">Top margin of this div is 0</div>\n*/\n.Mt-0 {\n  margin-top: 0;\n}\n\n/*\n#Paddings\n\n####P is an abbreviation for padding.\n\n* Pt = padding-top\n* Pr = padding-right\n* Pb = padding-bottom\n* Pl = padding-left\n\n####No paddings\n\n\t<div class=\"P-0\">There are no paddings in this div.</div>\n*/\n.P-0 {\n  padding: 0;\n}\n\n.Pt-xs {\n  padding-top: 0.5em;\n}\n\n.Pt-sm {\n  padding-top: 0.7em;\n}\n\n.Pt-md {\n  padding-top: 1em;\n}\n\n.Pt-lg {\n  padding-top: 1.5em;\n}\n\n.Pt-xl {\n  padding-top: 2em;\n}\n\n.Pr-xs {\n  padding-right: 0.5em;\n}\n\n.Pr-sm {\n  padding-right: 0.7em;\n}\n\n.Pr-md {\n  padding-right: 1em;\n}\n\n.Pr-lg {\n  padding-right: 1.5em;\n}\n\n.Pr-xl {\n  padding-right: 2em;\n}\n\n.Pe-xs {\n  padding-right: 0.5em;\n}\n\n.Pe-sm {\n  padding-right: 0.7em;\n}\n\n.Pe-md {\n  padding-right: 1em;\n}\n\n.Pe-lg {\n  padding-right: 1.5em;\n}\n\n.Pe-xl {\n  padding-right: 2em;\n}\n\n.Pb-xs {\n  padding-bottom: 0.5em;\n}\n\n.Pb-sm {\n  padding-bottom: 0.7em;\n}\n\n.Pb-md {\n  padding-bottom: 1em;\n}\n\n.Pb-lg {\n  padding-bottom: 1.5em;\n}\n\n.Pb-xl {\n  padding-bottom: 2em;\n}\n\n.Pl-xs {\n  padding-left: 0.5em;\n}\n\n.Pl-sm {\n  padding-left: 0.7em;\n}\n\n.Pl-md {\n  padding-left: 1em;\n}\n\n.Pl-lg {\n  padding-left: 1.5em;\n}\n\n.Pl-xl {\n  padding-left: 2em;\n}\n\n.Ps-xs {\n  padding-left: 0.5em;\n}\n\n.Ps-sm {\n  padding-left: 0.7em;\n}\n\n.Ps-md {\n  padding-left: 1em;\n}\n\n.Ps-lg {\n  padding-left: 1.5em;\n}\n\n.Ps-xl {\n  padding-left: 2em;\n}\n\n.Px-xs {\n  padding-left: 0.5em;\n  padding-right: 0.5em;\n}\n\n.Px-sm {\n  padding-left: 0.7em;\n  padding-right: 0.7em;\n}\n\n.Px-md {\n  padding-left: 1em;\n  padding-right: 1em;\n}\n\n.Px-lg {\n  padding-left: 1.5em;\n  padding-right: 1.5em;\n}\n\n.Px-xl {\n  padding-left: 2em;\n  padding-right: 2em;\n}\n\n.Py-xs {\n  padding-top: 0.5em;\n  padding-bottom: 0.5em;\n}\n\n.Py-sm {\n  padding-top: 0.7em;\n  padding-bottom: 0.7em;\n}\n\n.Py-md {\n  padding-top: 1em;\n  padding-bottom: 1em;\n}\n\n.Py-lg {\n  padding-top: 1.5em;\n  padding-bottom: 1.5em;\n}\n\n.Py-xl {\n  padding-top: 2em;\n  padding-bottom: 2em;\n}\n\n.P-xs {\n  padding-top: 0.5em;\n  padding-right: 0.5em;\n  padding-bottom: 0.5em;\n  padding-left: 0.5em;\n}\n\n.P-sm {\n  padding-top: 0.7em;\n  padding-right: 0.7em;\n  padding-bottom: 0.7em;\n  padding-left: 0.7em;\n}\n\n.P-md {\n  padding-top: 1em;\n  padding-right: 1em;\n  padding-bottom: 1em;\n  padding-left: 1em;\n}\n\n.P-lg {\n  padding-top: 1.5em;\n  padding-right: 1.5em;\n  padding-bottom: 1.5em;\n  padding-left: 1.5em;\n}\n\n.P-xl {\n  padding-top: 2em;\n  padding-right: 2em;\n  padding-bottom: 2em;\n  padding-left: 2em;\n}\n\n.Mt-xs {\n  margin-top: 0.5em;\n}\n\n.Mt-sm {\n  margin-top: 0.7em;\n}\n\n.Mt-md {\n  margin-top: 1em;\n}\n\n.Mt-lg {\n  margin-top: 1.5em;\n}\n\n.Mt-xl {\n  margin-top: 2em;\n}\n\n.Mr-xs {\n  margin-right: 0.5em;\n}\n\n.Mr-sm {\n  margin-right: 0.7em;\n}\n\n.Mr-md {\n  margin-right: 1em;\n}\n\n.Mr-lg {\n  margin-right: 1.5em;\n}\n\n.Mr-xl {\n  margin-right: 2em;\n}\n\n.Me-xs {\n  margin-right: 0.5em;\n}\n\n.Me-sm {\n  margin-right: 0.7em;\n}\n\n.Me-md {\n  margin-right: 1em;\n}\n\n.Me-lg {\n  margin-right: 1.5em;\n}\n\n.Me-xl {\n  margin-right: 2em;\n}\n\n.Mb-xs {\n  margin-bottom: 0.5em;\n}\n\n.Mb-sm {\n  margin-bottom: 0.7em;\n}\n\n.Mb-md {\n  margin-bottom: 1em;\n}\n\n.Mb-lg {\n  margin-bottom: 1.5em;\n}\n\n.Mb-xl {\n  margin-bottom: 2em;\n}\n\n.Ml-xs {\n  margin-left: 0.5em;\n}\n\n.Ml-sm {\n  margin-left: 0.7em;\n}\n\n.Ml-md {\n  margin-left: 1em;\n}\n\n.Ml-lg {\n  margin-left: 1.5em;\n}\n\n.Ml-xl {\n  margin-left: 2em;\n}\n\n.Ms-xs {\n  margin-left: 0.5em;\n}\n\n.Ms-sm {\n  margin-left: 0.7em;\n}\n\n.Ms-md {\n  margin-left: 1em;\n}\n\n.Ms-lg {\n  margin-left: 1.5em;\n}\n\n.Ms-xl {\n  margin-left: 2em;\n}\n\n.Mx-xs {\n  margin-left: 0.5em;\n  margin-right: 0.5em;\n}\n\n.Mx-sm {\n  margin-left: 0.7em;\n  margin-right: 0.7em;\n}\n\n.Mx-md {\n  margin-left: 1em;\n  margin-right: 1em;\n}\n\n.Mx-lg {\n  margin-left: 1.5em;\n  margin-right: 1.5em;\n}\n\n.Mx-xl {\n  margin-left: 2em;\n  margin-right: 2em;\n}\n\n.My-xs {\n  margin-top: 0.5em;\n  margin-bottom: 0.5em;\n}\n\n.My-sm {\n  margin-top: 0.7em;\n  margin-bottom: 0.7em;\n}\n\n.My-md {\n  margin-top: 1em;\n  margin-bottom: 1em;\n}\n\n.My-lg {\n  margin-top: 1.5em;\n  margin-bottom: 1.5em;\n}\n\n.My-xl {\n  margin-top: 2em;\n  margin-bottom: 2em;\n}\n\n.M-xs {\n  margin-top: 0.5em;\n  margin-right: 0.5em;\n  margin-bottom: 0.5em;\n  margin-left: 0.5em;\n}\n\n.M-sm {\n  margin-top: 0.7em;\n  margin-right: 0.7em;\n  margin-bottom: 0.7em;\n  margin-left: 0.7em;\n}\n\n.M-md {\n  margin-top: 1em;\n  margin-right: 1em;\n  margin-bottom: 1em;\n  margin-left: 1em;\n}\n\n.M-lg {\n  margin-top: 1.5em;\n  margin-right: 1.5em;\n  margin-bottom: 1.5em;\n  margin-left: 1.5em;\n}\n\n.M-xl {\n  margin-top: 2em;\n  margin-right: 2em;\n  margin-bottom: 2em;\n  margin-left: 2em;\n}\n\n/* Layout classes */\n.t-0 {\n  top: 0;\n}\n\n.r-0 {\n  right: 0;\n}\n\n.b-0 {\n  bottom: 0;\n}\n\n.l-0 {\n  left: 0;\n}\n\n.hidden {\n  display: none;\n}\n\n.inline {\n  display: inline;\n}\n\n.block {\n  display: block;\n}\n\n.inline-block {\n  display: inline-block;\n}\n\n.absolute {\n  position: absolute;\n}\n\n.relative {\n  position: relative;\n}\n\n.fixed {\n  position: fixed;\n}\n\n.o-hidden {\n  overflow: hidden;\n}\n\n.o-scroll {\n  overflow: scroll;\n}\n\n.o-y-auto {\n  overflow-y: auto;\n}\n\n.full-width {\n  width: 100%;\n}\n\n.full-height {\n  height: 100%;\n}\n\n.v-align-top {\n  vertical-align: top;\n}\n\n.left {\n  float: left;\n}\n\n.right {\n  float: right;\n}\n\n.overflow-scroll {\n  overflow: scroll;\n}\n\n/* Responsive layout classes */\n@media (min-width: 320px) {\n  .r-xs-t-0 {\n    top: 0;\n  }\n  .r-xs-r-0 {\n    right: 0;\n  }\n  .r-xs-b-0 {\n    bottom: 0;\n  }\n  .r-xs-l-0 {\n    left: 0;\n  }\n  .r-xs-hidden {\n    display: none;\n  }\n  .r-xs-inline {\n    display: inline;\n  }\n  .r-xs-block {\n    display: block;\n  }\n  .r-xs-inline-block {\n    display: inline-block;\n  }\n  .r-xs-absolute {\n    position: absolute;\n  }\n  .r-xs-relative {\n    position: relative;\n  }\n  .r-xs-fixed {\n    position: fixed;\n  }\n  .r-xs-o-hidden {\n    overflow: hidden;\n  }\n  .r-xs-o-scroll {\n    overflow: scroll;\n  }\n  .r-xs-o-y-auto {\n    overflow-y: auto;\n  }\n  .r-xs-full-width {\n    width: 100%;\n  }\n  .r-xs-full-height {\n    height: 100%;\n  }\n  .r-xs-v-align-top {\n    vertical-align: top;\n  }\n  .r-xs-left {\n    float: left;\n  }\n  .r-xs-right {\n    float: right;\n  }\n  .r-xs-overflow-scroll {\n    overflow: scroll;\n  }\n}\n@media (min-width: 640px) {\n  .r-sm-t-0 {\n    top: 0;\n  }\n  .r-sm-r-0 {\n    right: 0;\n  }\n  .r-sm-b-0 {\n    bottom: 0;\n  }\n  .r-sm-l-0 {\n    left: 0;\n  }\n  .r-sm-hidden {\n    display: none;\n  }\n  .r-sm-inline {\n    display: inline;\n  }\n  .r-sm-block {\n    display: block;\n  }\n  .r-sm-inline-block {\n    display: inline-block;\n  }\n  .r-sm-absolute {\n    position: absolute;\n  }\n  .r-sm-relative {\n    position: relative;\n  }\n  .r-sm-fixed {\n    position: fixed;\n  }\n  .r-sm-o-hidden {\n    overflow: hidden;\n  }\n  .r-sm-o-scroll {\n    overflow: scroll;\n  }\n  .r-sm-o-y-auto {\n    overflow-y: auto;\n  }\n  .r-sm-full-width {\n    width: 100%;\n  }\n  .r-sm-full-height {\n    height: 100%;\n  }\n  .r-sm-v-align-top {\n    vertical-align: top;\n  }\n  .r-sm-left {\n    float: left;\n  }\n  .r-sm-right {\n    float: right;\n  }\n  .r-sm-overflow-scroll {\n    overflow: scroll;\n  }\n}\n@media (min-width: 1024px) {\n  .r-md-t-0 {\n    top: 0;\n  }\n  .r-md-r-0 {\n    right: 0;\n  }\n  .r-md-b-0 {\n    bottom: 0;\n  }\n  .r-md-l-0 {\n    left: 0;\n  }\n  .r-md-hidden {\n    display: none;\n  }\n  .r-md-inline {\n    display: inline;\n  }\n  .r-md-block {\n    display: block;\n  }\n  .r-md-inline-block {\n    display: inline-block;\n  }\n  .r-md-absolute {\n    position: absolute;\n  }\n  .r-md-relative {\n    position: relative;\n  }\n  .r-md-fixed {\n    position: fixed;\n  }\n  .r-md-o-hidden {\n    overflow: hidden;\n  }\n  .r-md-o-scroll {\n    overflow: scroll;\n  }\n  .r-md-o-y-auto {\n    overflow-y: auto;\n  }\n  .r-md-full-width {\n    width: 100%;\n  }\n  .r-md-full-height {\n    height: 100%;\n  }\n  .r-md-v-align-top {\n    vertical-align: top;\n  }\n  .r-md-left {\n    float: left;\n  }\n  .r-md-right {\n    float: right;\n  }\n  .r-md-overflow-scroll {\n    overflow: scroll;\n  }\n}\n@media (min-width: 1200px) {\n  .r-lg-t-0 {\n    top: 0;\n  }\n  .r-lg-r-0 {\n    right: 0;\n  }\n  .r-lg-b-0 {\n    bottom: 0;\n  }\n  .r-lg-l-0 {\n    left: 0;\n  }\n  .r-lg-hidden {\n    display: none;\n  }\n  .r-lg-inline {\n    display: inline;\n  }\n  .r-lg-block {\n    display: block;\n  }\n  .r-lg-inline-block {\n    display: inline-block;\n  }\n  .r-lg-absolute {\n    position: absolute;\n  }\n  .r-lg-relative {\n    position: relative;\n  }\n  .r-lg-fixed {\n    position: fixed;\n  }\n  .r-lg-o-hidden {\n    overflow: hidden;\n  }\n  .r-lg-o-scroll {\n    overflow: scroll;\n  }\n  .r-lg-o-y-auto {\n    overflow-y: auto;\n  }\n  .r-lg-full-width {\n    width: 100%;\n  }\n  .r-lg-full-height {\n    height: 100%;\n  }\n  .r-lg-v-align-top {\n    vertical-align: top;\n  }\n  .r-lg-left {\n    float: left;\n  }\n  .r-lg-right {\n    float: right;\n  }\n  .r-lg-overflow-scroll {\n    overflow: scroll;\n  }\n}\n/*\n# Opacity classes\n\n* .opacity-10, .opacity-20 etc.\n */\n.opacity-10 {\n  opacity: 0.1;\n}\n\n.opacity-20 {\n  opacity: 0.2;\n}\n\n.opacity-30 {\n  opacity: 0.3;\n}\n\n.opacity-40 {\n  opacity: 0.4;\n}\n\n.opacity-50 {\n  opacity: 0.5;\n}\n\n.opacity-60 {\n  opacity: 0.6;\n}\n\n.opacity-70 {\n  opacity: 0.7;\n}\n\n.opacity-80 {\n  opacity: 0.8;\n}\n\n.opacity-90 {\n  opacity: 0.9;\n}\n\n.opacity-100 {\n  opacity: 1;\n}\n\n.c-white {\n  color: #fff;\n}\n\n.c-black {\n  color: #000;\n}\n\n@media (pointer: fine) {\n  .c-white_hover:hover {\n    color: #fff;\n  }\n  .c-black_hover:hover {\n    color: #000;\n  }\n}\n.c-white_active:enabled:active {\n  color: #fff;\n}\n\n.c-black_active:enabled:active {\n  color: #000;\n}\n\n.c-white_disabled:disabled {\n  color: #fff;\n}\n\n.c-black_disabled:disabled {\n  color: #000;\n}\n\n.bg-c-white {\n  background-color: #fff;\n}\n\n.bg-c-black {\n  background-color: #000;\n}\n\n@media (pointer: fine) {\n  .bg-c-white_hover:hover {\n    background-color: #fff;\n  }\n  .bg-c-black_hover:hover {\n    background-color: #000;\n  }\n}\n.bg-c-white_active:enabled:active {\n  background-color: #fff;\n}\n\n.bg-c-black_active:enabled:active {\n  background-color: #000;\n}\n\n.bg-c-white_disabled:disabled {\n  background-color: #fff;\n}\n\n.bg-c-black_disabled:disabled {\n  background-color: #000;\n}\n\n.B-c-white {\n  border-color: #fff;\n}\n\n.B-c-black {\n  border-color: #000;\n}\n\n.Bt-c-white {\n  border-top-color: #fff;\n}\n\n.Bt-c-black {\n  border-top-color: #000;\n}\n\n.Br-c-white {\n  border-right-color: #fff;\n}\n\n.Br-c-black {\n  border-right-color: #000;\n}\n\n.Be-c-white {\n  border-right-color: #fff;\n}\n\n.Be-c-black {\n  border-right-color: #000;\n}\n\n.Bb-c-white {\n  border-bottom-color: #fff;\n}\n\n.Bb-c-black {\n  border-bottom-color: #000;\n}\n\n.Bl-c-white {\n  border-left-color: #fff;\n}\n\n.Bl-c-black {\n  border-left-color: #000;\n}\n\n.Bs-c-white {\n  border-left-color: #fff;\n}\n\n.Bs-c-black {\n  border-left-color: #000;\n}\n\n.Bx-c-white {\n  border-left-color: #fff;\n  border-right-color: #fff;\n}\n\n.Bx-c-black {\n  border-left-color: #000;\n  border-right-color: #000;\n}\n\n.By-c-white {\n  border-top-color: #fff;\n  border-bottom-color: #fff;\n}\n\n.By-c-black {\n  border-top-color: #000;\n  border-bottom-color: #000;\n}\n\n.B-c-white {\n  border-top-color: #fff;\n  border-right-color: #fff;\n  border-bottom-color: #fff;\n  border-left-color: #fff;\n}\n\n.B-c-black {\n  border-top-color: #000;\n  border-right-color: #000;\n  border-bottom-color: #000;\n  border-left-color: #000;\n}\n\n/*\nMost used components that are simpler to use than Atomic CSS classes.\n */\n/* Make blocks equal height\n\n */\n.equal-height {\n  overflow: hidden;\n}\n\n.equal-height-col {\n  padding-bottom: 500em;\n  margin-bottom: -500em;\n}\n\n/* Vertical aligned items\n\n<div class=\"v-align\">\n    <div class=\"v-align-middle\"></div>\n    <div class=\"v-align-middle\"></div>\n</div>\n\n */\n.v-align {\n  display: table;\n}\n\n.v-align-middle {\n  display: table-cell;\n  vertical-align: middle;\n}\n\n.v-align-top {\n  display: table-cell;\n  vertical-align: top;\n}\n\n.overlay-full {\n  position: absolute;\n  left: 0;\n  right: 0;\n  z-index: 1;\n}\n\n.h-center {\n  margin: 0 auto;\n}\n\n.x-center {\n  margin: auto;\n  position: absolute;\n  left: 50%;\n  transform: translate(-50%, 0);\n}\n\n.y-center {\n  margin: auto;\n  position: absolute;\n  top: 50%;\n  transform: translate(0, -50%);\n}\n"
+/*
+# Strip units from a number with units.
+
+```scss
+$number: strip-units(3px);
+```
+
+Output:
+
+```scss
+$number => 3
+```
+
+ */
+/*
+# Replace a string with another string
+
+```scss
+$output: str-replace('something here {might} change', '{might}', 'will');
+$output => 'something here will change'
+```
+
+Output:
+
+```scss
+$output => 'something here will change'
+```
+
+ */
+/*
+# CSS property generator with a specific properties
+
+```scss
+@include properties(( float: left, padding: 0 ));
+```
+
+Output:
+
+```scss
+float: left;
+padding: 0;
+```
+
+ */
+/*
+# CSS class generator with a specific name and properties
+
+```scss
+@include createSelector('Px-xs', ('padding-left': 1em, 'padding-right': 1em));
+```
+
+Output:
+
+```scss
+.Px-xs {
+    padding-left: 1em;
+    padding-right: 1em;
+}
+```
+
+ */
+/*
+# Generate multiple css classes according to values
+
+```scss
+@include createMultipleSelectors('f-{key}', ('white': #fff, 'black': #000), 'color');
+```
+
+Output:
+
+```scss
+.f-white {
+    color: #fff;
+}
+```
+
+ */
+/*
+# Generate multiple selectors (TBD)
+
+```scss
+$output: generateMultipleSelectors('Px', (xs, sm, md));
+```
+
+Output
+
+```scss
+$output => (xs: 'Px-xs', sm: 'Px-sm', md: 'Px-md');
+```
+ */
+/*
+multipleDefinitions('f-{key}', (sm: 0.7em, md: 1.2em, lg: 2.5em), ('font-size'));
+
+/*
+(
+  f-sm: (font-size: 0.7em),
+  f-md: (font-size: 1.2em),
+  f-lg: (font-size: 2.5em)
+)
+*/
+/*
+Create multiple class definitions in a map (multiplied by directions and another key/value map). For example:
+
+
+
+```sass
+$dirs: (t: (top), b: (bottom));
+$sizes: (sm: 0.5em, md: 1em);
+
+directionalDefinitions(
+  'P{dirKey}-{key}', $sizes, 'padding-{dir}', $dirs
+);
+
+// (
+//   Pt-sm: (padding-top: 0.5em),
+//   Pb-sm: (padding-bottom: 0.5em),
+//   Pt-md: (padding-top: 1em),
+//   Pb-md: (padding-bottom: 1em)
+// )
+
+```
+ */
+/*
+# Create multiple sized classes
+
+```scss
+@include createMultipleSizeClasses('Px', (sm: 1em, md: 2em), ('padding-left', 'padding-right'));
+```
+
+Output:
+
+```scss
+.Px-sm {
+    padding-left: 1em;
+    padding-right: 1em;
+}
+
+.Px-md {
+    padding-left: 2em;
+    padding-right: 2em;
+}
+```
+
+ */
+/*
+# Create multiple sized box classes
+
+Create CSS classes (multiple sizes) of elements that have top, right, bottom & left values
+
+```scss
+@include createMultipleSizeBoxClasses('P{dirKey}', (xs: 1em, sm: 2em), 'padding-{dir}');
+```
+
+Will generate for example following classes
+
+```scss
+.Pt-xs {
+    padding-top: 1em;
+}
+
+.Pt-sm {
+    padding-top: 2em;
+}
+
+.Py-xs {
+    padding-top: 1em;
+    padding-bottom: 1em;
+}
+
+...
+```
+ */
+/*
+# Create multiple box classes
+
+```scss
+@include createMultipleBoxClasses('B{dirKey}-solid', ('border-{dir}-style': 'solid'));
+```
+
+Will generate for example following classes:
+
+```scss
+.Br-solid {
+    border-right-style: solid;
+}
+
+.Bx-solid {
+    border-right-style: solid;
+    border-left-style: solid;
+}
+
+...
+```
+
+ */
+* {
+  box-sizing: border-box;
+}
+
+/* Flex classes */
+.flex {
+  display: flex;
+}
+
+.flex-align-start {
+  align-items: flex-start;
+}
+
+.flex-align-end {
+  align-items: flex-end;
+}
+
+.flex-align-center {
+  align-items: center;
+}
+
+.flex-align-baseline {
+  align-items: baseline;
+}
+
+.flex-align-stretch {
+  align-items: stretch;
+}
+
+.flex-align-inherit {
+  align-items: inherit;
+}
+
+.flex-align-initial {
+  align-items: initial;
+}
+
+.flex-justify-start {
+  justify-content: flex-start;
+}
+
+.flex-justify-end {
+  justify-content: flex-end;
+}
+
+.flex-justify-center {
+  justify-content: center;
+}
+
+.flex-justify-space-around {
+  justify-content: space-around;
+}
+
+.flex-justify-space-between {
+  justify-content: space-between;
+}
+
+.flex-justify-space-evently {
+  justify-content: space-evenly;
+}
+
+.flex-justify-initial {
+  justify-content: initial;
+}
+
+.flex-justify-inherit {
+  justify-content: inherit;
+}
+
+.flex-wrap-0 {
+  flex-wrap: nowrap;
+}
+
+.flex-wrap {
+  flex-wrap: wrap;
+}
+
+.flex-wrap-reverse {
+  flex-wrap: wrap-reverse;
+}
+
+.flex-wrap-inherit {
+  flex-wrap: inherit;
+}
+
+.flex-column {
+  flex-direction: column;
+}
+
+.flex-row {
+  flex-direction: row;
+}
+
+.flex-1 {
+  flex: 1;
+}
+
+.flex-2 {
+  flex: 2;
+}
+
+.flex-3 {
+  flex: 3;
+}
+
+.flex-4 {
+  flex: 4;
+}
+
+.flex-5 {
+  flex: 5;
+}
+
+/* Responsive flex classes */
+@media (min-width: 320px) {
+  .r-xs-flex {
+    display: flex;
+  }
+  .r-xs-flex-align-start {
+    align-items: flex-start;
+  }
+  .r-xs-flex-align-end {
+    align-items: flex-end;
+  }
+  .r-xs-flex-align-center {
+    align-items: center;
+  }
+  .r-xs-flex-align-baseline {
+    align-items: baseline;
+  }
+  .r-xs-flex-align-stretch {
+    align-items: stretch;
+  }
+  .r-xs-flex-align-inherit {
+    align-items: inherit;
+  }
+  .r-xs-flex-align-initial {
+    align-items: initial;
+  }
+  .r-xs-flex-justify-start {
+    justify-content: flex-start;
+  }
+  .r-xs-flex-justify-end {
+    justify-content: flex-end;
+  }
+  .r-xs-flex-justify-center {
+    justify-content: center;
+  }
+  .r-xs-flex-justify-space-around {
+    justify-content: space-around;
+  }
+  .r-xs-flex-justify-space-between {
+    justify-content: space-between;
+  }
+  .r-xs-flex-justify-space-evently {
+    justify-content: space-evenly;
+  }
+  .r-xs-flex-justify-initial {
+    justify-content: initial;
+  }
+  .r-xs-flex-justify-inherit {
+    justify-content: inherit;
+  }
+  .r-xs-flex-wrap-0 {
+    flex-wrap: nowrap;
+  }
+  .r-xs-flex-wrap {
+    flex-wrap: wrap;
+  }
+  .r-xs-flex-wrap-reverse {
+    flex-wrap: wrap-reverse;
+  }
+  .r-xs-flex-wrap-inherit {
+    flex-wrap: inherit;
+  }
+  .r-xs-flex-column {
+    flex-direction: column;
+  }
+  .r-xs-flex-row {
+    flex-direction: row;
+  }
+  .r-xs-flex-1 {
+    flex: 1;
+  }
+  .r-xs-flex-2 {
+    flex: 2;
+  }
+  .r-xs-flex-3 {
+    flex: 3;
+  }
+  .r-xs-flex-4 {
+    flex: 4;
+  }
+  .r-xs-flex-5 {
+    flex: 5;
+  }
+}
+@media (min-width: 640px) {
+  .r-sm-flex {
+    display: flex;
+  }
+  .r-sm-flex-align-start {
+    align-items: flex-start;
+  }
+  .r-sm-flex-align-end {
+    align-items: flex-end;
+  }
+  .r-sm-flex-align-center {
+    align-items: center;
+  }
+  .r-sm-flex-align-baseline {
+    align-items: baseline;
+  }
+  .r-sm-flex-align-stretch {
+    align-items: stretch;
+  }
+  .r-sm-flex-align-inherit {
+    align-items: inherit;
+  }
+  .r-sm-flex-align-initial {
+    align-items: initial;
+  }
+  .r-sm-flex-justify-start {
+    justify-content: flex-start;
+  }
+  .r-sm-flex-justify-end {
+    justify-content: flex-end;
+  }
+  .r-sm-flex-justify-center {
+    justify-content: center;
+  }
+  .r-sm-flex-justify-space-around {
+    justify-content: space-around;
+  }
+  .r-sm-flex-justify-space-between {
+    justify-content: space-between;
+  }
+  .r-sm-flex-justify-space-evently {
+    justify-content: space-evenly;
+  }
+  .r-sm-flex-justify-initial {
+    justify-content: initial;
+  }
+  .r-sm-flex-justify-inherit {
+    justify-content: inherit;
+  }
+  .r-sm-flex-wrap-0 {
+    flex-wrap: nowrap;
+  }
+  .r-sm-flex-wrap {
+    flex-wrap: wrap;
+  }
+  .r-sm-flex-wrap-reverse {
+    flex-wrap: wrap-reverse;
+  }
+  .r-sm-flex-wrap-inherit {
+    flex-wrap: inherit;
+  }
+  .r-sm-flex-column {
+    flex-direction: column;
+  }
+  .r-sm-flex-row {
+    flex-direction: row;
+  }
+  .r-sm-flex-1 {
+    flex: 1;
+  }
+  .r-sm-flex-2 {
+    flex: 2;
+  }
+  .r-sm-flex-3 {
+    flex: 3;
+  }
+  .r-sm-flex-4 {
+    flex: 4;
+  }
+  .r-sm-flex-5 {
+    flex: 5;
+  }
+}
+@media (min-width: 1024px) {
+  .r-md-flex {
+    display: flex;
+  }
+  .r-md-flex-align-start {
+    align-items: flex-start;
+  }
+  .r-md-flex-align-end {
+    align-items: flex-end;
+  }
+  .r-md-flex-align-center {
+    align-items: center;
+  }
+  .r-md-flex-align-baseline {
+    align-items: baseline;
+  }
+  .r-md-flex-align-stretch {
+    align-items: stretch;
+  }
+  .r-md-flex-align-inherit {
+    align-items: inherit;
+  }
+  .r-md-flex-align-initial {
+    align-items: initial;
+  }
+  .r-md-flex-justify-start {
+    justify-content: flex-start;
+  }
+  .r-md-flex-justify-end {
+    justify-content: flex-end;
+  }
+  .r-md-flex-justify-center {
+    justify-content: center;
+  }
+  .r-md-flex-justify-space-around {
+    justify-content: space-around;
+  }
+  .r-md-flex-justify-space-between {
+    justify-content: space-between;
+  }
+  .r-md-flex-justify-space-evently {
+    justify-content: space-evenly;
+  }
+  .r-md-flex-justify-initial {
+    justify-content: initial;
+  }
+  .r-md-flex-justify-inherit {
+    justify-content: inherit;
+  }
+  .r-md-flex-wrap-0 {
+    flex-wrap: nowrap;
+  }
+  .r-md-flex-wrap {
+    flex-wrap: wrap;
+  }
+  .r-md-flex-wrap-reverse {
+    flex-wrap: wrap-reverse;
+  }
+  .r-md-flex-wrap-inherit {
+    flex-wrap: inherit;
+  }
+  .r-md-flex-column {
+    flex-direction: column;
+  }
+  .r-md-flex-row {
+    flex-direction: row;
+  }
+  .r-md-flex-1 {
+    flex: 1;
+  }
+  .r-md-flex-2 {
+    flex: 2;
+  }
+  .r-md-flex-3 {
+    flex: 3;
+  }
+  .r-md-flex-4 {
+    flex: 4;
+  }
+  .r-md-flex-5 {
+    flex: 5;
+  }
+}
+@media (min-width: 1200px) {
+  .r-lg-flex {
+    display: flex;
+  }
+  .r-lg-flex-align-start {
+    align-items: flex-start;
+  }
+  .r-lg-flex-align-end {
+    align-items: flex-end;
+  }
+  .r-lg-flex-align-center {
+    align-items: center;
+  }
+  .r-lg-flex-align-baseline {
+    align-items: baseline;
+  }
+  .r-lg-flex-align-stretch {
+    align-items: stretch;
+  }
+  .r-lg-flex-align-inherit {
+    align-items: inherit;
+  }
+  .r-lg-flex-align-initial {
+    align-items: initial;
+  }
+  .r-lg-flex-justify-start {
+    justify-content: flex-start;
+  }
+  .r-lg-flex-justify-end {
+    justify-content: flex-end;
+  }
+  .r-lg-flex-justify-center {
+    justify-content: center;
+  }
+  .r-lg-flex-justify-space-around {
+    justify-content: space-around;
+  }
+  .r-lg-flex-justify-space-between {
+    justify-content: space-between;
+  }
+  .r-lg-flex-justify-space-evently {
+    justify-content: space-evenly;
+  }
+  .r-lg-flex-justify-initial {
+    justify-content: initial;
+  }
+  .r-lg-flex-justify-inherit {
+    justify-content: inherit;
+  }
+  .r-lg-flex-wrap-0 {
+    flex-wrap: nowrap;
+  }
+  .r-lg-flex-wrap {
+    flex-wrap: wrap;
+  }
+  .r-lg-flex-wrap-reverse {
+    flex-wrap: wrap-reverse;
+  }
+  .r-lg-flex-wrap-inherit {
+    flex-wrap: inherit;
+  }
+  .r-lg-flex-column {
+    flex-direction: column;
+  }
+  .r-lg-flex-row {
+    flex-direction: row;
+  }
+  .r-lg-flex-1 {
+    flex: 1;
+  }
+  .r-lg-flex-2 {
+    flex: 2;
+  }
+  .r-lg-flex-3 {
+    flex: 3;
+  }
+  .r-lg-flex-4 {
+    flex: 4;
+  }
+  .r-lg-flex-5 {
+    flex: 5;
+  }
+}
+@media (min-width: 320px) {
+  .xs-1 {
+    width: 8.3333333333%;
+    float: left;
+    height: 100%;
+    padding-left: 1rem;
+    padding-right: 1rem;
+  }
+  .xs-2 {
+    width: 16.6666666667%;
+    float: left;
+    height: 100%;
+    padding-left: 1rem;
+    padding-right: 1rem;
+  }
+  .xs-3 {
+    width: 25%;
+    float: left;
+    height: 100%;
+    padding-left: 1rem;
+    padding-right: 1rem;
+  }
+  .xs-4 {
+    width: 33.3333333333%;
+    float: left;
+    height: 100%;
+    padding-left: 1rem;
+    padding-right: 1rem;
+  }
+  .xs-5 {
+    width: 41.6666666667%;
+    float: left;
+    height: 100%;
+    padding-left: 1rem;
+    padding-right: 1rem;
+  }
+  .xs-6 {
+    width: 50%;
+    float: left;
+    height: 100%;
+    padding-left: 1rem;
+    padding-right: 1rem;
+  }
+  .xs-7 {
+    width: 58.3333333333%;
+    float: left;
+    height: 100%;
+    padding-left: 1rem;
+    padding-right: 1rem;
+  }
+  .xs-8 {
+    width: 66.6666666667%;
+    float: left;
+    height: 100%;
+    padding-left: 1rem;
+    padding-right: 1rem;
+  }
+  .xs-9 {
+    width: 75%;
+    float: left;
+    height: 100%;
+    padding-left: 1rem;
+    padding-right: 1rem;
+  }
+  .xs-10 {
+    width: 83.3333333333%;
+    float: left;
+    height: 100%;
+    padding-left: 1rem;
+    padding-right: 1rem;
+  }
+  .xs-11 {
+    width: 91.6666666667%;
+    float: left;
+    height: 100%;
+    padding-left: 1rem;
+    padding-right: 1rem;
+  }
+  .xs-12 {
+    width: 100%;
+    float: left;
+    height: 100%;
+    padding-left: 1rem;
+    padding-right: 1rem;
+  }
+}
+@media (min-width: 640px) {
+  .sm-1 {
+    width: 8.3333333333%;
+    float: left;
+    height: 100%;
+    padding-left: 1rem;
+    padding-right: 1rem;
+  }
+  .sm-2 {
+    width: 16.6666666667%;
+    float: left;
+    height: 100%;
+    padding-left: 1rem;
+    padding-right: 1rem;
+  }
+  .sm-3 {
+    width: 25%;
+    float: left;
+    height: 100%;
+    padding-left: 1rem;
+    padding-right: 1rem;
+  }
+  .sm-4 {
+    width: 33.3333333333%;
+    float: left;
+    height: 100%;
+    padding-left: 1rem;
+    padding-right: 1rem;
+  }
+  .sm-5 {
+    width: 41.6666666667%;
+    float: left;
+    height: 100%;
+    padding-left: 1rem;
+    padding-right: 1rem;
+  }
+  .sm-6 {
+    width: 50%;
+    float: left;
+    height: 100%;
+    padding-left: 1rem;
+    padding-right: 1rem;
+  }
+  .sm-7 {
+    width: 58.3333333333%;
+    float: left;
+    height: 100%;
+    padding-left: 1rem;
+    padding-right: 1rem;
+  }
+  .sm-8 {
+    width: 66.6666666667%;
+    float: left;
+    height: 100%;
+    padding-left: 1rem;
+    padding-right: 1rem;
+  }
+  .sm-9 {
+    width: 75%;
+    float: left;
+    height: 100%;
+    padding-left: 1rem;
+    padding-right: 1rem;
+  }
+  .sm-10 {
+    width: 83.3333333333%;
+    float: left;
+    height: 100%;
+    padding-left: 1rem;
+    padding-right: 1rem;
+  }
+  .sm-11 {
+    width: 91.6666666667%;
+    float: left;
+    height: 100%;
+    padding-left: 1rem;
+    padding-right: 1rem;
+  }
+  .sm-12 {
+    width: 100%;
+    float: left;
+    height: 100%;
+    padding-left: 1rem;
+    padding-right: 1rem;
+  }
+}
+@media (min-width: 1024px) {
+  .md-1 {
+    width: 8.3333333333%;
+    float: left;
+    height: 100%;
+    padding-left: 1rem;
+    padding-right: 1rem;
+  }
+  .md-2 {
+    width: 16.6666666667%;
+    float: left;
+    height: 100%;
+    padding-left: 1rem;
+    padding-right: 1rem;
+  }
+  .md-3 {
+    width: 25%;
+    float: left;
+    height: 100%;
+    padding-left: 1rem;
+    padding-right: 1rem;
+  }
+  .md-4 {
+    width: 33.3333333333%;
+    float: left;
+    height: 100%;
+    padding-left: 1rem;
+    padding-right: 1rem;
+  }
+  .md-5 {
+    width: 41.6666666667%;
+    float: left;
+    height: 100%;
+    padding-left: 1rem;
+    padding-right: 1rem;
+  }
+  .md-6 {
+    width: 50%;
+    float: left;
+    height: 100%;
+    padding-left: 1rem;
+    padding-right: 1rem;
+  }
+  .md-7 {
+    width: 58.3333333333%;
+    float: left;
+    height: 100%;
+    padding-left: 1rem;
+    padding-right: 1rem;
+  }
+  .md-8 {
+    width: 66.6666666667%;
+    float: left;
+    height: 100%;
+    padding-left: 1rem;
+    padding-right: 1rem;
+  }
+  .md-9 {
+    width: 75%;
+    float: left;
+    height: 100%;
+    padding-left: 1rem;
+    padding-right: 1rem;
+  }
+  .md-10 {
+    width: 83.3333333333%;
+    float: left;
+    height: 100%;
+    padding-left: 1rem;
+    padding-right: 1rem;
+  }
+  .md-11 {
+    width: 91.6666666667%;
+    float: left;
+    height: 100%;
+    padding-left: 1rem;
+    padding-right: 1rem;
+  }
+  .md-12 {
+    width: 100%;
+    float: left;
+    height: 100%;
+    padding-left: 1rem;
+    padding-right: 1rem;
+  }
+}
+@media (min-width: 1200px) {
+  .lg-1 {
+    width: 8.3333333333%;
+    float: left;
+    height: 100%;
+    padding-left: 1rem;
+    padding-right: 1rem;
+  }
+  .lg-2 {
+    width: 16.6666666667%;
+    float: left;
+    height: 100%;
+    padding-left: 1rem;
+    padding-right: 1rem;
+  }
+  .lg-3 {
+    width: 25%;
+    float: left;
+    height: 100%;
+    padding-left: 1rem;
+    padding-right: 1rem;
+  }
+  .lg-4 {
+    width: 33.3333333333%;
+    float: left;
+    height: 100%;
+    padding-left: 1rem;
+    padding-right: 1rem;
+  }
+  .lg-5 {
+    width: 41.6666666667%;
+    float: left;
+    height: 100%;
+    padding-left: 1rem;
+    padding-right: 1rem;
+  }
+  .lg-6 {
+    width: 50%;
+    float: left;
+    height: 100%;
+    padding-left: 1rem;
+    padding-right: 1rem;
+  }
+  .lg-7 {
+    width: 58.3333333333%;
+    float: left;
+    height: 100%;
+    padding-left: 1rem;
+    padding-right: 1rem;
+  }
+  .lg-8 {
+    width: 66.6666666667%;
+    float: left;
+    height: 100%;
+    padding-left: 1rem;
+    padding-right: 1rem;
+  }
+  .lg-9 {
+    width: 75%;
+    float: left;
+    height: 100%;
+    padding-left: 1rem;
+    padding-right: 1rem;
+  }
+  .lg-10 {
+    width: 83.3333333333%;
+    float: left;
+    height: 100%;
+    padding-left: 1rem;
+    padding-right: 1rem;
+  }
+  .lg-11 {
+    width: 91.6666666667%;
+    float: left;
+    height: 100%;
+    padding-left: 1rem;
+    padding-right: 1rem;
+  }
+  .lg-12 {
+    width: 100%;
+    float: left;
+    height: 100%;
+    padding-left: 1rem;
+    padding-right: 1rem;
+  }
+}
+/*
+#Borders
+
+In some countries they write from right to left so we decided to create start and end values for borders.
+The value can be changed by changing the variable in a config file that is not created yet.
+
+* Bs = left or right border depending of the direction of writing
+* Bt = border-top
+* Br = border-right
+* Bb = border-bottom
+* Bl = border-left
+* Bx = border-left and border-right
+* By = border-top and border-bottom
+
+####No border top
+
+	<div class="B-0">There is no top border in this div.</div>
+*/
+.B-0 {
+  border: none;
+}
+
+.Bt-xs {
+  border-top-width: 1px;
+}
+
+.Bt-sm {
+  border-top-width: 2px;
+}
+
+.Bt-md {
+  border-top-width: 3px;
+}
+
+.Bt-lg {
+  border-top-width: 4px;
+}
+
+.Bt-xl {
+  border-top-width: 5px;
+}
+
+.Br-xs {
+  border-right-width: 1px;
+}
+
+.Br-sm {
+  border-right-width: 2px;
+}
+
+.Br-md {
+  border-right-width: 3px;
+}
+
+.Br-lg {
+  border-right-width: 4px;
+}
+
+.Br-xl {
+  border-right-width: 5px;
+}
+
+.Be-xs {
+  border-right-width: 1px;
+}
+
+.Be-sm {
+  border-right-width: 2px;
+}
+
+.Be-md {
+  border-right-width: 3px;
+}
+
+.Be-lg {
+  border-right-width: 4px;
+}
+
+.Be-xl {
+  border-right-width: 5px;
+}
+
+.Bb-xs {
+  border-bottom-width: 1px;
+}
+
+.Bb-sm {
+  border-bottom-width: 2px;
+}
+
+.Bb-md {
+  border-bottom-width: 3px;
+}
+
+.Bb-lg {
+  border-bottom-width: 4px;
+}
+
+.Bb-xl {
+  border-bottom-width: 5px;
+}
+
+.Bl-xs {
+  border-left-width: 1px;
+}
+
+.Bl-sm {
+  border-left-width: 2px;
+}
+
+.Bl-md {
+  border-left-width: 3px;
+}
+
+.Bl-lg {
+  border-left-width: 4px;
+}
+
+.Bl-xl {
+  border-left-width: 5px;
+}
+
+.Bs-xs {
+  border-left-width: 1px;
+}
+
+.Bs-sm {
+  border-left-width: 2px;
+}
+
+.Bs-md {
+  border-left-width: 3px;
+}
+
+.Bs-lg {
+  border-left-width: 4px;
+}
+
+.Bs-xl {
+  border-left-width: 5px;
+}
+
+.Bx-xs {
+  border-left-width: 1px;
+  border-right-width: 1px;
+}
+
+.Bx-sm {
+  border-left-width: 2px;
+  border-right-width: 2px;
+}
+
+.Bx-md {
+  border-left-width: 3px;
+  border-right-width: 3px;
+}
+
+.Bx-lg {
+  border-left-width: 4px;
+  border-right-width: 4px;
+}
+
+.Bx-xl {
+  border-left-width: 5px;
+  border-right-width: 5px;
+}
+
+.By-xs {
+  border-top-width: 1px;
+  border-bottom-width: 1px;
+}
+
+.By-sm {
+  border-top-width: 2px;
+  border-bottom-width: 2px;
+}
+
+.By-md {
+  border-top-width: 3px;
+  border-bottom-width: 3px;
+}
+
+.By-lg {
+  border-top-width: 4px;
+  border-bottom-width: 4px;
+}
+
+.By-xl {
+  border-top-width: 5px;
+  border-bottom-width: 5px;
+}
+
+.B-xs {
+  border-top-width: 1px;
+  border-right-width: 1px;
+  border-bottom-width: 1px;
+  border-left-width: 1px;
+}
+
+.B-sm {
+  border-top-width: 2px;
+  border-right-width: 2px;
+  border-bottom-width: 2px;
+  border-left-width: 2px;
+}
+
+.B-md {
+  border-top-width: 3px;
+  border-right-width: 3px;
+  border-bottom-width: 3px;
+  border-left-width: 3px;
+}
+
+.B-lg {
+  border-top-width: 4px;
+  border-right-width: 4px;
+  border-bottom-width: 4px;
+  border-left-width: 4px;
+}
+
+.B-xl {
+  border-top-width: 5px;
+  border-right-width: 5px;
+  border-bottom-width: 5px;
+  border-left-width: 5px;
+}
+
+.Bt-solid {
+  border-top-style: solid;
+}
+
+.Bt-dotted {
+  border-top-style: dotted;
+}
+
+.Bt-dashed {
+  border-top-style: dashed;
+}
+
+.Bt-double {
+  border-top-style: double;
+}
+
+.Br-solid {
+  border-right-style: solid;
+}
+
+.Br-dotted {
+  border-right-style: dotted;
+}
+
+.Br-dashed {
+  border-right-style: dashed;
+}
+
+.Br-double {
+  border-right-style: double;
+}
+
+.Be-solid {
+  border-right-style: solid;
+}
+
+.Be-dotted {
+  border-right-style: dotted;
+}
+
+.Be-dashed {
+  border-right-style: dashed;
+}
+
+.Be-double {
+  border-right-style: double;
+}
+
+.Bb-solid {
+  border-bottom-style: solid;
+}
+
+.Bb-dotted {
+  border-bottom-style: dotted;
+}
+
+.Bb-dashed {
+  border-bottom-style: dashed;
+}
+
+.Bb-double {
+  border-bottom-style: double;
+}
+
+.Bl-solid {
+  border-left-style: solid;
+}
+
+.Bl-dotted {
+  border-left-style: dotted;
+}
+
+.Bl-dashed {
+  border-left-style: dashed;
+}
+
+.Bl-double {
+  border-left-style: double;
+}
+
+.Bs-solid {
+  border-left-style: solid;
+}
+
+.Bs-dotted {
+  border-left-style: dotted;
+}
+
+.Bs-dashed {
+  border-left-style: dashed;
+}
+
+.Bs-double {
+  border-left-style: double;
+}
+
+.Bx-solid {
+  border-left-style: solid;
+  border-right-style: solid;
+}
+
+.Bx-dotted {
+  border-left-style: dotted;
+  border-right-style: dotted;
+}
+
+.Bx-dashed {
+  border-left-style: dashed;
+  border-right-style: dashed;
+}
+
+.Bx-double {
+  border-left-style: double;
+  border-right-style: double;
+}
+
+.By-solid {
+  border-top-style: solid;
+  border-bottom-style: solid;
+}
+
+.By-dotted {
+  border-top-style: dotted;
+  border-bottom-style: dotted;
+}
+
+.By-dashed {
+  border-top-style: dashed;
+  border-bottom-style: dashed;
+}
+
+.By-double {
+  border-top-style: double;
+  border-bottom-style: double;
+}
+
+.B-solid {
+  border-top-style: solid;
+  border-right-style: solid;
+  border-bottom-style: solid;
+  border-left-style: solid;
+}
+
+.B-dotted {
+  border-top-style: dotted;
+  border-right-style: dotted;
+  border-bottom-style: dotted;
+  border-left-style: dotted;
+}
+
+.B-dashed {
+  border-top-style: dashed;
+  border-right-style: dashed;
+  border-bottom-style: dashed;
+  border-left-style: dashed;
+}
+
+.B-double {
+  border-top-style: double;
+  border-right-style: double;
+  border-bottom-style: double;
+  border-left-style: double;
+}
+
+.B-r-full {
+  border-radius: 100%;
+}
+
+.B-r-xs {
+  border-radius: 0.2em;
+}
+
+.B-r-sm {
+  border-radius: 0.5em;
+}
+
+.B-r-md {
+  border-radius: 1em;
+}
+
+.B-r-lg {
+  border-radius: 2em;
+}
+
+/*
+    Creates borders using mappings for border widths, border styles and colors.
+    You can define the mappings in the style sheets of your project.
+*/
+/* Bottom aligned background */
+.bg-bottom {
+  background-position: bottom;
+}
+
+/* Top aligned background */
+.bg-top {
+  background-position: top;
+}
+
+.bg-transparent {
+  background: transparent;
+}
+
+.bg-none {
+  background: none;
+}
+
+/*
+#Lists
+
+####List without styles
+
+	<ul>
+		<li>This list has no styles.</li>
+	</ul>
+*/
+.list-no-style {
+  list-style: none;
+}
+
+.a-width-sm {
+  transition: width 0.5s ease-in-out;
+}
+
+.a-accordion {
+  max-height: 0;
+  overflow: hidden;
+}
+
+.a-accordion-sm {
+  height: auto;
+  max-height: 2000px;
+}
+
+.a-accordion-md {
+  height: auto;
+  max-height: 4000px;
+}
+
+.f-italic {
+  font-style: italic;
+}
+
+.f-normal {
+  font-style: normal;
+}
+
+.f-oblique {
+  font-style: oblique;
+}
+
+.f-w-normal {
+  font-weight: normal;
+}
+
+.f-w-bold {
+  font-weight: bold;
+}
+
+.f-w-700 {
+  font-weight: 700;
+}
+
+.f-uppercase {
+  text-transform: uppercase;
+}
+
+.f-line-through {
+  text-decoration: line-through;
+}
+
+.f-no-decoration {
+  text-decoration: none;
+}
+
+.f-underline {
+  text-decoration: underline;
+}
+
+.f-left {
+  text-align: left;
+}
+
+.f-center {
+  text-align: center;
+}
+
+.f-right {
+  text-align: right;
+}
+
+.f-no-wrap {
+  white-space: nowrap;
+}
+
+.f-giga {
+  font-size: 4em;
+}
+
+.f-mega {
+  font-size: 3em;
+}
+
+.f-alpha {
+  font-size: 2.5em;
+}
+
+.f-beta {
+  font-size: 2em;
+}
+
+.f-gamma {
+  font-size: 1.7em;
+}
+
+.f-delta {
+  font-size: 1.5em;
+}
+
+.f-epsilon {
+  font-size: 1.2em;
+}
+
+.f-zeta {
+  font-size: 0.8em;
+}
+
+@media (min-width: 320px) {
+  .r-xs-f-italic {
+    font-style: italic;
+  }
+  .r-xs-f-normal {
+    font-style: normal;
+  }
+  .r-xs-f-oblique {
+    font-style: oblique;
+  }
+  .r-xs-f-w-normal {
+    font-weight: normal;
+  }
+  .r-xs-f-w-bold {
+    font-weight: bold;
+  }
+  .r-xs-f-w-700 {
+    font-weight: 700;
+  }
+  .r-xs-f-uppercase {
+    text-transform: uppercase;
+  }
+  .r-xs-f-line-through {
+    text-decoration: line-through;
+  }
+  .r-xs-f-no-decoration {
+    text-decoration: none;
+  }
+  .r-xs-f-underline {
+    text-decoration: underline;
+  }
+  .r-xs-f-left {
+    text-align: left;
+  }
+  .r-xs-f-center {
+    text-align: center;
+  }
+  .r-xs-f-right {
+    text-align: right;
+  }
+  .r-xs-f-no-wrap {
+    white-space: nowrap;
+  }
+  .r-xs-f-giga {
+    font-size: 4em;
+  }
+  .r-xs-f-mega {
+    font-size: 3em;
+  }
+  .r-xs-f-alpha {
+    font-size: 2.5em;
+  }
+  .r-xs-f-beta {
+    font-size: 2em;
+  }
+  .r-xs-f-gamma {
+    font-size: 1.7em;
+  }
+  .r-xs-f-delta {
+    font-size: 1.5em;
+  }
+  .r-xs-f-epsilon {
+    font-size: 1.2em;
+  }
+  .r-xs-f-zeta {
+    font-size: 0.8em;
+  }
+}
+@media (min-width: 640px) {
+  .r-sm-f-italic {
+    font-style: italic;
+  }
+  .r-sm-f-normal {
+    font-style: normal;
+  }
+  .r-sm-f-oblique {
+    font-style: oblique;
+  }
+  .r-sm-f-w-normal {
+    font-weight: normal;
+  }
+  .r-sm-f-w-bold {
+    font-weight: bold;
+  }
+  .r-sm-f-w-700 {
+    font-weight: 700;
+  }
+  .r-sm-f-uppercase {
+    text-transform: uppercase;
+  }
+  .r-sm-f-line-through {
+    text-decoration: line-through;
+  }
+  .r-sm-f-no-decoration {
+    text-decoration: none;
+  }
+  .r-sm-f-underline {
+    text-decoration: underline;
+  }
+  .r-sm-f-left {
+    text-align: left;
+  }
+  .r-sm-f-center {
+    text-align: center;
+  }
+  .r-sm-f-right {
+    text-align: right;
+  }
+  .r-sm-f-no-wrap {
+    white-space: nowrap;
+  }
+  .r-sm-f-giga {
+    font-size: 4em;
+  }
+  .r-sm-f-mega {
+    font-size: 3em;
+  }
+  .r-sm-f-alpha {
+    font-size: 2.5em;
+  }
+  .r-sm-f-beta {
+    font-size: 2em;
+  }
+  .r-sm-f-gamma {
+    font-size: 1.7em;
+  }
+  .r-sm-f-delta {
+    font-size: 1.5em;
+  }
+  .r-sm-f-epsilon {
+    font-size: 1.2em;
+  }
+  .r-sm-f-zeta {
+    font-size: 0.8em;
+  }
+}
+@media (min-width: 1024px) {
+  .r-md-f-italic {
+    font-style: italic;
+  }
+  .r-md-f-normal {
+    font-style: normal;
+  }
+  .r-md-f-oblique {
+    font-style: oblique;
+  }
+  .r-md-f-w-normal {
+    font-weight: normal;
+  }
+  .r-md-f-w-bold {
+    font-weight: bold;
+  }
+  .r-md-f-w-700 {
+    font-weight: 700;
+  }
+  .r-md-f-uppercase {
+    text-transform: uppercase;
+  }
+  .r-md-f-line-through {
+    text-decoration: line-through;
+  }
+  .r-md-f-no-decoration {
+    text-decoration: none;
+  }
+  .r-md-f-underline {
+    text-decoration: underline;
+  }
+  .r-md-f-left {
+    text-align: left;
+  }
+  .r-md-f-center {
+    text-align: center;
+  }
+  .r-md-f-right {
+    text-align: right;
+  }
+  .r-md-f-no-wrap {
+    white-space: nowrap;
+  }
+  .r-md-f-giga {
+    font-size: 4em;
+  }
+  .r-md-f-mega {
+    font-size: 3em;
+  }
+  .r-md-f-alpha {
+    font-size: 2.5em;
+  }
+  .r-md-f-beta {
+    font-size: 2em;
+  }
+  .r-md-f-gamma {
+    font-size: 1.7em;
+  }
+  .r-md-f-delta {
+    font-size: 1.5em;
+  }
+  .r-md-f-epsilon {
+    font-size: 1.2em;
+  }
+  .r-md-f-zeta {
+    font-size: 0.8em;
+  }
+}
+@media (min-width: 1200px) {
+  .r-lg-f-italic {
+    font-style: italic;
+  }
+  .r-lg-f-normal {
+    font-style: normal;
+  }
+  .r-lg-f-oblique {
+    font-style: oblique;
+  }
+  .r-lg-f-w-normal {
+    font-weight: normal;
+  }
+  .r-lg-f-w-bold {
+    font-weight: bold;
+  }
+  .r-lg-f-w-700 {
+    font-weight: 700;
+  }
+  .r-lg-f-uppercase {
+    text-transform: uppercase;
+  }
+  .r-lg-f-line-through {
+    text-decoration: line-through;
+  }
+  .r-lg-f-no-decoration {
+    text-decoration: none;
+  }
+  .r-lg-f-underline {
+    text-decoration: underline;
+  }
+  .r-lg-f-left {
+    text-align: left;
+  }
+  .r-lg-f-center {
+    text-align: center;
+  }
+  .r-lg-f-right {
+    text-align: right;
+  }
+  .r-lg-f-no-wrap {
+    white-space: nowrap;
+  }
+  .r-lg-f-giga {
+    font-size: 4em;
+  }
+  .r-lg-f-mega {
+    font-size: 3em;
+  }
+  .r-lg-f-alpha {
+    font-size: 2.5em;
+  }
+  .r-lg-f-beta {
+    font-size: 2em;
+  }
+  .r-lg-f-gamma {
+    font-size: 1.7em;
+  }
+  .r-lg-f-delta {
+    font-size: 1.5em;
+  }
+  .r-lg-f-epsilon {
+    font-size: 1.2em;
+  }
+  .r-lg-f-zeta {
+    font-size: 0.8em;
+  }
+}
+/*
+#Margins
+
+####M is an abbreviation for margin.
+
+* Mt = margin-top
+* Mr = margin-right
+* Mb = margin-bottom
+* Ml = margin-left
+
+####No margins
+
+	<div class="M-0">There are no margins in this div.</div>
+*/
+.M-0 {
+  margin: 0;
+}
+
+/*
+####No top margin
+
+	<div class="Mt-0">Top margin of this div is 0</div>
+*/
+.Mt-0 {
+  margin-top: 0;
+}
+
+/*
+#Paddings
+
+####P is an abbreviation for padding.
+
+* Pt = padding-top
+* Pr = padding-right
+* Pb = padding-bottom
+* Pl = padding-left
+
+####No paddings
+
+	<div class="P-0">There are no paddings in this div.</div>
+*/
+.P-0 {
+  padding: 0;
+}
+
+.Pt-xs {
+  padding-top: 0.5em;
+}
+
+.Pt-sm {
+  padding-top: 0.7em;
+}
+
+.Pt-md {
+  padding-top: 1em;
+}
+
+.Pt-lg {
+  padding-top: 1.5em;
+}
+
+.Pt-xl {
+  padding-top: 2em;
+}
+
+.Pr-xs {
+  padding-right: 0.5em;
+}
+
+.Pr-sm {
+  padding-right: 0.7em;
+}
+
+.Pr-md {
+  padding-right: 1em;
+}
+
+.Pr-lg {
+  padding-right: 1.5em;
+}
+
+.Pr-xl {
+  padding-right: 2em;
+}
+
+.Pe-xs {
+  padding-right: 0.5em;
+}
+
+.Pe-sm {
+  padding-right: 0.7em;
+}
+
+.Pe-md {
+  padding-right: 1em;
+}
+
+.Pe-lg {
+  padding-right: 1.5em;
+}
+
+.Pe-xl {
+  padding-right: 2em;
+}
+
+.Pb-xs {
+  padding-bottom: 0.5em;
+}
+
+.Pb-sm {
+  padding-bottom: 0.7em;
+}
+
+.Pb-md {
+  padding-bottom: 1em;
+}
+
+.Pb-lg {
+  padding-bottom: 1.5em;
+}
+
+.Pb-xl {
+  padding-bottom: 2em;
+}
+
+.Pl-xs {
+  padding-left: 0.5em;
+}
+
+.Pl-sm {
+  padding-left: 0.7em;
+}
+
+.Pl-md {
+  padding-left: 1em;
+}
+
+.Pl-lg {
+  padding-left: 1.5em;
+}
+
+.Pl-xl {
+  padding-left: 2em;
+}
+
+.Ps-xs {
+  padding-left: 0.5em;
+}
+
+.Ps-sm {
+  padding-left: 0.7em;
+}
+
+.Ps-md {
+  padding-left: 1em;
+}
+
+.Ps-lg {
+  padding-left: 1.5em;
+}
+
+.Ps-xl {
+  padding-left: 2em;
+}
+
+.Px-xs {
+  padding-left: 0.5em;
+  padding-right: 0.5em;
+}
+
+.Px-sm {
+  padding-left: 0.7em;
+  padding-right: 0.7em;
+}
+
+.Px-md {
+  padding-left: 1em;
+  padding-right: 1em;
+}
+
+.Px-lg {
+  padding-left: 1.5em;
+  padding-right: 1.5em;
+}
+
+.Px-xl {
+  padding-left: 2em;
+  padding-right: 2em;
+}
+
+.Py-xs {
+  padding-top: 0.5em;
+  padding-bottom: 0.5em;
+}
+
+.Py-sm {
+  padding-top: 0.7em;
+  padding-bottom: 0.7em;
+}
+
+.Py-md {
+  padding-top: 1em;
+  padding-bottom: 1em;
+}
+
+.Py-lg {
+  padding-top: 1.5em;
+  padding-bottom: 1.5em;
+}
+
+.Py-xl {
+  padding-top: 2em;
+  padding-bottom: 2em;
+}
+
+.P-xs {
+  padding-top: 0.5em;
+  padding-right: 0.5em;
+  padding-bottom: 0.5em;
+  padding-left: 0.5em;
+}
+
+.P-sm {
+  padding-top: 0.7em;
+  padding-right: 0.7em;
+  padding-bottom: 0.7em;
+  padding-left: 0.7em;
+}
+
+.P-md {
+  padding-top: 1em;
+  padding-right: 1em;
+  padding-bottom: 1em;
+  padding-left: 1em;
+}
+
+.P-lg {
+  padding-top: 1.5em;
+  padding-right: 1.5em;
+  padding-bottom: 1.5em;
+  padding-left: 1.5em;
+}
+
+.P-xl {
+  padding-top: 2em;
+  padding-right: 2em;
+  padding-bottom: 2em;
+  padding-left: 2em;
+}
+
+.Mt-xs {
+  margin-top: 0.5em;
+}
+
+.Mt-sm {
+  margin-top: 0.7em;
+}
+
+.Mt-md {
+  margin-top: 1em;
+}
+
+.Mt-lg {
+  margin-top: 1.5em;
+}
+
+.Mt-xl {
+  margin-top: 2em;
+}
+
+.Mr-xs {
+  margin-right: 0.5em;
+}
+
+.Mr-sm {
+  margin-right: 0.7em;
+}
+
+.Mr-md {
+  margin-right: 1em;
+}
+
+.Mr-lg {
+  margin-right: 1.5em;
+}
+
+.Mr-xl {
+  margin-right: 2em;
+}
+
+.Me-xs {
+  margin-right: 0.5em;
+}
+
+.Me-sm {
+  margin-right: 0.7em;
+}
+
+.Me-md {
+  margin-right: 1em;
+}
+
+.Me-lg {
+  margin-right: 1.5em;
+}
+
+.Me-xl {
+  margin-right: 2em;
+}
+
+.Mb-xs {
+  margin-bottom: 0.5em;
+}
+
+.Mb-sm {
+  margin-bottom: 0.7em;
+}
+
+.Mb-md {
+  margin-bottom: 1em;
+}
+
+.Mb-lg {
+  margin-bottom: 1.5em;
+}
+
+.Mb-xl {
+  margin-bottom: 2em;
+}
+
+.Ml-xs {
+  margin-left: 0.5em;
+}
+
+.Ml-sm {
+  margin-left: 0.7em;
+}
+
+.Ml-md {
+  margin-left: 1em;
+}
+
+.Ml-lg {
+  margin-left: 1.5em;
+}
+
+.Ml-xl {
+  margin-left: 2em;
+}
+
+.Ms-xs {
+  margin-left: 0.5em;
+}
+
+.Ms-sm {
+  margin-left: 0.7em;
+}
+
+.Ms-md {
+  margin-left: 1em;
+}
+
+.Ms-lg {
+  margin-left: 1.5em;
+}
+
+.Ms-xl {
+  margin-left: 2em;
+}
+
+.Mx-xs {
+  margin-left: 0.5em;
+  margin-right: 0.5em;
+}
+
+.Mx-sm {
+  margin-left: 0.7em;
+  margin-right: 0.7em;
+}
+
+.Mx-md {
+  margin-left: 1em;
+  margin-right: 1em;
+}
+
+.Mx-lg {
+  margin-left: 1.5em;
+  margin-right: 1.5em;
+}
+
+.Mx-xl {
+  margin-left: 2em;
+  margin-right: 2em;
+}
+
+.My-xs {
+  margin-top: 0.5em;
+  margin-bottom: 0.5em;
+}
+
+.My-sm {
+  margin-top: 0.7em;
+  margin-bottom: 0.7em;
+}
+
+.My-md {
+  margin-top: 1em;
+  margin-bottom: 1em;
+}
+
+.My-lg {
+  margin-top: 1.5em;
+  margin-bottom: 1.5em;
+}
+
+.My-xl {
+  margin-top: 2em;
+  margin-bottom: 2em;
+}
+
+.M-xs {
+  margin-top: 0.5em;
+  margin-right: 0.5em;
+  margin-bottom: 0.5em;
+  margin-left: 0.5em;
+}
+
+.M-sm {
+  margin-top: 0.7em;
+  margin-right: 0.7em;
+  margin-bottom: 0.7em;
+  margin-left: 0.7em;
+}
+
+.M-md {
+  margin-top: 1em;
+  margin-right: 1em;
+  margin-bottom: 1em;
+  margin-left: 1em;
+}
+
+.M-lg {
+  margin-top: 1.5em;
+  margin-right: 1.5em;
+  margin-bottom: 1.5em;
+  margin-left: 1.5em;
+}
+
+.M-xl {
+  margin-top: 2em;
+  margin-right: 2em;
+  margin-bottom: 2em;
+  margin-left: 2em;
+}
+
+/* Layout classes */
+.t-0 {
+  top: 0;
+}
+
+.r-0 {
+  right: 0;
+}
+
+.b-0 {
+  bottom: 0;
+}
+
+.l-0 {
+  left: 0;
+}
+
+.hidden {
+  display: none;
+}
+
+.inline {
+  display: inline;
+}
+
+.block {
+  display: block;
+}
+
+.inline-block {
+  display: inline-block;
+}
+
+.absolute {
+  position: absolute;
+}
+
+.relative {
+  position: relative;
+}
+
+.fixed {
+  position: fixed;
+}
+
+.o-hidden {
+  overflow: hidden;
+}
+
+.o-scroll {
+  overflow: scroll;
+}
+
+.o-y-auto {
+  overflow-y: auto;
+}
+
+.full-width {
+  width: 100%;
+}
+
+.full-height {
+  height: 100%;
+}
+
+.v-align-top {
+  vertical-align: top;
+}
+
+.left {
+  float: left;
+}
+
+.right {
+  float: right;
+}
+
+.overflow-scroll {
+  overflow: scroll;
+}
+
+/* Responsive layout classes */
+@media (min-width: 320px) {
+  .r-xs-t-0 {
+    top: 0;
+  }
+  .r-xs-r-0 {
+    right: 0;
+  }
+  .r-xs-b-0 {
+    bottom: 0;
+  }
+  .r-xs-l-0 {
+    left: 0;
+  }
+  .r-xs-hidden {
+    display: none;
+  }
+  .r-xs-inline {
+    display: inline;
+  }
+  .r-xs-block {
+    display: block;
+  }
+  .r-xs-inline-block {
+    display: inline-block;
+  }
+  .r-xs-absolute {
+    position: absolute;
+  }
+  .r-xs-relative {
+    position: relative;
+  }
+  .r-xs-fixed {
+    position: fixed;
+  }
+  .r-xs-o-hidden {
+    overflow: hidden;
+  }
+  .r-xs-o-scroll {
+    overflow: scroll;
+  }
+  .r-xs-o-y-auto {
+    overflow-y: auto;
+  }
+  .r-xs-full-width {
+    width: 100%;
+  }
+  .r-xs-full-height {
+    height: 100%;
+  }
+  .r-xs-v-align-top {
+    vertical-align: top;
+  }
+  .r-xs-left {
+    float: left;
+  }
+  .r-xs-right {
+    float: right;
+  }
+  .r-xs-overflow-scroll {
+    overflow: scroll;
+  }
+}
+@media (min-width: 640px) {
+  .r-sm-t-0 {
+    top: 0;
+  }
+  .r-sm-r-0 {
+    right: 0;
+  }
+  .r-sm-b-0 {
+    bottom: 0;
+  }
+  .r-sm-l-0 {
+    left: 0;
+  }
+  .r-sm-hidden {
+    display: none;
+  }
+  .r-sm-inline {
+    display: inline;
+  }
+  .r-sm-block {
+    display: block;
+  }
+  .r-sm-inline-block {
+    display: inline-block;
+  }
+  .r-sm-absolute {
+    position: absolute;
+  }
+  .r-sm-relative {
+    position: relative;
+  }
+  .r-sm-fixed {
+    position: fixed;
+  }
+  .r-sm-o-hidden {
+    overflow: hidden;
+  }
+  .r-sm-o-scroll {
+    overflow: scroll;
+  }
+  .r-sm-o-y-auto {
+    overflow-y: auto;
+  }
+  .r-sm-full-width {
+    width: 100%;
+  }
+  .r-sm-full-height {
+    height: 100%;
+  }
+  .r-sm-v-align-top {
+    vertical-align: top;
+  }
+  .r-sm-left {
+    float: left;
+  }
+  .r-sm-right {
+    float: right;
+  }
+  .r-sm-overflow-scroll {
+    overflow: scroll;
+  }
+}
+@media (min-width: 1024px) {
+  .r-md-t-0 {
+    top: 0;
+  }
+  .r-md-r-0 {
+    right: 0;
+  }
+  .r-md-b-0 {
+    bottom: 0;
+  }
+  .r-md-l-0 {
+    left: 0;
+  }
+  .r-md-hidden {
+    display: none;
+  }
+  .r-md-inline {
+    display: inline;
+  }
+  .r-md-block {
+    display: block;
+  }
+  .r-md-inline-block {
+    display: inline-block;
+  }
+  .r-md-absolute {
+    position: absolute;
+  }
+  .r-md-relative {
+    position: relative;
+  }
+  .r-md-fixed {
+    position: fixed;
+  }
+  .r-md-o-hidden {
+    overflow: hidden;
+  }
+  .r-md-o-scroll {
+    overflow: scroll;
+  }
+  .r-md-o-y-auto {
+    overflow-y: auto;
+  }
+  .r-md-full-width {
+    width: 100%;
+  }
+  .r-md-full-height {
+    height: 100%;
+  }
+  .r-md-v-align-top {
+    vertical-align: top;
+  }
+  .r-md-left {
+    float: left;
+  }
+  .r-md-right {
+    float: right;
+  }
+  .r-md-overflow-scroll {
+    overflow: scroll;
+  }
+}
+@media (min-width: 1200px) {
+  .r-lg-t-0 {
+    top: 0;
+  }
+  .r-lg-r-0 {
+    right: 0;
+  }
+  .r-lg-b-0 {
+    bottom: 0;
+  }
+  .r-lg-l-0 {
+    left: 0;
+  }
+  .r-lg-hidden {
+    display: none;
+  }
+  .r-lg-inline {
+    display: inline;
+  }
+  .r-lg-block {
+    display: block;
+  }
+  .r-lg-inline-block {
+    display: inline-block;
+  }
+  .r-lg-absolute {
+    position: absolute;
+  }
+  .r-lg-relative {
+    position: relative;
+  }
+  .r-lg-fixed {
+    position: fixed;
+  }
+  .r-lg-o-hidden {
+    overflow: hidden;
+  }
+  .r-lg-o-scroll {
+    overflow: scroll;
+  }
+  .r-lg-o-y-auto {
+    overflow-y: auto;
+  }
+  .r-lg-full-width {
+    width: 100%;
+  }
+  .r-lg-full-height {
+    height: 100%;
+  }
+  .r-lg-v-align-top {
+    vertical-align: top;
+  }
+  .r-lg-left {
+    float: left;
+  }
+  .r-lg-right {
+    float: right;
+  }
+  .r-lg-overflow-scroll {
+    overflow: scroll;
+  }
+}
+/*
+# Opacity classes
+
+* .opacity-10, .opacity-20 etc.
+ */
+.opacity-10 {
+  opacity: 0.1;
+}
+
+.opacity-20 {
+  opacity: 0.2;
+}
+
+.opacity-30 {
+  opacity: 0.3;
+}
+
+.opacity-40 {
+  opacity: 0.4;
+}
+
+.opacity-50 {
+  opacity: 0.5;
+}
+
+.opacity-60 {
+  opacity: 0.6;
+}
+
+.opacity-70 {
+  opacity: 0.7;
+}
+
+.opacity-80 {
+  opacity: 0.8;
+}
+
+.opacity-90 {
+  opacity: 0.9;
+}
+
+.opacity-100 {
+  opacity: 1;
+}
+
+.c-white {
+  color: #fff;
+}
+
+.c-black {
+  color: #000;
+}
+
+@media (pointer: fine) {
+  .c-white_hover:hover {
+    color: #fff;
+  }
+  .c-black_hover:hover {
+    color: #000;
+  }
+}
+.c-white_active:enabled:active {
+  color: #fff;
+}
+
+.c-black_active:enabled:active {
+  color: #000;
+}
+
+.c-white_disabled:disabled {
+  color: #fff;
+}
+
+.c-black_disabled:disabled {
+  color: #000;
+}
+
+.bg-c-white {
+  background-color: #fff;
+}
+
+.bg-c-black {
+  background-color: #000;
+}
+
+@media (pointer: fine) {
+  .bg-c-white_hover:hover {
+    background-color: #fff;
+  }
+  .bg-c-black_hover:hover {
+    background-color: #000;
+  }
+}
+.bg-c-white_active:enabled:active {
+  background-color: #fff;
+}
+
+.bg-c-black_active:enabled:active {
+  background-color: #000;
+}
+
+.bg-c-white_disabled:disabled {
+  background-color: #fff;
+}
+
+.bg-c-black_disabled:disabled {
+  background-color: #000;
+}
+
+.B-c-white {
+  border-color: #fff;
+}
+
+.B-c-black {
+  border-color: #000;
+}
+
+.Bt-c-white {
+  border-top-color: #fff;
+}
+
+.Bt-c-black {
+  border-top-color: #000;
+}
+
+.Br-c-white {
+  border-right-color: #fff;
+}
+
+.Br-c-black {
+  border-right-color: #000;
+}
+
+.Be-c-white {
+  border-right-color: #fff;
+}
+
+.Be-c-black {
+  border-right-color: #000;
+}
+
+.Bb-c-white {
+  border-bottom-color: #fff;
+}
+
+.Bb-c-black {
+  border-bottom-color: #000;
+}
+
+.Bl-c-white {
+  border-left-color: #fff;
+}
+
+.Bl-c-black {
+  border-left-color: #000;
+}
+
+.Bs-c-white {
+  border-left-color: #fff;
+}
+
+.Bs-c-black {
+  border-left-color: #000;
+}
+
+.Bx-c-white {
+  border-left-color: #fff;
+  border-right-color: #fff;
+}
+
+.Bx-c-black {
+  border-left-color: #000;
+  border-right-color: #000;
+}
+
+.By-c-white {
+  border-top-color: #fff;
+  border-bottom-color: #fff;
+}
+
+.By-c-black {
+  border-top-color: #000;
+  border-bottom-color: #000;
+}
+
+.B-c-white {
+  border-top-color: #fff;
+  border-right-color: #fff;
+  border-bottom-color: #fff;
+  border-left-color: #fff;
+}
+
+.B-c-black {
+  border-top-color: #000;
+  border-right-color: #000;
+  border-bottom-color: #000;
+  border-left-color: #000;
+}
+
+/*
+Most used components that are simpler to use than Atomic CSS classes.
+ */
+/* Make blocks equal height
+
+ */
+.equal-height {
+  overflow: hidden;
+}
+
+.equal-height-col {
+  padding-bottom: 500em;
+  margin-bottom: -500em;
+}
+
+/* Vertical aligned items
+
+<div class="v-align">
+    <div class="v-align-middle"></div>
+    <div class="v-align-middle"></div>
+</div>
+
+ */
+.v-align {
+  display: table;
+}
+
+.v-align-middle {
+  display: table-cell;
+  vertical-align: middle;
+}
+
+.v-align-top {
+  display: table-cell;
+  vertical-align: top;
+}
+
+.overlay-full {
+  position: absolute;
+  left: 0;
+  right: 0;
+  z-index: 1;
+}
+
+.h-center {
+  margin: 0 auto;
+}
+
+.x-center {
+  margin: auto;
+  position: absolute;
+  left: 50%;
+  transform: translate(-50%, 0);
+}
+
+.y-center {
+  margin: auto;
+  position: absolute;
+  top: 50%;
+  transform: translate(0, -50%);
+}
